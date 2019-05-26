@@ -12,3 +12,7 @@ Linux chat software based on QT5
 ### 张登凯
 sqlite数据库使用
 ***
+
+### 李海龙
+QT5 GUI开发框架使用
+***
