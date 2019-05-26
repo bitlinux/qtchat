@@ -8,3 +8,7 @@ Linux chat software based on QT5
 ### 于浩淼
 数据库表设计
 ***
+
+### 张登凯
+sqlite数据库使用
+***
