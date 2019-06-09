@@ -17,12 +17,10 @@ Linux chat software based on QT5
 数据库表设计
 * 3/6/19  
 设计实现私聊、群聊 GUI
----
 
 ### 张登凯
 * 27/5/19  
 sqlite数据库使用
----
 
 ### 李海龙
 * 27/5/19  
