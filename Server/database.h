@@ -57,6 +57,15 @@ public:
     int send_flock_message(FlockTalkinfo &,QVector<FlockMember> &);
     //发送群中最后五条消息
     int send_last_message_in_flock(Flockinfo &,QVector<FlockTalkinfo> &);
+    //存储文件数据到数据库
+    int save_file_in_db(UserTalkinfo &);
+    //向好友发送自己的离线消息
+    int inform_offline_to_friend(int &, QVector<Userinfo> &);
+    //查找申请人的ID号
+    int search_name_by_id(Userinfo &);
+    //更新好友列表
+    int update_friend_list(Userinfo &);
+
 private:
     //检查SQL语句的正确性
     void errorSQLOrder(QSqlQuery query, QString mark);

@@ -72,7 +72,7 @@ void ClientSocket::receivemessage()
     }
     case CREATE_FLOCK:{
         in>>m_tmp.flock.creator_id>>m_tmp.flock.flock_name;
-        qDebug()<<m_tmp.flock.creator_id<<m_tmp.flock.flock_name;
+
         break;
     }
     case GET_FLOCK_MEMBERS:{
@@ -84,6 +84,7 @@ void ClientSocket::receivemessage()
         break;
     }
     case CHANGE_FLOCK_NAME:{
+
         in>>m_tmp.flock.flock_id>>m_tmp.flock.flock_name;
         break;
     }
@@ -98,6 +99,11 @@ void ClientSocket::receivemessage()
     case CHECK_FLOCK_MESSAGE:{
         qDebug()<<"check flock message";
         in>>m_tmp.flock.flock_id;
+        break;
+    }
+    case SEND_FILE_TO_PEER:{
+        qDebug()<<"send file to peer";
+        in>>m_tmp.talk.send_id>>m_tmp.talk.receive_id>>m_tmp.talk.message>>m_tmp.talk.bit;
         break;
     }
 
@@ -156,16 +162,15 @@ void ClientSocket::sendmessage(const Tmpinfo &tmp)
         break;
     }
     case HAVE_MESSAGE_RECODRD:{
-        //qDebug()<<QString::number(tmp.talk.send_id)<<tmp.history.size();
-        out<<tmp.talk.send_id<<quint16(0)<<tmp.history.size();
+        out<<tmp.talk.send_id<<quint32(0)<<tmp.history.size();
         int len=tmp.history.size();
         for(int i=0;i<len;i++)
         {
             out<<tmp.history[i].send_id<<tmp.history[i].message<<tmp.history[i].send_time;
-            qDebug()<<tmp.history[i].send_id<<tmp.history[i].message<<tmp.history[i].send_time;
+            //qDebug()<<tmp.history[i].send_id<<tmp.history[i].message<<tmp.history[i].send_time;
         }
         out.device()->seek(2*sizeof(int));
-        //out << quint16(block.size() - sizeof(quint16)-2*sizeof(int));
+        out << quint32(block.size() - sizeof(quint32)-2*sizeof(int));
         break;
     }
     case NO_MESSAGE_RECORD:{
@@ -219,13 +224,29 @@ void ClientSocket::sendmessage(const Tmpinfo &tmp)
         break;
     }
     case HAVE_FLOCK_MESSAGE:{
-        qDebug()<<"have flock";
+        //qDebug()<<"have flock";
         out<<tmp.flock.flock_id<<tmp.flock_history.size();
         int len=tmp.flock_history.size();
         for(int i=0;i<len;i++)
         {
             out<<tmp.flock_history[len-1-i].send_id<<tmp.flock_history[len-1-i].message<<tmp.flock_history[len-1-i].send_time.toString("yyyy-MM-dd hh:mm:ss");
         }
+        break;
+    }
+    case SEND_FILE_TO_PEER:{
+        out<<tmp.talk.send_id<<tmp.talk.message<<tmp.talk.bit<<tmp.talk.send_time;
+        break;
+    }
+    case CHANGE_STATUE:{
+        out<<tmp.login_info.m_userID;
+        break;
+    }
+    case NEW_NOTI_FRIEND:{
+        out<<tmp.talk.send_id<<tmp.talk.message<<tmp.talk.send_time<<tmp.user.nickname;
+        break;
+    }
+    case FRESH_FRIEND_LIST:{
+        out<<tmp.user.id<<tmp.user.nickname<<tmp.user.status;
         break;
     }
     default:
@@ -237,7 +258,6 @@ void ClientSocket::sendmessage(const Tmpinfo &tmp)
 //删除当前的socket
 void ClientSocket::deletesocket()
 {
-    //qDebug()<<"delete socket! request type: "<<m_tmp.request;
     if(m_tmp.request==QUIT)
         emit deletesignal(m_tmp.login_info.m_userID);
     deleteLater();

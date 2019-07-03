@@ -131,6 +131,9 @@ static const QString CHAGNE_USER_NAME=
 static const QString SEND_FLOCK_MESSAGE=
         "insert into FlockTalk values(?,?,?,?,?);";
 
+static const QString SAVE_FILE_IN_DB=
+        "insert into File values(?,?,?,?,?,?);";
+
 //find item
 
 static const QString SEARCH_USER_IN_USERINFORMATION_SQL =
@@ -167,6 +170,9 @@ static const QString CHECK_REQUEST_IN_FRIEND_REQUEST=
 static const QString GENERATE_TALK_ID=
         "select count(*) from Talk;";
 
+static const QString GENERATE_FILE_ID=
+        "select count(*) from File;";
+
 static const QString SEARCH_TALK_HISTORY=
         "select * from Talk where (sendID=? and receiveID=?) or (receiveID=? and sendID=?) order by talkID desc limit 5; ";
 
@@ -184,6 +190,17 @@ static const QString FIND_FLOCK_USER=
 
 static const QString GET_FLOCK_LAST_MESSAGE=
         "select userID,message,time from FlockTalk where flockID=? order by flockTalkID desc limit 5;";
+
+static const QString INFORM_FRIEND_OFFLINE=
+        "select User.id from User,Friend where "
+        " (Friend.lefthand=? and Friend.righthand=User.id) or "
+        "(Friend.righthand=? and Friend.lefthand=User.id ); ";
+
+static const QString SEARCH_NAME_BY_ID=
+        "select nickname from User where id=?;";
+
+static const QString SEARCH_PERSONAL_INFO=
+        "select nickname,isonline from User where id=?;";
 
 Database::Database(QObject *parent) :
     QObject(parent)
@@ -603,6 +620,7 @@ int Database::requestfriend( UserTalkinfo &tmp)
         }
     }
     QSqlQuery query(*m_database);
+    tmp.send_time=QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     query.prepare(INSERT_REQUEST_FRIEND_IN_DB);
     query.addBindValue(tmp.send_id);
     query.addBindValue(tmp.receive_id);
@@ -621,6 +639,30 @@ int Database::requestfriend( UserTalkinfo &tmp)
         qDebug()<<"send request success!";
         m_database->close();
         return SEND_REQUEST_SUCCESS;
+    }
+}
+
+int Database::search_name_by_id(Userinfo &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(SEARCH_NAME_BY_ID);
+    query.addBindValue(tmp.id);
+    query.exec();
+    errorSQLOrder(query,"search name");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return -1;
+    }
+    else {
+        if(query.next())
+        {
+            tmp.nickname=query.value(0).toString();
+        }
+        m_database->close();
+        return 1;
     }
 }
 
@@ -699,6 +741,31 @@ int Database::refusefriendrequest( UserTalkinfo &tmp)
     }
 }
 
+int Database::update_friend_list(Userinfo &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(SEARCH_PERSONAL_INFO);
+    query.addBindValue(tmp.id);
+    query.exec();
+    errorSQLOrder(query,"find name,online");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return -1;
+    }
+    else {
+        if(query.next())
+        {
+            tmp.nickname=query.value(0).toString();
+            tmp.status=query.value(1).toInt();
+        }
+        m_database->close();
+        return 1;
+    }
+}
+
 int Database::talktofriend( UserTalkinfo &tmp)
 {
     if(!createconnection())
@@ -766,7 +833,7 @@ int Database::search_talk_message( UserTalkinfo &talk, QVector<UserTalkinfo> &tm
             temp.send_time=query.value(4).toDateTime().toString("yyyy-MM-dd hh:mm:ss");
             tmp.push_back(temp);
         }
-        //qDebug()<<"temp size"<<tmp.size();
+        qDebug()<<"talk  size"<<tmp.size();
         if(tmp.size()==0)
         {
             m_database->close();
@@ -1043,5 +1110,74 @@ int Database::send_last_message_in_flock(Flockinfo &fl, QVector<FlockTalkinfo> &
         }
         m_database->close();
         return HAVE_FLOCK_MESSAGE;
+    }
+}
+
+
+int Database::save_file_in_db(UserTalkinfo &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(GENERATE_FILE_ID);
+    query.exec();
+    errorSQLOrder(query,"produce talk ID");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return -1;
+    }
+    else {
+        if(query.next())
+        {
+            tmp.talk_id=query.value(0).toInt();
+        }
+        tmp.send_time=QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+        QSqlQuery query1(*m_database);
+        query1.prepare(SAVE_FILE_IN_DB);
+        query1.addBindValue(tmp.talk_id);
+        query1.addBindValue(tmp.message);
+        query1.addBindValue(tmp.bit);
+        query1.addBindValue(tmp.send_id);
+        query1.addBindValue(tmp.receive_id);
+        query1.addBindValue(QDateTime::currentDateTime());
+        query1.exec();
+        errorSQLOrder(query1,"save file");
+        if(!query1.isActive())
+        {
+            m_database->close();
+            return -1;
+        }
+        qDebug()<<"save file success";
+        m_database->close();
+        return 1;
+    }
+}
+
+int Database::inform_offline_to_friend(int &tmp, QVector<Userinfo> &users)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(INFORM_FRIEND_OFFLINE);
+    query.addBindValue(tmp);
+    query.addBindValue(tmp);
+    query.exec();
+    errorSQLOrder(query,"inform friend offline");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return -1;
+    }
+    else
+    {
+        while(query.next())
+        {
+            Userinfo user;
+            user.id=query.value(0).toInt();
+            users.push_back(user);
+        }
+        m_database->close();
+        return 1;
     }
 }

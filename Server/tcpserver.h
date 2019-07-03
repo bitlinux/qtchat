@@ -12,7 +12,7 @@ public:
     TcpServer(QObject *parent = nullptr);
     ~TcpServer();
 public slots:
-    void clientdisconnect(const int &id);
+    void clientdisconnect( int &id);
     void sendmessage(const Tmpinfo &tmp);
     //添加其他的函数辅助sendmessage,也可以全部在sendmessage内部实现
 

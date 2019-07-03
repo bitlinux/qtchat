@@ -12,7 +12,7 @@ TcpServer::~TcpServer()
 }
 
 //一个连接下线
-void TcpServer::clientdisconnect(const int &id)
+void TcpServer::clientdisconnect(int &id)
 {
     //移除掉一个在线用户
     //当id为登录后掉线，正常调用移除用户语句，在登录之前掉线，id应该不为有效值，不进行无意义删除
@@ -21,6 +21,17 @@ void TcpServer::clientdisconnect(const int &id)
     m_userStatus[id]=Offline;
     m_database.updateStatus(false,id);
     qDebug()<<tr("user %1 has exited !").arg(id);
+    m_tmp={};
+    m_tmp.reply=CHANGE_STATUE;
+    m_tmp.login_info.m_userID=id;
+    m_database.inform_offline_to_friend(id,m_tmp.friends);
+    for(int i=0;i<m_tmp.friends.size();i++)
+    {
+        if(m_userMap.contains(m_tmp.friends[i].id))
+        {
+            m_userMap[m_tmp.friends[i].id]->sendmessage(m_tmp);
+        }
+    }
     //通知其他人更改状态，数据库提前更改状态
 }
 
@@ -50,6 +61,15 @@ void TcpServer::sendmessage(const Tmpinfo &tmp)
             }
         qDebug()<<"online user size: "<<m_userMap.size();
         tmp.socket->sendmessage(m_tmp);
+
+        for(int i=0;i<m_tmp.main_info.friends.size();i++)
+        {
+            if(m_userMap.contains(m_tmp.main_info.friends[i].ID.toInt()))
+            {
+                m_tmp.reply=CHANGE_STATUE;
+                m_userMap[m_tmp.main_info.friends[i].ID.toInt()]->sendmessage(m_tmp);
+            }
+        }
         break;
     }
     case FORGET_PASSWORD_PROBLEM:{
@@ -80,12 +100,31 @@ void TcpServer::sendmessage(const Tmpinfo &tmp)
         m_tmp.talk=tmp.talk;
         m_tmp.reply=m_database.requestfriend(m_tmp.talk);
         tmp.socket->sendmessage(m_tmp);
+        m_tmp.user.id=m_tmp.talk.send_id;
+        m_database.search_name_by_id(m_tmp.user);
+        if(m_userMap.contains(m_tmp.talk.receive_id))
+        {
+            m_tmp.reply=NEW_NOTI_FRIEND;
+            m_userMap[m_tmp.talk.receive_id]->sendmessage(m_tmp);
+        }
         break;
     }
     case AGREE_FRIEND:{
         m_tmp.talk=tmp.talk;
         m_tmp.reply=m_database.agreefriendrequest(m_tmp.talk,m_tmp.user);
+        m_tmp.user.id=m_tmp.talk.send_id;
+        m_database.update_friend_list(m_tmp.user);
+        m_tmp.reply=FRESH_FRIEND_LIST;
         tmp.socket->sendmessage(m_tmp);
+
+        m_tmp.user.id=m_tmp.talk.receive_id;
+        m_database.update_friend_list(m_tmp.user);
+
+        if(m_userMap.contains(m_tmp.talk.send_id))
+        {
+            m_tmp.reply=FRESH_FRIEND_LIST;
+            m_userMap[m_tmp.talk.send_id]->sendmessage(m_tmp);
+        }
         break;
     }
     case REFUSE_FRIEND:{
@@ -159,6 +198,7 @@ void TcpServer::sendmessage(const Tmpinfo &tmp)
                 m_tmp.reply=TALK_FLOCK;
                 m_userMap[m_tmp.flocks_member[i].user_id]->sendmessage(m_tmp);
             }
+            m_tmp.reply=-1;
         }
         break;
     }
@@ -166,6 +206,16 @@ void TcpServer::sendmessage(const Tmpinfo &tmp)
         m_tmp.flock=tmp.flock;
         m_tmp.reply=m_database.send_last_message_in_flock(m_tmp.flock,m_tmp.flock_history);
         tmp.socket->sendmessage(m_tmp);
+        break;
+    }
+    case SEND_FILE_TO_PEER:{
+        m_tmp.talk=tmp.talk;
+        m_tmp.reply=m_database.save_file_in_db(m_tmp.talk);
+        if(m_userMap.contains(m_tmp.talk.receive_id))
+        {
+            m_tmp.reply=SEND_FILE_TO_PEER;
+            m_userMap[m_tmp.talk.receive_id]->sendmessage(m_tmp);
+        }
         break;
     }
     default:
@@ -179,9 +229,10 @@ void TcpServer::incomingConnection(qintptr socketDescriptor)
 {
     ClientSocket *clientSocket = new ClientSocket(this);
     clientSocket->setSocketDescriptor(socketDescriptor);
-    connect(clientSocket,SIGNAL(deletesignal(const int &)),this,SLOT(clientdisconnect(const int &)));
+    connect(clientSocket,SIGNAL(deletesignal( int &)),this,SLOT(clientdisconnect( int &)));
     connect(clientSocket,SIGNAL(sendsignal(const Tmpinfo &)),this,SLOT(sendmessage(const Tmpinfo &)));
     qDebug()<<"new client ip address: "<<clientSocket->peerAddress().toString();
     qDebug()<<"new client port: "<<clientSocket->peerPort();
 }
+
 

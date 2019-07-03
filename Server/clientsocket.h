@@ -17,7 +17,7 @@ signals:
     //请求服务器在后台对通信消息进行处理
     void sendsignal(const Tmpinfo &tmp);
     //请求断开连接
-    void deletesignal(const int &id);
+    void deletesignal( int &id);
 
 public slots:
     //接收消息并进行初步的判断和处理

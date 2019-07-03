@@ -165,169 +165,175 @@ struct MainWindowInfo
 enum MessageType
 {
     /***********************client to server************************/
-    LOGIN,                      // 登录
-    REGISTER,                   // 注册
+    LOGIN,                      // 登录 0
+    REGISTER,                   // 注册 1
 
-    FORGET_PASSWORD_PROBLEM, // get problems
-    FORGET_PASSWORD_PROBLEM_SUCCESS,
-    FORGET_PASSWORD_PROBLEM_FAIL,
-    CHECK_SUCCESS,
-    CHECK_FAIL,
-    CHECK_ANSWER,
+    FORGET_PASSWORD_PROBLEM, // get problems 2
+    FORGET_PASSWORD_PROBLEM_SUCCESS,  // 3
+    FORGET_PASSWORD_PROBLEM_FAIL,  //4
+    CHECK_SUCCESS,  //5
+    CHECK_FAIL,//6
+    CHECK_ANSWER,//7
 
-    GET_QUESTION_ANSWER,    // 获取密保问题以及答案
-    GET_QUESTION_ANSWER_SUCCESS,
-    GET_QUESTION_ANSWER_FAIL,
+    GET_QUESTION_ANSWER,    // 获取密保问题以及答案 8
+    GET_QUESTION_ANSWER_SUCCESS,//9
+    GET_QUESTION_ANSWER_FAIL,//10
 
 
-    CHECK_MESSAGE,              // 检查有无给自己的信息（登录时检查）
-    MESSAGE_RECORD,
-    HAVE_MESSAGE_RECODRD,
-    NO_MESSAGE_RECORD,
+    CHECK_MESSAGE,              // 检查有无给自己的信息（登录时检查） 11
+    MESSAGE_RECORD,       //12
+    HAVE_MESSAGE_RECODRD, //13
+    NO_MESSAGE_RECORD,  //14
 
-    CHECK_FLOCK_MESSAGE,
-    HAVE_FLOCK_MESSAGE,
-    NO_FLOCK_MESSAGE,
+    CHECK_FLOCK_MESSAGE,  //15
+    HAVE_FLOCK_MESSAGE,  //16
+    NO_FLOCK_MESSAGE, //17
 
-    GET_ALL_FRIENDS,            // 获取所有好友信息
-    GET_ALL_FLOCKS,             // 获取所有群信息
-    GET_FLOCK_MEMBERS,          // 获取群成员
+    GET_ALL_FRIENDS,            // 获取所有好友信息 18
+    GET_ALL_FLOCKS,             // 获取所有群信息  19
+    GET_FLOCK_MEMBERS,          // 获取群成员  20
 
-    TALK,				// 发送对话
+    TALK,				// 发送对话  21
 
-    ADD_FRIEND,                 // 添加好友
-    FRIEND_EXIST,
+    ADD_FRIEND,                 // 添加好友  22
+    FRIEND_EXIST,  //23
 
-    ADD_FLOCK,                   // 用户加群
-    CHANGE_FLOCK_NAME,
-    CHANGE_FLOCK_NAME_SUCCESS,
-    CHANGE_FLOCK_NAME_FAIL,
-    FLOCK_ADD_MEMBER,            // 群加用户
+    ADD_FLOCK,                   // 用户加群 24
+    CHANGE_FLOCK_NAME,    //25
+    CHANGE_FLOCK_NAME_SUCCESS,  //26
+    CHANGE_FLOCK_NAME_FAIL,  //27
+    FLOCK_ADD_MEMBER,            // 群加用户 28
 
-    GET_FRIEND_INFORMATION,		// 获取好友信息
-    DELETE_FRIEND,				// 删除好友
-    GET_MYSELF_INFORMATION,		// 获取自己信息
-    CHANGE_INFORMATION,			// 改变自己的信息
-    CHANGE_REMARK,				// 改变（好友）备注
-    CHANGE_PASSWORD,			    // 修改密码
-    CHANGE_STATUE,				// 改变自身状态
+    GET_FRIEND_INFORMATION,		// 获取好友信息 29
+    DELETE_FRIEND,				// 删除好友  30
+    GET_MYSELF_INFORMATION,		// 获取自己信息  31
+    CHANGE_INFORMATION,			// 改变自己的信息  32
+    CHANGE_REMARK,				// 改变（好友）备注  33
+    CHANGE_PASSWORD,			    // 修改密码  34
+    CHANGE_STATUE,				// 改变自身状态  35
     // 还有分组好友管理
-    QUIT,						// 退出
+    QUIT,						// 退出 36
 
     /***********************server to client************************/
 
-    LOGIN_SUCCESS ,				// 登录成功
-    LOGIN_FAIL,			        // 登录失败
-    HAVE_LOGINED,				// 已经登录
-    REGISTER_SUCCESS,	        // 注册成功
-    REGISTER_FAIL,			    // 注册失败
+    LOGIN_SUCCESS ,				// 登录成功 37
+    LOGIN_FAIL,			        // 登录失败 38
+    HAVE_LOGINED,				// 已经登录 39
+    REGISTER_SUCCESS,	        // 注册成功 40
+    REGISTER_FAIL,			    // 注册失败 41
 
 
-    GET_ALL_FRIENDS_SUCCESS,    // 获取所有好友信息成功
-    GET_ALL_FRIENDS_FAIL,       // 获取所有好友信息失败
-    NO_FRIEND,                  // 没有好友
-    GET_ALL_FLOCKS_SUCCESS,     // 获取所有群信息成功
-    GET_ALL_FLOCKS_FAIL,        // 获取所有群信息失败
-    NO_FLOCK,
+    GET_ALL_FRIENDS_SUCCESS,    // 获取所有好友信息成功 42
+    GET_ALL_FRIENDS_FAIL,       // 获取所有好友信息失败 43
+    NO_FRIEND,                  // 没有好友  44
+    GET_ALL_FLOCKS_SUCCESS,     // 获取所有群信息成功 45
+    GET_ALL_FLOCKS_FAIL,        // 获取所有群信息失败 46
+    NO_FLOCK,  //47
 
 
-    GET_FLOCK_MEMBERS_FAIL,           // 获取群成员失败
-    GET_FLOCK_MEMBERS_SUCCESS,        // 获取群成员成功
-    NO_FLOCK_MEMBER,                // 没有群成员
+    GET_FLOCK_MEMBERS_FAIL,           // 获取群成员失功 48
+    GET_FLOCK_MEMBERS_SUCCESS,   //49
+    NO_FLOCK_MEMBER,                // 没有群成员 50
 
-    NO_MESSAGE,				    // 没有信息
-    HAVE_MESSAGE,				// 有信息
-    HAVE_TALK_MESSAGE,          // 有聊天信息
+    NO_MESSAGE,				    // 没有信息 51
+    HAVE_MESSAGE,				// 有信息 52
+    HAVE_TALK_MESSAGE,          // 有聊天信息 53
 
-    FRIEND_REQUESTED,			// 好友请求
-    FRIEDN_NO_ACCOUNT,			// 没有这个用户名
-    ALREAD_FRIENDS,			    // 回应好友请求
+    FRIEND_REQUESTED,			// 好友请求 54
+    FRIEDN_NO_ACCOUNT,			// 没有这个用户名 55
+    ALREAD_FRIENDS,			    // 回应好友请求 56
 
-    GET_FRIEND_FAIL,
-    GET_FRIEND_SUCCESS,			// 获得好友资料成功
-    DELETE_FRIEND_FAIL,
-    DELETE_FRIEND_SUCCESS,		// 删除好友成功
-    GET_MYSELF_FAIL,
-    GET_MYSELF_SUCCESS,		    // 获得自己详细资料成功
-    CHANGE_INFORMATION_FAIL,
-    CHANGE_INFORMATION_SUCCESS,	// 改变自身资料成功
+    GET_FRIEND_FAIL,   //57
+    GET_FRIEND_SUCCESS,			// 获得好友资料成功 58
+    DELETE_FRIEND_FAIL,  //59
+    DELETE_FRIEND_SUCCESS,	// 删除好友成功 60
+    GET_MYSELF_FAIL,   //61
+    GET_MYSELF_SUCCESS,		    // 获得自己详细资料成功 62
+    CHANGE_INFORMATION_FAIL,  //63
+    CHANGE_INFORMATION_SUCCESS,	// 改变自身资料成功 64
 
-    CHANGE_REMARK_FAIL,             // 修改备注失败
-    CHANGE_REMARK_SUCCESS,		// 修改备注成功
+    CHANGE_REMARK_FAIL,             // 修改备注失败 65
+    CHANGE_REMARK_SUCCESS,		// 修改备注成功 66
 
-    OLD_PWD_IS_WRONG,			// 旧密码是错的
-    CHANGE_PWD_FAIL,              // 修改密码失败
-    CHANGE_PWD_SUCCESS,			// 修改密码成功
+    OLD_PWD_IS_WRONG,			// 旧密码是错的 67
+    CHANGE_PWD_FAIL,              // 修改密码失败 68
+    CHANGE_PWD_SUCCESS,			// 修改密码成功 69
 
     /***********************client to client************************/
 
-    REQUEST_FRIEND,	     // 请求添加好友
-    SEND_REQUEST_FAIL,
-    SEND_REQUEST_SUCCESS,
-    AGREE_FRIEND,	     // 同意好友请求
-    REFUSE_FRIEND,		 // 不同意好友请求
-    ADD_FRIEND_FAIL,      // 添加好友失败
-    ADD_FRIEND_SUCCESS,   // 添加好友成功
-    END_ADD_FRIEND,	     // 好友添加结束
-    BE_DELETED,		     // 自己被好友删除了
+    REQUEST_FRIEND,	     // 请求添加好友 70
+    SEND_REQUEST_FAIL,  //71
+    SEND_REQUEST_SUCCESS,  //72
+    AGREE_FRIEND,	     // 同意好友请求 73
+    REFUSE_FRIEND,		 // 不同意好友请求 74
+    ADD_FRIEND_FAIL,      // 添加好友失败 75
+    ADD_FRIEND_SUCCESS,   // 添加好友成功 76
+    END_ADD_FRIEND,	     // 好友添加结束 77
+    BE_DELETED,		     // 自己被好友删除了 78
 
-    MESSAGE,				 // 普通信息
-    TALK_MESSAGE,         // 聊天信息
+    MESSAGE,				 // 普通信息 79
+    TALK_MESSAGE,         // 聊天信息 80
 
-    REQUEST_FLOCK,   // 用户请求加入群
-    FLOCK_AGREE,    // 群主同意用户加入
-    FLOCK_REFUSE,   // 群主拒绝用户加入
-    ADD_FLOCK_FAIL,             // 加入群失败
-    ADD_FLOCK_SUCCESS,          // 加入群成功
-    NEW_FLOCK_MEMBER,           // 新成员入群
-    LEAVE_FLOCK_MEMBER,
-
-
-    FLOCK_REQUEST,  // 群主请求用户加入群
-    AGREE_FLOCK,    // 用户同意加入群
-    REFUSE_FLOCK,   // 用户拒绝加入群
+    REQUEST_FLOCK,   // 用户请求加入群 81
+    FLOCK_AGREE,    // 群主同意用户加入 82
+    FLOCK_REFUSE,   // 群主拒绝用户加入 83
+    ADD_FLOCK_FAIL,             // 加入群失败 84
+    ADD_FLOCK_SUCCESS,          // 加入群成功 85
+    NEW_FLOCK_MEMBER,           // 新成员入群 86
+    LEAVE_FLOCK_MEMBER,  //87
 
 
-    CREATE_FLOCK,               // 创建群
-    CREATE_FLOCK_FAIL,
-    CREATE_FLOCK_SUCCESS,
+    FLOCK_REQUEST,  // 群主请求用户加入群 88
+    AGREE_FLOCK,    // 用户同意加入群 89
+    REFUSE_FLOCK,   // 用户拒绝加入群 90
 
 
-    DROP_FLOCK,                 // 解散群
-    DROP_FLOCK_FAIL,            // 解散群失败
-    DROP_FLOCK_SUCCESS,         // 解散群成功
+    CREATE_FLOCK,               // 创建群 91
+    CREATE_FLOCK_FAIL,   //92
+    CREATE_FLOCK_SUCCESS, //93
 
 
-    LEAVE_FLOCK,              // 退出群
-    LEAVE_FLOCK_SUCCESS,      // 退出群成功
-    LEAVE_FLCCK_FAIL,         // 退出群失败
+    DROP_FLOCK,                 // 解散群 94
+    DROP_FLOCK_FAIL,            // 解散群失败 95
+    DROP_FLOCK_SUCCESS,         // 解散群成功 96
 
 
-    CHANGE_FLOCK,               // 修改群信息
-    CHANGE_FLOCK_SUCCESS,
-    CHANGE_FLOCK_FAIL,
+    LEAVE_FLOCK,              // 退出群 97
+    LEAVE_FLOCK_SUCCESS,      // 退出群成功 98
+    LEAVE_FLCCK_FAIL,         // 退出群失败 99
 
-    CHANGE_FLOCK_REMARK,             // 修改群成员备注
-    CHANGE_FLOCK_REMARK_FAIL,
-    CHANGE_FLOCK_REMARK_SUCCESS,
 
-    TALK_FLOCK,               // 群对话
+    CHANGE_FLOCK,               // 修改群信息 100
+    CHANGE_FLOCK_SUCCESS,  //101
+    CHANGE_FLOCK_FAIL,  //102
 
-    REQUEST_VIDEO,
-    REFUSE_VIDEO,
-    END_VIDEO,
-    REQUEST_VOICE,
-    AGREE_VOICE,
-    REFUSE_VOICE,
-    END_VOICE,
-    REQUEST_FILE,
-    AGREE_FILE,
-    REFUSE_FILE,
-    END_FILE,
+    CHANGE_FLOCK_REMARK,             // 修改群成员备注 103
+    CHANGE_FLOCK_REMARK_FAIL, //104
+    CHANGE_FLOCK_REMARK_SUCCESS, //105
 
-    GET_HISTORY_MESSAGE,   //获取历史记录
-    GET_HISTORY_MESSAGE_SUCCESS,
-    GET_HISTORY_MESSAGE_FAIL
+    TALK_FLOCK,               // 群对话 106
+
+    REQUEST_VIDEO,  //107
+    REFUSE_VIDEO, //108
+    END_VIDEO,  //109
+    REQUEST_VOICE,  //110
+    AGREE_VOICE,  //111
+    REFUSE_VOICE,  //112
+    END_VOICE,  //113
+    REQUEST_FILE, //114
+    AGREE_FILE,  //115
+    REFUSE_FILE,  //116
+    END_FILE, //117
+
+    GET_HISTORY_MESSAGE,   //获取历史记录 118
+    GET_HISTORY_MESSAGE_SUCCESS, //119
+    GET_HISTORY_MESSAGE_FAIL,  //120
+
+    SEND_FILE_TO_PEER,   //121
+    SEND_FILE_TO_FLOCK,   //122
+
+    NEW_NOTI_FRIEND,
+    FRESH_FRIEND_LIST
 };
 
 //用户信息
@@ -388,6 +394,7 @@ struct UserTalkinfo{
     int receive_id; //接受者id
     int type; //消息类型:普通聊天，加好友，删除好友，发文件，下载文件
     QString message;   //聊天内容
+    QByteArray bit;  //存储二进制数据
     QString send_time; //发送时间
 
     UserTalkinfo()
@@ -436,6 +443,7 @@ struct FlockTalkinfo{
     int send_id;//发送者id
     int type;//消息类型：普通聊天，退出群，编辑群名称，加入群
     QString message;//发送内容
+    QByteArray bit;  //存储二进制数据
     QDateTime send_time; //发送时间
 };
 
