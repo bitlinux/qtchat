@@ -84,9 +84,8 @@ void MainWindow::adfrienditem(QString header_path, QString id, QString name, boo
     listItem1->setSizeHint(QSize(0, 75));
     ui->friend_list->addItem(listItem1);
     ui->friend_list->setItemWidget(listItem1, item1);
-
-
 }
+
 //add group item to group list
 void MainWindow::adgroupitem(QString gID, QString gname, QString gphoto)
 {
@@ -104,9 +103,8 @@ void MainWindow::adnoticeitem(QString header_path, QString id, QString name, QSt
     QListWidgetItem *listItem1 = new QListWidgetItem();
     listItem1->setSizeHint(QSize(0, 75));
     ui->notice_list->addItem(listItem1);
+
     ui->notice_list->setItemWidget(listItem1,item1);
-
-
 }
 
 //get new noti online
@@ -130,8 +128,26 @@ void MainWindow::get_new_friend(int &newfriend_id){
     in >> name >>is_online;
     isonline = (is_online==1)?true:false;
     adfrienditem(header_path, QString::number(newfriend_id),name,isonline);
+    del_noti(newfriend_id);
 }
+
 // delete friend notice after agree
+void MainWindow::del_noti(int delete_id){
+    int cnt = ui->notice_list->count();
+    for(int i = 0;i<cnt;i++){
+        QListWidgetItem *pitem = ui->notice_list->item(i);
+        //istWidget::itemWidget(QListWidgetItem *item) const pitem)
+        noticeitem *nitem = qobject_cast<noticeitem *>(ui->notice_list->itemWidget(ui->notice_list->item(i)));
+        if( nitem-> otherID == QString::number(delete_id)){
+            ui->notice_list->removeItemWidget(pitem);
+            qDebug()<<"delete item";
+            delete nitem;
+            delete pitem;
+            break;
+        }
+    }
+}
+
 
 // button jump function
 void MainWindow::on_adf_but_clicked()

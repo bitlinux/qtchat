@@ -11,6 +11,7 @@ noticeitem::noticeitem(QWidget *parent, tcpsocket *m, QString header_path, QStri
     message = mge;
     myID = myid;
     m_tcpsocket = m;
+    otherID = id;
     this->ui->header_button->setIcon(header_img);
     this->ui->header_button->setStyleSheet("QToolButton{border:0px;}");
     this->ui->header_button->setIconSize(header_img.size());

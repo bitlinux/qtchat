@@ -148,7 +148,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        switch_bar->setCurrentIndex(2);
+        switch_bar->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

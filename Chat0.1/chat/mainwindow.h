@@ -25,6 +25,7 @@ public:
     void adgroupitem(QString gID, QString gname, QString gphoto="../resources/yl.png");
     void adnoticeitem(QString header_path = "/home/parallels/Desktop/yl.png", QString id = "000000", QString name = "Apply Friend", QString time = "2019/1/1",QString message="");
     AddFriend *adf;
+    void del_noti(int del_id);
 
 signals:
     void send_ID(QString &);
