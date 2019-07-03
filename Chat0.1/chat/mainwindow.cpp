@@ -11,8 +11,8 @@
 #include "groupitem.h"
 #include "noticeitem.h"
 #include "editname.h"
-#include"tcpsocket.h"
-#include"constant.h"
+#include "tcpsocket.h"
+#include "constant.h"
 #include "private_chat.h"
 
 MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
     m_tcpsocket=m;
     connect(m_tcpsocket,SIGNAL(send_type(int &)),this,SLOT(readmessage(int &)));
     //header path
-    QString header_path = "../resources/yl.png";
+    QString header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/qq.png";
     //draw header
     QPixmap header_img = QPixmap(header_path).scaled(60,60,Qt::IgnoreAspectRatio);
     this->ui->edit_header->setIcon(header_img);
@@ -41,9 +41,9 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
     for(int i=0; i<info.friends.size(); i++)
     {
         bool isonline = false;
-        if(info.friends[i].isonline == "true")
+        if(info.friends[i].isonline == true)
             isonline = true;
-        adfrienditem(header_path = "../resources/yl.png", info.friends[i].ID, info.friends[i].name, isonline);
+        adfrienditem(header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/yl.png", info.friends[i].ID, info.friends[i].name, isonline);
     }
 
     for(int i=0; i<info.groups.size(); i++)
@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
 
     for(int i=0; i<info.notifications.size(); i++)
     {
-        adnoticeitem(header_path = "../resources/yl.png", info.notifications[i].ID, info.notifications[i].name, info.notifications[i].time, info.notifications[i].message);
+        adnoticeitem(header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/yl.png", info.notifications[i].ID, info.notifications[i].name, info.notifications[i].time, info.notifications[i].message);
     }
 
 }
@@ -82,6 +82,7 @@ void MainWindow::adfrienditem(QString header_path, QString id, QString name, boo
     listItem1->setSizeHint(QSize(0, 75));
     ui->friend_list->addItem(listItem1);
     ui->friend_list->setItemWidget(listItem1, item1);
+
 
 }
 //add group item to group list
@@ -294,6 +295,22 @@ void MainWindow:: readmessage(int &type)
         qDebug() << "mainwindow_in";
         QString s = "0" + QString::number(groupid);
         emit init_flock_message(s);
+        break;
+    }
+    case SEND_FILE_TO_PEER:
+    {
+        qDebug()<< "SEND_FILE_TO_PEER";
+        int send_id;
+        in >> send_id;
+        emit send_file(send_id);
+        break;
+    }
+    case CHANGE_STATUE:
+    {
+        qDebug()<< "Change_statue";
+        int change_id;
+        in >> change_id;
+        emit change_status(change_id);
         break;
     }
     }

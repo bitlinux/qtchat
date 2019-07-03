@@ -329,7 +329,11 @@ enum MessageType
 
     GET_HISTORY_MESSAGE,   //获取历史记录
     GET_HISTORY_MESSAGE_SUCCESS,
-    GET_HISTORY_MESSAGE_FAIL
+    GET_HISTORY_MESSAGE_FAIL,
+
+    SEND_FILE_TO_PEER,
+    SEND_FILE_TO_FLOCK,
+    NEW_NOTI_FRIEND
 };
 
 //用户信息
@@ -389,6 +393,7 @@ struct UserTalkinfo{
     int send_id; //发送者id
     int receive_id; //接受者id
     int type; //消息类型:普通聊天，加好友，删除好友，发文件，下载文件
+    QByteArray bit;
     QString message;   //聊天内容
     QString send_time; //发送时间
 
@@ -439,6 +444,7 @@ struct FlockTalkinfo{
     int type;//消息类型：普通聊天，退出群，编辑群名称，加入群
     QString message;//发送内容
     QDateTime send_time; //发送时间
+    QByteArray bit;
 };
 
 //BBS消息

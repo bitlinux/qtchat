@@ -32,6 +32,8 @@ signals:
     void send_record_ID(QString &);
     void change_name(QString &);
     void init_flock_message(QString &);
+    void send_file(int &);
+    void change_status(int &);
 
 
 private slots:

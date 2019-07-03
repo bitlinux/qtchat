@@ -42,6 +42,8 @@ private slots:
 
     void read_record_message(QString &);
 
+    void receive_file(int &);
+
 private:
     Ui::private_chat *ui;
     private_chat_message *chat_message;

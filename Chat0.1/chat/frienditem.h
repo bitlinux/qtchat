@@ -23,6 +23,7 @@ public:
 
 private slots:
     void on_header_button_clicked();
+    void change_status(int &);
 
 private:
     Ui::frienditem *ui;

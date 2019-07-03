@@ -1,7 +1,7 @@
 #include "private_chat.h"
 #include "ui_private_chat.h"
 #include "constant.h"
-
+#include <QTextCodec>
 private_chat::private_chat(QWidget *parent, tcpsocket *m) :
     QWidget(parent),
     ui(new Ui::private_chat)
@@ -46,6 +46,7 @@ void private_chat::on_records_clicked()
 /*choose file*/
 void private_chat::on_file_clicked()
 {
+    qDebug()<<"on_file_clicked";
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choose a File"));
     this->ui->filename->setText(fileName);
 }
@@ -87,7 +88,8 @@ void private_chat::on_sendfile_clicked()
         return ;
     }
     QFile *file = new QFile(filename);
-    if(!file->open(QFile::ReadOnly))
+
+    /*if(!file->open(QFile::ReadOnly))
     {
         QString title = title.fromLocal8Bit("Warning");
         QString information = information.fromLocal8Bit("Can not open the file!");
@@ -97,16 +99,78 @@ void private_chat::on_sendfile_clicked()
     this->ui->filename->setText("");
     QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     //send myID,otherID,time,file to server
+    */
+    QByteArray block;
+    QDataStream out(&block,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_8);
+    file->open(QIODevice::ReadOnly);
+
+    out<<int(SEND_FILE_TO_PEER)<<myID.toInt()<<otherID.toInt()<<filename<<file->readAll();
+    file->close();
+    QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    //
+    QString filesent = "                " + time + "\n" + myID + ":   ";
+    filesent += "Sent file (" + filename + ")  \n";
+    this->ui->chat_browser->append(filesent); //
+
+    this->ui->filename->setText("");    //reset filename
+    m_tcpsocket->write(block);
+
+
 }
 
-void private_chat::readmessage(int &send_ID)
-{
+void private_chat::receive_file(int &send_ID){
+    qDebug()<<"receive_file";
     if(m_tcpsocket==nullptr || send_ID != otherID.toInt())
         return ;
+
+    QDataStream in(m_tcpsocket);
+    in.setVersion(QDataStream::Qt_4_8);
+    QString filename;
+    in >> filename;
+    QByteArray file_content;
+    in >> file_content;
+    QString time;
+    in >> time;
+    // save to local
+    QString strs = "                " + time + "\n" + otherID + ":   ";
+    strs += "file (" + filename + ")  \n";
+    this->ui->chat_browser->append(strs);
+
+    QTextCodec *codec=QTextCodec::codecForName("UTF-8");
+    QStringList filename_list = filename.split("/");
+
+    QString file_path =  "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/" + myID + "/" + filename_list[filename_list.count()-1];
+
+    qDebug()<<filename_list[filename_list.count()-1];
+
+    QFile p_file(file_path);
+    p_file.open(QIODevice::WriteOnly);
+    QDataStream data_stream(&p_file);
+
+    //QPixmap imga;
+    //imga.loadFromData(file_content,"png");
+    //imga.save(file_path);
+
+    data_stream << file_content ;
+    p_file.close();
+    qDebug() << file_content.size();
+
+    qDebug()<<codec->toUnicode(file_content);
+
+}
+void private_chat::readmessage(int &send_ID)
+{
+    qDebug()<<"readmessage";
+    if(m_tcpsocket==nullptr || send_ID != otherID.toInt())
+        return ;
+
     QDataStream in(m_tcpsocket);
     in.setVersion(QDataStream::Qt_4_8);
     QString message;
     in>>message;
+
+
     QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     QString strs = "                " + time + "\n" + otherID + ":   ";
     strs += message + "\n";

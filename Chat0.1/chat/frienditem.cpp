@@ -30,8 +30,8 @@ frienditem::frienditem(QWidget *parent, tcpsocket *m, QString header_path, QStri
     connect(parent,SIGNAL(send_ID(QString &)),pchat,SLOT(readID(QString &)));
     connect(parent,SIGNAL(receive_ID(int &)),pchat,SLOT(readmessage(int &)));
     connect(parent,SIGNAL(send_record_ID(QString &)),pchat,SLOT(read_record_message(QString &)));
-
-
+    connect(parent,SIGNAL(send_file(int &)),pchat,SLOT(receive_file(int &)));
+    connect(parent,SIGNAL(change_status(int &)),this,SLOT(change_status(int &)));
 }
 
 frienditem::~frienditem()
@@ -48,6 +48,24 @@ void frienditem::on_header_button_clicked()
     m_tcpsocket->write(block);
     pchat->set_information(this->myID, this->myname, this->otherID, this->othername, this->header_path);
     pchat->show();
+}
+
+void frienditem::change_status(int &change_id){
+
+    if(m_tcpsocket==nullptr ||change_id != otherID.toInt())
+        return;
+
+    QDataStream in(m_tcpsocket);
+    in.setVersion(QDataStream::Qt_4_8);
+
+
+    if(this->ui->online_label->text() == "offline"){
+        this->ui->online_label->setText("online");
+    }
+    else{
+        this->ui->online_label->setText("offline");
+    }
+
 }
 
 
