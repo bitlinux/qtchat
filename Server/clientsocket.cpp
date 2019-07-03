@@ -66,6 +66,41 @@ void ClientSocket::receivemessage()
         in>>m_tmp.talk.receive_id>>m_tmp.talk.send_id;
         break;
     }
+    case MESSAGE_RECORD:{
+        in>>m_tmp.talk.receive_id>>m_tmp.talk.send_id;
+        break;
+    }
+    case CREATE_FLOCK:{
+        in>>m_tmp.flock.creator_id>>m_tmp.flock.flock_name;
+        qDebug()<<m_tmp.flock.creator_id<<m_tmp.flock.flock_name;
+        break;
+    }
+    case GET_FLOCK_MEMBERS:{
+        in>>m_tmp.flock.flock_id;
+        break;
+    }
+    case FLOCK_ADD_MEMBER:{
+        in>>m_tmp.flock_member.flock_id>>m_tmp.flock_member.user_id;
+        break;
+    }
+    case CHANGE_FLOCK_NAME:{
+        in>>m_tmp.flock.flock_id>>m_tmp.flock.flock_name;
+        break;
+    }
+    case CHANGE_INFORMATION:{
+        in>>m_tmp.user.id>>m_tmp.user.nickname;
+        break;
+    }
+    case TALK_FLOCK:{
+        in>>m_tmp.flock_talk.send_id>>m_tmp.flock_talk.flock_id>>m_tmp.flock_talk.message;
+        break;
+    }
+    case CHECK_FLOCK_MESSAGE:{
+        qDebug()<<"check flock message";
+        in>>m_tmp.flock.flock_id;
+        break;
+    }
+
     default: {
         break;
     }
@@ -118,6 +153,79 @@ void ClientSocket::sendmessage(const Tmpinfo &tmp)
     }
     case NO_MESSAGE:{
         out<<tmp.talk.send_id;
+        break;
+    }
+    case HAVE_MESSAGE_RECODRD:{
+        //qDebug()<<QString::number(tmp.talk.send_id)<<tmp.history.size();
+        out<<tmp.talk.send_id<<quint16(0)<<tmp.history.size();
+        int len=tmp.history.size();
+        for(int i=0;i<len;i++)
+        {
+            out<<tmp.history[i].send_id<<tmp.history[i].message<<tmp.history[i].send_time;
+            qDebug()<<tmp.history[i].send_id<<tmp.history[i].message<<tmp.history[i].send_time;
+        }
+        out.device()->seek(2*sizeof(int));
+        //out << quint16(block.size() - sizeof(quint16)-2*sizeof(int));
+        break;
+    }
+    case NO_MESSAGE_RECORD:{
+        out<<QString::number(tmp.talk.send_id);
+        break;
+    }
+    case CREATE_FLOCK_SUCCESS:{
+        out<<tmp.flock.flock_id;
+        break;
+    }
+    case GET_FLOCK_MEMBERS_SUCCESS:{
+        //qDebug()<<"get flock member success!";
+        out<<tmp.flock.flock_id<<tmp.flocks_member.size();
+        for(int i=0;i<tmp.flocks_member.size();i++)
+        {
+            out<<tmp.flocks_member[i].user_id<<tmp.flocks_member[i].loginStatus;
+        }
+        break;
+    }
+    case GET_FLOCK_MEMBERS_FAIL:{
+        //qDebug()<<"get flock member fail";
+        out<<tmp.flock.flock_id;
+        break;
+    }
+    case ADD_FLOCK_SUCCESS:{
+        out<<tmp.flock_member.flock_id;
+        break;
+    }
+    case ADD_FLOCK_FAIL:{
+        out<<tmp.flock_member.flock_id;
+        break;
+    }
+    case CHANGE_FLOCK_NAME_SUCCESS:{
+        out<<tmp.flock.flock_id<<tmp.flock.flock_name;
+        break;
+    }
+    case CHANGE_FLOCK_NAME_FAIL:{
+        out<<tmp.flock.flock_id;
+        break;
+    }
+    case CHANGE_INFORMATION_SUCCESS:{
+        out<<tmp.user.nickname;
+        break;
+    }
+    case TALK_FLOCK:{
+        out<<tmp.flock_talk.flock_id<<tmp.flock_talk.send_id<<tmp.flock_talk.message<<tmp.flock_talk.send_time.toString("yyyy-MM-dd hh:mm:ss");
+        break;
+    }
+    case NO_FLOCK_MEMBER:{
+        out<<tmp.flock.flock_id;
+        break;
+    }
+    case HAVE_FLOCK_MESSAGE:{
+        qDebug()<<"have flock";
+        out<<tmp.flock.flock_id<<tmp.flock_history.size();
+        int len=tmp.flock_history.size();
+        for(int i=0;i<len;i++)
+        {
+            out<<tmp.flock_history[len-1-i].send_id<<tmp.flock_history[len-1-i].message<<tmp.flock_history[len-1-i].send_time.toString("yyyy-MM-dd hh:mm:ss");
+        }
         break;
     }
     default:

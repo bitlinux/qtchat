@@ -72,6 +72,12 @@
            </item>
            <item>
             <widget class="QLabel" name="label_3">
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string>NICKNAME</string>
              </property>
@@ -130,7 +136,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="password"/>
+            <widget class="QLineEdit" name="password">
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
            </item>
            <item>
             <spacer name="horizontalSpacer_3">
@@ -179,7 +189,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="again"/>
+            <widget class="QLineEdit" name="again">
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
            </item>
            <item>
             <spacer name="horizontalSpacer_4">

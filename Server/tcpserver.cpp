@@ -110,6 +110,64 @@ void TcpServer::sendmessage(const Tmpinfo &tmp)
         tmp.socket->sendmessage(m_tmp);
         break;
     }
+    case MESSAGE_RECORD:{
+        m_tmp.talk=tmp.talk;
+        m_tmp.reply=m_database.search_history_document(m_tmp.talk,m_tmp.history);
+        tmp.socket->sendmessage(m_tmp);
+        break;
+    }
+    case CREATE_FLOCK:{
+        m_tmp.flock=tmp.flock;
+        m_tmp.reply=m_database.create_new_flock(m_tmp.flock);
+        tmp.socket->sendmessage(m_tmp);
+        break;
+    }
+    case GET_FLOCK_MEMBERS:{
+        m_tmp.flock=tmp.flock;
+        m_tmp.reply=m_database.get_all_flock_member(m_tmp.flock,m_tmp.flocks_member);
+        tmp.socket->sendmessage(m_tmp);
+        break;
+    }
+    case FLOCK_ADD_MEMBER:{
+        m_tmp.flock_member=tmp.flock_member;
+        m_tmp.reply=m_database.flock_add_member(m_tmp.flock_member);
+        tmp.socket->sendmessage(m_tmp);
+        break;
+
+    }
+    case CHANGE_FLOCK_NAME:{
+        m_tmp.flock=tmp.flock;
+        m_tmp.reply=m_database.change_flock_name(m_tmp.flock);
+        tmp.socket->sendmessage(m_tmp);
+        break;
+    }
+    case CHANGE_INFORMATION:{
+        m_tmp.user=tmp.user;
+        m_tmp.reply=m_database.change_user_name(m_tmp.user);
+        tmp.socket->sendmessage(m_tmp);
+        break;
+    }
+    case TALK_FLOCK:{
+        m_tmp.flock_talk=tmp.flock_talk;
+        m_tmp.reply=m_database.send_flock_message(m_tmp.flock_talk,m_tmp.flocks_member);
+        int len=m_tmp.flocks_member.size();
+        //qDebug()<<len;
+        for(int i=0;i<len;i++)
+        {
+            if(m_userMap.contains(m_tmp.flocks_member[i].user_id))
+            {
+                m_tmp.reply=TALK_FLOCK;
+                m_userMap[m_tmp.flocks_member[i].user_id]->sendmessage(m_tmp);
+            }
+        }
+        break;
+    }
+    case CHECK_FLOCK_MESSAGE:{
+        m_tmp.flock=tmp.flock;
+        m_tmp.reply=m_database.send_last_message_in_flock(m_tmp.flock,m_tmp.flock_history);
+        tmp.socket->sendmessage(m_tmp);
+        break;
+    }
     default:
     {
         break;

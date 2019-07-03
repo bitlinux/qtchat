@@ -181,6 +181,13 @@ enum MessageType
 
 
     CHECK_MESSAGE,              // 检查有无给自己的信息（登录时检查）
+    MESSAGE_RECORD,
+    HAVE_MESSAGE_RECODRD,
+    NO_MESSAGE_RECORD,
+
+    CHECK_FLOCK_MESSAGE,
+    HAVE_FLOCK_MESSAGE,
+    NO_FLOCK_MESSAGE,
 
     GET_ALL_FRIENDS,            // 获取所有好友信息
     GET_ALL_FLOCKS,             // 获取所有群信息
@@ -192,7 +199,9 @@ enum MessageType
     FRIEND_EXIST,
 
     ADD_FLOCK,                   // 用户加群
-
+    CHANGE_FLOCK_NAME,
+    CHANGE_FLOCK_NAME_SUCCESS,
+    CHANGE_FLOCK_NAME_FAIL,
     FLOCK_ADD_MEMBER,            // 群加用户
 
     GET_FRIEND_INFORMATION,		// 获取好友信息
@@ -379,7 +388,13 @@ struct UserTalkinfo{
     int receive_id; //接受者id
     int type; //消息类型:普通聊天，加好友，删除好友，发文件，下载文件
     QString message;   //聊天内容
-    QDateTime send_time; //发送时间
+    QString send_time; //发送时间
+
+    UserTalkinfo()
+    {
+        type=0;
+    }
+
     friend QDataStream & operator<< (QDataStream &out,const UserTalkinfo &uin)
     {
         out << uin.talk_id << uin.send_id << uin.receive_id << uin.type << uin.message << uin.send_time ;

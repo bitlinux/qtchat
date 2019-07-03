@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "group_chat.h"
 #include "tcpsocket.h"
+#include "constant.h"
 
 namespace Ui {
 class groupitem;
@@ -14,7 +15,7 @@ class groupitem : public QWidget
     Q_OBJECT
 
 public:
-    explicit groupitem(QWidget *parent = nullptr, tcpsocket *m = nullptr, QString header_path = "/home/parallels/Desktop/yl.png", QString id = "000000", QString name = "Group0");
+    explicit groupitem(QWidget *parent = nullptr, tcpsocket *m = nullptr, QString myid = "", QString gID = "", QString gname = "", QVector<FlockMember> fm = {}, QString gphoto="../resources/yl.png");
     ~groupitem();
 
     QString header_path;
@@ -24,6 +25,13 @@ private slots:
 
 private:
     Ui::groupitem *ui;
+    tcpsocket *m_tcpsocket;
+    QString myID;
+    QString groupID;
+    QString groupname;
+    QVector<FlockMember> fm;
+    group_chat *gchat;
+
 };
 
 #endif // GROUPITEM_H

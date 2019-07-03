@@ -34,9 +34,13 @@ void private_chat::set_information(QString mID, QString mName, QString oID, QStr
 /*show the chat_message window*/
 void private_chat::on_records_clicked()
 {
-    chat_message.setWindowFlags(Qt::FramelessWindowHint);
-    //get all the chat_message from server?
-    chat_message.show();
+    chat_message = new private_chat_message(this);
+    chat_message->show();
+    QByteArray block;
+    QDataStream out(&block,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_8);
+    out<<int(MESSAGE_RECORD)<<this->myID.toInt()<<this->otherID.toInt();
+    m_tcpsocket->write(block);
 }
 
 /*choose file*/
@@ -56,21 +60,18 @@ void private_chat::on_send_clicked()
         QMessageBox::about(this, title, information);
         return ;
     }
-    QString time = QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss");
+    QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     QString meg = this->ui->textedit->toPlainText();
     QString strs = "                " + time + "\n" + myID + ":   ";
-    strs += meg + "\n" + "\n";
+    strs += meg + "\n";
     this->ui->textedit->clear();
-    this->ui->chat_browser->insertPlainText(strs);
-    qDebug() << "send_clicked";
+    this->ui->chat_browser->append(strs);
 
     QByteArray block;
     QDataStream out(&block,QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_8);
     out<<int(TALK)<<myID.toInt()<<otherID.toInt()<<meg;
     m_tcpsocket->write(block);
-
-    qDebug() << "end of send click";
 
 }
 
@@ -94,7 +95,7 @@ void private_chat::on_sendfile_clicked()
         return ;
     }
     this->ui->filename->setText("");
-    QString time = QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss");
+    QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     //send myID,otherID,time,file to server
 }
 
@@ -106,17 +107,17 @@ void private_chat::readmessage(int &send_ID)
     in.setVersion(QDataStream::Qt_4_8);
     QString message;
     in>>message;
-    QString time = QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss");
+    QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     QString strs = "                " + time + "\n" + otherID + ":   ";
-    strs += message + "\n" + "\n";
-    this->ui->chat_browser->insertPlainText(strs);
+    strs += message + "\n";
+    this->ui->chat_browser->append(strs);
     qDebug() << "readmessage" << strs;
 }
 
 void private_chat::readID(QString &id)
 {
     QString getid = id.mid(1,-1);
-    qDebug() << getid << otherID << (getid==otherID);
+    qDebug() << "message" << getid << otherID << (getid==otherID);
     if(getid != otherID || id[0] == '0')
         return ;
     if(m_tcpsocket==nullptr)
@@ -136,13 +137,50 @@ void private_chat::readID(QString &id)
     qDebug() << "private_chat_in" << userinfo.size();
     for(int i=0; i<userinfo.size();i++)
     {
-        QString time = userinfo[i].send_time.toString("yyyy.MM.dd hh:mm:ss");
+        QString time = userinfo[i].send_time;
         QString strs = "                " + time + "\n" + QString::number(userinfo[i].send_id) + ":   ";
-        strs += userinfo[i].message + "\n" + "\n";
-        this->ui->chat_browser->insertPlainText(strs);
-        qDebug() << "readID";
+        strs += userinfo[i].message + "\n";
+        this->ui->chat_browser->append(strs);
     }
 
+}
+
+void private_chat::read_record_message(QString &s)
+{
+
+    QString id = s.mid(1,-1);
+    qDebug() << "record" << id << otherID ;
+    if(id != otherID)
+    {
+        return ;
+    }
+    if(s[0] == '0')
+    {
+        qDebug()<<"0";
+        return ;
+    }
+    if(m_tcpsocket==nullptr)
+        return ;
+    recordinfo = {};
+    QDataStream in(m_tcpsocket);
+    in.setVersion(QDataStream::Qt_4_8);
+    quint16 size = 0;
+    in >> size;
+    if(m_tcpsocket->bytesAvailable() < size)
+    {
+        qDebug() << "small";
+        return;
+    }
+    int length;
+    in >> length;
+    for(int i=0; i<length; i++)
+    {
+        UserTalkinfo utalk;
+        in >> utalk.send_id >> utalk.message >> utalk.send_time;
+        recordinfo.append(utalk);
+    }
+
+    chat_message->set_information(recordinfo);
 }
 
 /*receive file*/

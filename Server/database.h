@@ -41,6 +41,22 @@ public:
     int talktofriend( UserTalkinfo&);
     //查询两个聊天好友的历史消息
     int search_talk_message( UserTalkinfo&, QVector<UserTalkinfo> &);
+    //返回历史记录
+    int search_history_document(UserTalkinfo&, QVector<UserTalkinfo> &);
+    //创建群聊
+    int create_new_flock(Flockinfo &);
+    //获取所有群成员信息
+    int get_all_flock_member(Flockinfo &,QVector<FlockMember> &);
+    //群申请加用户
+    int flock_add_member(FlockMember &);
+    //更改群名
+    int change_flock_name(Flockinfo &);
+    //更改用户名称
+    int change_user_name(Userinfo &);
+    //转发群消息
+    int send_flock_message(FlockTalkinfo &,QVector<FlockMember> &);
+    //发送群中最后五条消息
+    int send_last_message_in_flock(Flockinfo &,QVector<FlockTalkinfo> &);
 private:
     //检查SQL语句的正确性
     void errorSQLOrder(QSqlQuery query, QString mark);

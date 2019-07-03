@@ -24,7 +24,6 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
     connect(m_tcpsocket,SIGNAL(send_type(int &)),this,SLOT(readmessage(int &)));
     //header path
     QString header_path = "../resources/yl.png";
-
     //draw header
     QPixmap header_img = QPixmap(header_path).scaled(60,60,Qt::IgnoreAspectRatio);
     this->ui->edit_header->setIcon(header_img);
@@ -49,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
 
     for(int i=0; i<info.groups.size(); i++)
     {
-        adgroupitem(header_path = "../resources/yl.png", info.groups[i].ID, info.groups[i].name);
+        adgroupitem(info.groups[i].ID, info.groups[i].name);
     }
 
     for(int i=0; i<info.notifications.size(); i++)
@@ -86,14 +85,13 @@ void MainWindow::adfrienditem(QString header_path, QString id, QString name, boo
 
 }
 //add group item to group list
-void MainWindow::adgroupitem(QString header_path, QString id, QString name)
+void MainWindow::adgroupitem(QString gID, QString gname, QString gphoto)
 {
-    groupitem *item1 = new groupitem(this, m_tcpsocket, header_path, id, name);
+    groupitem *item1 = new groupitem(this, m_tcpsocket, this->ui->id_label->text(), gID, gname, {});
     QListWidgetItem *listItem1 = new QListWidgetItem();
     listItem1->setSizeHint(QSize(0, 75));
     ui->group_list->addItem(listItem1);
     ui->group_list->setItemWidget(listItem1,item1);
-
 }
 
 //add notice item to notice list
@@ -117,15 +115,17 @@ void MainWindow::on_adf_but_clicked()
 
 void MainWindow::on_crgp_but_clicked()
 {
-    CreateGroup cgp;
-    cgp.exec();
+    CreateGroup *cgp;
+    cgp = new CreateGroup(this, m_tcpsocket, this->ui->id_label->text());
+    cgp->exec();
 }
 
 
 void MainWindow::on_edit_name_clicked()
 {
-    editName etn;
-    etn.exec();
+    editName *etn;
+    etn = new editName(this, m_tcpsocket, this->ui->id_label->text());
+    etn->exec();
 }
 
 void MainWindow::on_edit_header_clicked()
@@ -168,6 +168,132 @@ void MainWindow:: readmessage(int &type)
         in >> meg_send_id;
         qDebug() << "mainwindow_in";
         emit receive_ID(meg_send_id);
+        break;
+    }
+    case HAVE_MESSAGE_RECORD:
+    {
+        qDebug() << "HAVE_MESSAGE_RECORD";
+        int temp;
+        in >> temp;
+        qDebug() << "mainwindow_in";
+        QString s = "1" + QString::number(temp);
+        emit send_record_ID(s);
+        break;
+    }
+    case NO_MESSAGE_RECORD:
+
+    {
+        qDebug() << "NO_MESSAGE_RECORD";
+        int temp;
+        in >> temp;
+        qDebug() << "mainwindow_in";
+        QString s = "0" + QString::number(temp);
+        emit send_record_ID(s);
+        break;
+    }
+    case GET_FLOCK_MEMBERS_SUCCESS:
+    {
+        qDebug() << "GET_FLOCK_MEMBERS_SUCCESS";
+        int temp;
+        in >> temp;
+        qDebug() << "mainwindow_in";
+        QString s = "1" + QString::number(temp);
+        emit send_ID(s);
+        break;
+    }
+    case GET_FLOCK_MEMBERS_FAIL:
+    {
+        qDebug() << "GET_FLOCK_MEMBERS_FAIL";
+        int temp;
+        in >> temp;
+        qDebug() << "mainwindow_in";
+        QString s = "0" + QString::number(temp);
+        emit send_ID(s);
+        break;
+    }
+    case ADD_FLOCK_SUCCESS:
+    {
+        qDebug() << "ADD_FLOCK_SUCCESS";
+        int groupid;
+        in >> groupid;
+        qDebug() << "mainwindow_in";
+        QString s = QString::number(groupid) + " add new member success.";
+        QMessageBox::about(this, "Success", s);
+        break;
+    }
+    case ADD_FLOCK_FAIL:
+    {
+        qDebug() << "ADD_FLOCK_FAIL";
+        int groupid;
+        in >> groupid;
+        qDebug() << "mainwindow_in";
+        QString s = QString::number(groupid) + " add new member false.";
+        QMessageBox::about(this, "Error", s);
+        break;
+    }
+    case CHANGE_FLOCK_NAME_SUCCESS:
+    {
+        qDebug() << "CHANGE_FLOCK_NAME_SUCCESS";
+        int groupid;
+        in >> groupid;
+        qDebug() << "mainwindow_in";
+        QString s = "1" + QString::number(groupid);
+        emit change_name(s);
+        break;
+    }
+    case CHANGE_FLOCK_NAME_FAIL:
+    {
+        qDebug() << "CHANGE_FLOCK_NAME_FAIL";
+        int groupid;
+        in >> groupid;
+        qDebug() << "mainwindow_in";
+        QString s = "0" + QString::number(groupid);
+        emit change_name(s);
+        break;
+    }
+    case CHANGE_INFORMATION_SUCCESS:
+    {
+        qDebug() << "CHANGE_INFORMATION_SUCCESS";
+        QString newname;
+        in >> newname;
+        this->ui->edit_name->setText(newname);
+        myname = newname;
+        QMessageBox::about(this,"Success","Change name success.");
+        break;
+    }
+    case CHANGE_INFORMATION_FAIL:
+    {
+        qDebug() << "CHANGE_INFORMATION_FAIL";
+        QMessageBox::about(this,"Error","Fail to change name.");
+        break;
+    }
+    case TALK_FLOCK:
+    {
+        qDebug() << "TALK_FLOCK";
+        int meg_send_id;
+        in >> meg_send_id;
+        qDebug() << "mainwindow_in";
+        emit receive_ID(meg_send_id);
+        break;
+    }
+    case HAVE_FLOCK_MESSAGE:
+    {
+        qDebug() << "HAVE_FLOCK_MESSAGE";
+        int groupid;
+        in >> groupid;
+        qDebug() << "mainwindow_in";
+        QString s = "1" + QString::number(groupid);
+        emit init_flock_message(s);
+        break;
+    }
+    case NO_FLOCK_MESSAGE:
+    {
+        qDebug() << "NO_FLOCK_MESSAGE";
+        int groupid;
+        in >> groupid;
+        qDebug() << "mainwindow_in";
+        QString s = "0" + QString::number(groupid);
+        emit init_flock_message(s);
         break;
     }
     }

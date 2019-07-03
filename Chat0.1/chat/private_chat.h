@@ -40,9 +40,11 @@ private slots:
 
     void readID(QString &);
 
+    void read_record_message(QString &);
+
 private:
     Ui::private_chat *ui;
-    private_chat_message chat_message;
+    private_chat_message *chat_message;
     QString myID;
     QString myName;
     QString otherID;
@@ -52,6 +54,7 @@ private:
     QString message;
     tcpsocket *m_tcpsocket;
     QVector<UserTalkinfo> userinfo;
+    QVector<UserTalkinfo> recordinfo;
 };
 
 #endif // PRIVATE_CHAT_H

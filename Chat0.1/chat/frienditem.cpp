@@ -29,6 +29,7 @@ frienditem::frienditem(QWidget *parent, tcpsocket *m, QString header_path, QStri
     pchat = new private_chat(nullptr, m_tcpsocket);
     connect(parent,SIGNAL(send_ID(QString &)),pchat,SLOT(readID(QString &)));
     connect(parent,SIGNAL(receive_ID(int &)),pchat,SLOT(readmessage(int &)));
+    connect(parent,SIGNAL(send_record_ID(QString &)),pchat,SLOT(read_record_message(QString &)));
 
 
 }

@@ -110,6 +110,27 @@ static const QString REFUSE_FRIEND_REQUEST=
 static const QString ADD_MESSAGE_TO_TALK=
         "insert into Talk values(?,?,?,?,?);";
 
+static const QString CREATE_NEW_FLOCK_ID=
+        "select 1000000+count(*) from Flock;";
+
+static const QString CREATE_NEW_FLOCK=
+        "insert into Flock values(?,?,?,?,?);";
+
+static const QString CREATE_NEW_FLOCK_MEMBER=
+        "insert into FlockMember values(?,?);";
+
+static const QString FLOCK_ADD_MEMBER_REQUEST=
+        "insert into FlockMember values(?,?);";
+
+static const QString CHANGE_FLOCK_NAME_IN_FLOCK=
+        "update Flock set flockName=? where flockID=?;";
+
+static const QString CHAGNE_USER_NAME=
+        "update User set nickname=? where id=?;";
+
+static const QString SEND_FLOCK_MESSAGE=
+        "insert into FlockTalk values(?,?,?,?,?);";
+
 //find item
 
 static const QString SEARCH_USER_IN_USERINFORMATION_SQL =
@@ -148,6 +169,21 @@ static const QString GENERATE_TALK_ID=
 
 static const QString SEARCH_TALK_HISTORY=
         "select * from Talk where (sendID=? and receiveID=?) or (receiveID=? and sendID=?) order by talkID desc limit 5; ";
+
+static const QString SEARCH_HISTORY_DOCUMENT=
+        "select * from Talk where (sendID=? and receiveID=?) or (receiveID=? and sendID=?) order by talkID";
+
+static const QString GET_ALL_FLOCK_MEMBER=
+        "select id,isonline from User,FlockMember where FlockMember.flockID=? and FlockMember.userID=User.id;";
+
+static const QString GET_FLOCK_TALK_ID=
+        "select count(*) from FlockTalk;";
+
+static const QString FIND_FLOCK_USER=
+        "select User.id from User,FlockMember where flockID=? and userID=User.id and User.isonline=true;";
+
+static const QString GET_FLOCK_LAST_MESSAGE=
+        "select userID,message,time from FlockTalk where flockID=? order by flockTalkID desc limit 5;";
 
 Database::Database(QObject *parent) :
     QObject(parent)
@@ -727,7 +763,7 @@ int Database::search_talk_message( UserTalkinfo &talk, QVector<UserTalkinfo> &tm
             temp.send_id=query.value(1).toInt();
             temp.receive_id=query.value(2).toInt();
             temp.message=query.value(3).toString();
-            temp.send_time=query.value(4).toDateTime();
+            temp.send_time=query.value(4).toDateTime().toString("yyyy-MM-dd hh:mm:ss");
             tmp.push_back(temp);
         }
         //qDebug()<<"temp size"<<tmp.size();
@@ -740,5 +776,272 @@ int Database::search_talk_message( UserTalkinfo &talk, QVector<UserTalkinfo> &tm
            m_database->close();
            return HAVE_MESSAGE;
         }
+    }
+}
+
+int Database::search_history_document(UserTalkinfo &m, QVector<UserTalkinfo> &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(SEARCH_HISTORY_DOCUMENT);
+    query.addBindValue(m.send_id);
+    query.addBindValue(m.receive_id);
+    query.addBindValue(m.send_id);
+    query.addBindValue(m.receive_id);
+    query.exec();
+    errorSQLOrder(query,"search history document");
+
+    if(!query.isActive())
+    {
+        m_database->close();
+        return NO_MESSAGE_RECORD;
+    }
+    else
+    {
+        while(query.next())
+        {
+            UserTalkinfo temp;
+            temp.talk_id=query.value(0).toInt();
+            temp.send_id=query.value(1).toInt();
+            temp.receive_id=query.value(2).toInt();
+            temp.message=query.value(3).toString();
+            temp.send_time=query.value(4).toDateTime().toString("yyyy-MM-dd hh:mm:ss");
+            tmp.push_back(temp);
+        }
+        m_database->close();
+        return HAVE_MESSAGE_RECODRD;
+    }
+}
+
+
+int Database::create_new_flock(Flockinfo &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(CREATE_NEW_FLOCK_ID);
+    query.exec();
+    errorSQLOrder(query,"get flock id");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return CREATE_FLOCK_FAIL;
+    }
+    else {
+        int flockid;
+        if(query.next())
+        {
+            flockid=query.value(0).toInt();
+        }
+        else {
+            flockid=0;
+        }
+        tmp.flock_id=flockid;
+        tmp.create_time=QDateTime::currentDateTime();
+        tmp.user_num=1;
+        QSqlQuery query1(*m_database);
+        query1.prepare(CREATE_NEW_FLOCK);
+        query1.addBindValue(flockid);
+        query1.addBindValue(tmp.creator_id);
+        query1.addBindValue(tmp.flock_name);
+        query1.addBindValue(1);
+        query1.addBindValue(QDateTime::currentDateTime());
+        query1.exec();
+        errorSQLOrder(query1,"create new flock");
+        if(!query1.isActive())
+        {
+            m_database->close();
+            return CREATE_FLOCK_FAIL;
+        }
+        else {
+            QSqlQuery query2(*m_database);
+            query2.prepare(CREATE_NEW_FLOCK_MEMBER);
+            query2.addBindValue(tmp.flock_id);
+            query2.addBindValue(tmp.creator_id);
+            query2.exec();
+            errorSQLOrder(query2,"add flock member");
+            if(!query2.isActive())
+            {
+                m_database->close();
+                return CREATE_FLOCK_FAIL;
+            }
+
+            m_database->close();
+            return CREATE_FLOCK_SUCCESS;
+        }
+    }
+}
+
+
+int Database::get_all_flock_member(Flockinfo &f, QVector<FlockMember> &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(GET_ALL_FLOCK_MEMBER);
+    query.addBindValue(f.flock_id);
+    query.exec();
+    errorSQLOrder(query,"get flock member");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return GET_FLOCK_MEMBERS_FAIL;
+    }
+    else {
+        while(query.next())
+        {
+            FlockMember temp;
+            temp.user_id=query.value(0).toInt();
+            temp.loginStatus=query.value(1).toInt();
+            tmp.push_back(temp);
+        }
+        m_database->close();
+        return GET_FLOCK_MEMBERS_SUCCESS;
+    }
+}
+
+int Database::flock_add_member(FlockMember &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(FLOCK_ADD_MEMBER_REQUEST);
+    query.addBindValue(tmp.flock_id);
+    query.addBindValue(tmp.user_id);
+    query.exec();
+    errorSQLOrder(query,"flock add member ");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return ADD_FLOCK_FAIL;
+    }
+    else {
+        m_database->close();
+        return ADD_FLOCK_SUCCESS;
+    }
+}
+
+int Database::change_flock_name(Flockinfo &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(CHANGE_FLOCK_NAME_IN_FLOCK);
+    query.addBindValue(tmp.flock_name);
+    query.addBindValue(tmp.flock_id);
+    query.exec();
+    errorSQLOrder(query,"update flock name");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return CHANGE_FLOCK_NAME_FAIL;
+    }
+    else
+    {
+        m_database->close();
+        return CHANGE_FLOCK_NAME_SUCCESS;
+    }
+}
+
+int Database::change_user_name(Userinfo &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(CHAGNE_USER_NAME);
+    query.addBindValue(tmp.nickname);
+    query.addBindValue(tmp.id);
+    query.exec();
+    errorSQLOrder(query,"change user name");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return CHANGE_INFORMATION_FAIL;
+    }
+    else
+    {
+        m_database->close();
+        return CHANGE_INFORMATION_SUCCESS;
+    }
+}
+
+int Database::send_flock_message(FlockTalkinfo &tmp,QVector<FlockMember> &fr)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(GET_FLOCK_TALK_ID);
+    query.exec();
+    errorSQLOrder(query,"get flock talk id");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return -1;
+    }
+    else {
+        if(query.next())
+        {
+            tmp.flocktalk_id=query.value(0).toInt();
+        }
+        tmp.send_time=QDateTime::currentDateTime();
+
+        QSqlQuery query1(*m_database);
+        query1.prepare(SEND_FLOCK_MESSAGE);
+        query1.addBindValue(tmp.flocktalk_id);
+        query1.addBindValue(tmp.flock_id);
+        query1.addBindValue(tmp.send_id);
+        query1.addBindValue(tmp.message);
+        query1.addBindValue(tmp.send_time);
+        query1.exec();
+        errorSQLOrder(query1,"insert flock talk");
+        if(!query1.isActive())
+        {
+            m_database->close();
+            return -1;
+        }
+        QSqlQuery query2(*m_database);
+        query2.prepare(FIND_FLOCK_USER);
+        query2.addBindValue(tmp.flock_id);
+        query2.exec();
+        while(query2.next())
+        {
+            FlockMember temp;
+            temp.user_id=query2.value(0).toInt();
+            temp.loginStatus=1;
+            fr.push_back(temp);
+        }
+
+        m_database->close();
+        return 1;
+    }
+}
+
+int Database::send_last_message_in_flock(Flockinfo &fl, QVector<FlockTalkinfo> &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(GET_FLOCK_LAST_MESSAGE);
+    query.addBindValue(fl.flock_id);
+    query.exec();
+    errorSQLOrder(query,"get latest flock message");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return NO_FLOCK_MESSAGE;
+    }
+    else
+    {
+        while(query.next())
+        {
+            FlockTalkinfo temp;
+            temp.send_id=query.value(0).toInt();
+            temp.message=query.value(1).toString();
+            temp.send_time=query.value(2).toDateTime();
+            tmp.push_back(temp);
+        }
+        m_database->close();
+        return HAVE_FLOCK_MESSAGE;
     }
 }

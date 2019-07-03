@@ -13,18 +13,17 @@ class editName : public QDialog
     Q_OBJECT
 
 public:
-    explicit editName(QWidget *parent = nullptr);
+    explicit editName(QWidget *parent = nullptr, tcpsocket *m = nullptr, QString myid = "");
     ~editName();
 
 private slots:
-    void readmessage();
 
     void on_pushButton_clicked();
 
 private:
     Ui::editName *ui;
     tcpsocket *m_tcpsocket;
-    QString m_id;
+    QString myID;
 };
 
 #endif // EDITNAME_H

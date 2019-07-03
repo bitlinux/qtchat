@@ -10,6 +10,8 @@
 #include <QMessageBox>
 #include "group_chat_message.h"
 #include "add_group_member.h"
+#include "tcpsocket.h"
+#include "constant.h"
 
 namespace Ui {
 class group_chat;
@@ -22,7 +24,7 @@ class group_chat : public QWidget
 public:
     explicit group_chat(QWidget *parent = nullptr);
     ~group_chat();
-    void set_information(QString mID, QString mName, QString gID, QString gName, QString gPhoto);
+    void set_information(tcpsocket *m, QString mID, QString gID, QString gName, QVector<FlockMember>,QString gPhoto="../resources/yl.png");
 
 private slots:
     void on_records_clicked();
@@ -37,6 +39,14 @@ private slots:
 
     void on_sendfile_clicked();
 
+    void readmember(QString &);
+
+    void changename(QString &);
+
+    void readmessage(int &);
+
+    void init_message(QString &);
+
 private:
     Ui::group_chat *ui;
     group_chat_message chat_message;
@@ -45,7 +55,11 @@ private:
     QString groupID;
     QString groupName;
     QString groupPhoto;
-    add_group_member add_member;
+    add_group_member *add_member;
+    tcpsocket *m_tcpsocket;
+    QVector<FlockMember> member;
+    QString newname;
+
 };
 
 #endif // GROUP_CHAT_H

@@ -20,14 +20,19 @@ public:
     ~MainWindow();
     QString myID;
     QString myname;
+
     void adfrienditem(QString header_path = "/home/parallels/Desktop/yl.png", QString id = "000000", QString name = "Linux", bool isonline = false);
-    void adgroupitem(QString header_path = "/home/parallels/Desktop/yl.png", QString id = "000000", QString name = "Group0");
+    void adgroupitem(QString gID, QString gname, QString gphoto="../resources/yl.png");
     void adnoticeitem(QString header_path = "/home/parallels/Desktop/yl.png", QString id = "000000", QString name = "Apply Friend", QString time = "2019/1/1",QString message="");
     AddFriend *adf;
 
 signals:
     void send_ID(QString &);
     void receive_ID(int &);
+    void send_record_ID(QString &);
+    void change_name(QString &);
+    void init_flock_message(QString &);
+
 
 private slots:
     void on_adf_but_clicked();
