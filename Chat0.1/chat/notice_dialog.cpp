@@ -27,12 +27,14 @@ void notice_dialog::on_ok_button_clicked()
 {
     m_kind = AGREE_FRIEND;
     send_request();
+    this->close();
 }
 
 void notice_dialog::on_ignore_button_clicked()
 {
     m_kind = REFUSE_FRIEND;
     send_request();
+    this->close();
 }
 
 void notice_dialog::send_request()

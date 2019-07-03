@@ -34,7 +34,8 @@ signals:
     void init_flock_message(QString &);
     void send_file(int &);
     void change_status(int &);
-
+    void new_noti(int &);
+    void fresh_list(int &);
 
 private slots:
     void on_adf_but_clicked();
@@ -48,6 +49,10 @@ private slots:
     void readmessage(int &);
 
     void closeEvent(QCloseEvent *event);
+
+    void get_new_noti(int &);
+
+    void get_new_friend(int &);
 private:
     Ui::MainWindow *ui;
     tcpsocket *m_tcpsocket;

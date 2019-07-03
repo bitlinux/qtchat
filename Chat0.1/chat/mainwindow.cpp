@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
     ui->setupUi(this);
     m_tcpsocket=m;
     connect(m_tcpsocket,SIGNAL(send_type(int &)),this,SLOT(readmessage(int &)));
+    connect(this,SIGNAL(fresh_list(int &)),this,SLOT(get_new_friend(int &)));
+    connect(this,SIGNAL(new_noti(int &)),this,SLOT(get_new_noti(int &)));
     //header path
     QString header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/qq.png";
     //draw header
@@ -106,6 +108,30 @@ void MainWindow::adnoticeitem(QString header_path, QString id, QString name, QSt
 
 
 }
+
+//get new noti online
+void MainWindow::get_new_noti(int &apply_id){
+    QDataStream in(m_tcpsocket);
+    in.setVersion(QDataStream::Qt_4_8);
+    QString msg,time,name,header_path;
+    in >> msg >> time >> name;
+    header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/qq.png";
+    adnoticeitem(header_path, QString::number(apply_id), name, time, msg);
+}
+
+// fresh friend list after add friend
+void MainWindow::get_new_friend(int &newfriend_id){
+    QDataStream in(m_tcpsocket);
+    in.setVersion(QDataStream::Qt_4_8);
+    QString header_path,name;
+    header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/qq.png";
+    int is_online;
+    bool isonline;
+    in >> name >>is_online;
+    isonline = (is_online==1)?true:false;
+    adfrienditem(header_path, QString::number(newfriend_id),name,isonline);
+}
+// delete friend notice after agree
 
 // button jump function
 void MainWindow::on_adf_but_clicked()
@@ -312,6 +338,19 @@ void MainWindow:: readmessage(int &type)
         in >> change_id;
         emit change_status(change_id);
         break;
+    }
+    case NEW_NOTI_FRIEND:{
+        qDebug()<<"New noti friend";
+        int apply_id;
+        in >> apply_id;
+        emit new_noti(apply_id);
+        break;
+    }
+    case FRESH_FRIEND_LIST:{
+        qDebug()<<"fresh_friend_list";
+        int newfirend_id;
+        in >> newfirend_id;
+        emit fresh_list(newfirend_id);
     }
     }
 }

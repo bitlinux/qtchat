@@ -57,6 +57,13 @@ void AddFriend::readmessage1(int &type)
         case SEND_REQUEST_SUCCESS:
     {
         qDebug() << "SEND_REQUEST_SUCCESS";
+
+        /*QByteArray block;
+        QDataStream out(&block,QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_4_8);
+        out << int(NEW_NOTI_FRIEND) << myID.toInt() << this->ui->id_input->text().toInt();
+        m_tcpsocket->write(block);*/
+
         this->close();
         break;
     }

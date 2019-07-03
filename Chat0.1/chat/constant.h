@@ -333,7 +333,8 @@ enum MessageType
 
     SEND_FILE_TO_PEER,
     SEND_FILE_TO_FLOCK,
-    NEW_NOTI_FRIEND
+    NEW_NOTI_FRIEND,
+    FRESH_FRIEND_LIST
 };
 
 //用户信息
