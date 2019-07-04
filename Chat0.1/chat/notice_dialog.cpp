@@ -29,7 +29,6 @@ void notice_dialog::on_ok_button_clicked()
     send_request();
 
     this->close();
-    //delete this->parent()->parent();
 }
 
 void notice_dialog::on_ignore_button_clicked()

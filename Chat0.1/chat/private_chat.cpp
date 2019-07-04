@@ -119,6 +119,7 @@ void private_chat::on_sendfile_clicked()
 
 }
 
+// receive file and save to local storage
 void private_chat::receive_file(int &send_ID){
     qDebug()<<"receive_file";
     if(m_tcpsocket==nullptr || send_ID != otherID.toInt())
@@ -133,32 +134,35 @@ void private_chat::receive_file(int &send_ID){
     QString time;
     in >> time;
     // save to local
-    QString strs = "                " + time + "\n" + otherID + ":   ";
-    strs += "file (" + filename + ")  \n";
-    this->ui->chat_browser->append(strs);
 
-    QTextCodec *codec=QTextCodec::codecForName("UTF-8");
+    //QTextCodec *codec=QTextCodec::codecForName("UTF-8");
     QStringList filename_list = filename.split("/");
 
     QString file_path =  "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/" + myID + "/" + filename_list[filename_list.count()-1];
 
     qDebug()<<filename_list[filename_list.count()-1];
-
+    QString strs = "                " + time + "\n" + otherID + ":   ";
+    strs += "file (" + filename_list[filename_list.count()-1] + ")  \n";
+    this->ui->chat_browser->append(strs);
     QFile p_file(file_path);
-    p_file.open(QIODevice::WriteOnly);
     QDataStream data_stream(&p_file);
+    data_stream.setVersion(QDataStream::Qt_4_8);
+    p_file.open(QIODevice::WriteOnly);
 
     //QPixmap imga;
-    //imga.loadFromData(file_content,"png");
-    //imga.save(file_path);
-
+    //qDebug() << file_content.size();
+    //imga.loadFromData(file_content);
+    //qDebug() << file_path;
+    //imga.save(&p_file,"png");
+    //qDebug() << "save" ;
     data_stream << file_content ;
     p_file.close();
-    qDebug() << file_content.size();
 
-    qDebug()<<codec->toUnicode(file_content);
+    //qDebug()<<codec->toUnicode(file_content);
 
 }
+
+// read incoming message and display on left textview
 void private_chat::readmessage(int &send_ID)
 {
     qDebug()<<"readmessage";
@@ -178,6 +182,7 @@ void private_chat::readmessage(int &send_ID)
     qDebug() << "readmessage" << strs;
 }
 
+// please fill
 void private_chat::readID(QString &id)
 {
     QString getid = id.mid(1,-1);
@@ -209,6 +214,7 @@ void private_chat::readID(QString &id)
 
 }
 
+// read all message history
 void private_chat::read_record_message(QString &s)
 {
 
@@ -246,7 +252,5 @@ void private_chat::read_record_message(QString &s)
 
     chat_message->set_information(recordinfo);
 }
-
-/*receive file*/
 
 

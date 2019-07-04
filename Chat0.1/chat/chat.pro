@@ -26,6 +26,8 @@ CONFIG += c++11
 
 SOURCES += \
         add_group_member.cpp \
+        bbs.cpp \
+        bbsitem.cpp \
         forget_one.cpp \
         forget_two.cpp \
         group_chat.cpp \
@@ -45,10 +47,13 @@ SOURCES += \
         mainwindow.cpp \
         groupitem.cpp \
         noticeitem.cpp \
-        tcpsocket.cpp
+        tcpsocket.cpp \
+        newpostwindow.cpp
 
 HEADERS += \
         add_group_member.h \
+        bbs.h \
+        bbsitem.h \
         constant.h \
         forget_one.h \
         forget_two.h \
@@ -68,11 +73,14 @@ HEADERS += \
         mainwindow.h \
         groupitem.h \
         noticeitem.h \
-        tcpsocket.h
+        tcpsocket.h \
+        newpostwindow.h
 
 
 FORMS += \
         add_group_member.ui \
+        bbs.ui \
+        bbsitem.ui \
         forget_one.ui \
         forget_two.ui \
         group_chat.ui \
@@ -90,7 +98,8 @@ FORMS += \
         frienditem.ui \
         mainwindow.ui \
         groupitem.ui \
-        noticeitem.ui
+        noticeitem.ui \
+        newpostwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

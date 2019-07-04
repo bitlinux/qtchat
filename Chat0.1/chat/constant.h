@@ -334,7 +334,11 @@ enum MessageType
     SEND_FILE_TO_PEER,
     SEND_FILE_TO_FLOCK,
     NEW_NOTI_FRIEND,
-    FRESH_FRIEND_LIST
+    FRESH_FRIEND_LIST,
+    GET_ALL_BBS,
+    GET_BBS_SUCCESS,
+    GET_BBS_FAIL,
+    POST_BBS
 };
 
 //用户信息
@@ -397,6 +401,7 @@ struct UserTalkinfo{
     QByteArray bit;
     QString message;   //聊天内容
     QString send_time; //发送时间
+
 
     UserTalkinfo()
     {

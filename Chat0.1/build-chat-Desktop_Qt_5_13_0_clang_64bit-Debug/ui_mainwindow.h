@@ -69,12 +69,12 @@ public:
         bbs_but->setCursor(QCursor(Qt::PointingHandCursor));
         crgp_but = new QPushButton(centralWidget);
         crgp_but->setObjectName(QString::fromUtf8("crgp_but"));
-        crgp_but->setGeometry(QRect(150, 640, 101, 25));
+        crgp_but->setGeometry(QRect(150, 640, 111, 25));
         crgp_but->setFont(font);
         crgp_but->setCursor(QCursor(Qt::OpenHandCursor));
         id_label = new QLabel(centralWidget);
         id_label->setObjectName(QString::fromUtf8("id_label"));
-        id_label->setGeometry(QRect(120, 30, 121, 17));
+        id_label->setGeometry(QRect(130, 30, 121, 17));
         id_label->setFont(font);
         switch_bar = new QTabWidget(centralWidget);
         switch_bar->setObjectName(QString::fromUtf8("switch_bar"));
@@ -148,7 +148,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        switch_bar->setCurrentIndex(1);
+        switch_bar->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -164,7 +164,7 @@ public:
         switch_bar->setTabText(switch_bar->indexOf(friend_bar), QCoreApplication::translate("MainWindow", "Friends", nullptr));
         switch_bar->setTabText(switch_bar->indexOf(group_bar), QCoreApplication::translate("MainWindow", "Groups", nullptr));
         switch_bar->setTabText(switch_bar->indexOf(notice_bar), QCoreApplication::translate("MainWindow", "Notifications", nullptr));
-        edit_name->setText(QString());
+        edit_name->setText(QCoreApplication::translate("MainWindow", "name", nullptr));
         edit_header->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
     } // retranslateUi
 

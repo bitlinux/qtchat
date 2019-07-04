@@ -14,16 +14,22 @@
 #include "tcpsocket.h"
 #include "constant.h"
 #include "private_chat.h"
+#include "bbs.h"
 
 MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);  
     m_tcpsocket=m;
+    qDebug()<< "test1";
+
+    qDebug()<< "test2";
     connect(m_tcpsocket,SIGNAL(send_type(int &)),this,SLOT(readmessage(int &)));
     connect(this,SIGNAL(fresh_list(int &)),this,SLOT(get_new_friend(int &)));
     connect(this,SIGNAL(new_noti(int &)),this,SLOT(get_new_noti(int &)));
+
+    qDebug()<< "test3";
     //header path
     QString header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/qq.png";
     //draw header
@@ -38,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
     this->myname = info.myname;
     this->ui->id_label->setText(this->myID);
     this->ui->edit_name->setText(this->myname);
-    this->ui->edit_name->setStyleSheet("text-align:left;");
+    this->ui->edit_name->setStyleSheet("text-align:left;");  
 
     for(int i=0; i<info.friends.size(); i++)
     {
@@ -65,6 +71,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// tell server quit envent
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     QByteArray block;
@@ -148,14 +155,14 @@ void MainWindow::del_noti(int delete_id){
     }
 }
 
-
-// button jump function
+// add friend button
 void MainWindow::on_adf_but_clicked()
 {
     adf = new AddFriend(this, m_tcpsocket, this->ui->id_label->text());
     adf->exec();
 }
 
+// create group button
 void MainWindow::on_crgp_but_clicked()
 {
     CreateGroup *cgp;
@@ -163,7 +170,7 @@ void MainWindow::on_crgp_but_clicked()
     cgp->exec();
 }
 
-
+// edit name button
 void MainWindow::on_edit_name_clicked()
 {
     editName *etn;
@@ -171,12 +178,27 @@ void MainWindow::on_edit_name_clicked()
     etn->exec();
 }
 
+// jump to bbs UI button
+void  MainWindow::on_bbs_but_clicked()
+{
+    QByteArray block;
+    QDataStream out(&block,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_8);
+    out<<int(GET_ALL_BBS);
+    bbs *bbs_window;
+    bbs_window = new bbs(nullptr, m_tcpsocket, this->ui->id_label->text(),this->ui->edit_name->text(),this);
+    bbs_window->show();
+    bbs_window->setWindowTitle("BBS");
+}
+
+// edit header button
 void MainWindow::on_edit_header_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Upload New Header"));
     //this->ui->filename->setText(fileName);
 }
 
+// process incoming message
 void MainWindow:: readmessage(int &type)
 {
     if(m_tcpsocket==nullptr)
@@ -367,6 +389,14 @@ void MainWindow:: readmessage(int &type)
         int newfirend_id;
         in >> newfirend_id;
         emit fresh_list(newfirend_id);
+        break;
+    }
+    case GET_BBS_SUCCESS:{
+        qDebug()<<"get_bbs_success";
+        emit get_bbs_list();
+        break;
     }
     }
 }
+
+

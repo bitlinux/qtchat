@@ -53,6 +53,8 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../chat/add_group_member.cpp \
+		../chat/bbs.cpp \
+		../chat/bbsitem.cpp \
 		../chat/forget_one.cpp \
 		../chat/forget_two.cpp \
 		../chat/group_chat.cpp \
@@ -72,7 +74,10 @@ SOURCES       = ../chat/add_group_member.cpp \
 		../chat/mainwindow.cpp \
 		../chat/groupitem.cpp \
 		../chat/noticeitem.cpp \
-		../chat/tcpsocket.cpp moc_add_group_member.cpp \
+		../chat/tcpsocket.cpp \
+		../chat/newpostwindow.cpp moc_add_group_member.cpp \
+		moc_bbs.cpp \
+		moc_bbsitem.cpp \
 		moc_forget_one.cpp \
 		moc_forget_two.cpp \
 		moc_group_chat.cpp \
@@ -91,8 +96,11 @@ SOURCES       = ../chat/add_group_member.cpp \
 		moc_mainwindow.cpp \
 		moc_groupitem.cpp \
 		moc_noticeitem.cpp \
-		moc_tcpsocket.cpp
+		moc_tcpsocket.cpp \
+		moc_newpostwindow.cpp
 OBJECTS       = add_group_member.o \
+		bbs.o \
+		bbsitem.o \
 		forget_one.o \
 		forget_two.o \
 		group_chat.o \
@@ -113,7 +121,10 @@ OBJECTS       = add_group_member.o \
 		groupitem.o \
 		noticeitem.o \
 		tcpsocket.o \
+		newpostwindow.o \
 		moc_add_group_member.o \
+		moc_bbs.o \
+		moc_bbsitem.o \
 		moc_forget_one.o \
 		moc_forget_two.o \
 		moc_group_chat.o \
@@ -132,7 +143,8 @@ OBJECTS       = add_group_member.o \
 		moc_mainwindow.o \
 		moc_groupitem.o \
 		moc_noticeitem.o \
-		moc_tcpsocket.o
+		moc_tcpsocket.o \
+		moc_newpostwindow.o
 DIST          = /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/qdevice.pri \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/device_config.prf \
@@ -299,6 +311,7 @@ DIST          = /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.pr
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf \
+		../chat/.qmake.stash \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf \
@@ -327,6 +340,8 @@ DIST          = /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.pr
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/yacc.prf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/lex.prf \
 		../chat/chat.pro ../chat/add_group_member.h \
+		../chat/bbs.h \
+		../chat/bbsitem.h \
 		../chat/constant.h \
 		../chat/forget_one.h \
 		../chat/forget_two.h \
@@ -346,7 +361,10 @@ DIST          = /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.pr
 		../chat/mainwindow.h \
 		../chat/groupitem.h \
 		../chat/noticeitem.h \
-		../chat/tcpsocket.h ../chat/add_group_member.cpp \
+		../chat/tcpsocket.h \
+		../chat/newpostwindow.h ../chat/add_group_member.cpp \
+		../chat/bbs.cpp \
+		../chat/bbsitem.cpp \
 		../chat/forget_one.cpp \
 		../chat/forget_two.cpp \
 		../chat/group_chat.cpp \
@@ -366,7 +384,8 @@ DIST          = /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.pr
 		../chat/mainwindow.cpp \
 		../chat/groupitem.cpp \
 		../chat/noticeitem.cpp \
-		../chat/tcpsocket.cpp
+		../chat/tcpsocket.cpp \
+		../chat/newpostwindow.cpp
 QMAKE_TARGET  = chat
 DESTDIR       = 
 TARGET        = chat.app/Contents/MacOS/chat
@@ -385,7 +404,7 @@ include /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-chat.app/Contents/MacOS/chat: ui_add_group_member.h ui_forget_one.h ui_forget_two.h ui_group_chat.h ui_group_chat_message.h ui_login.h ui_notice_dialog.h ui_private_chat.h ui_private_chat_message.h ui_reg_one.h ui_reg_success.h ui_reg_two.h ui_addfriend.h ui_creategroup.h ui_editname.h ui_frienditem.h ui_mainwindow.h ui_groupitem.h ui_noticeitem.h $(OBJECTS)  
+chat.app/Contents/MacOS/chat: ui_add_group_member.h ui_bbs.h ui_bbsitem.h ui_forget_one.h ui_forget_two.h ui_group_chat.h ui_group_chat_message.h ui_login.h ui_notice_dialog.h ui_private_chat.h ui_private_chat_message.h ui_reg_one.h ui_reg_success.h ui_reg_two.h ui_addfriend.h ui_creategroup.h ui_editname.h ui_frienditem.h ui_mainwindow.h ui_groupitem.h ui_noticeitem.h ui_newpostwindow.h $(OBJECTS)  
 	@test -d chat.app/Contents/MacOS/ || mkdir -p chat.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -555,6 +574,7 @@ Makefile: ../chat/chat.pro /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clan
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf \
@@ -754,6 +774,7 @@ Makefile: ../chat/chat.pro /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clan
 /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf:
 /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf:
@@ -816,9 +837,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../chat/add_group_member.h ../chat/constant.h ../chat/forget_one.h ../chat/forget_two.h ../chat/group_chat.h ../chat/group_chat_message.h ../chat/login.h ../chat/notice_dialog.h ../chat/private_chat.h ../chat/private_chat_message.h ../chat/reg_one.h ../chat/reg_success.h ../chat/reg_two.h ../chat/addfriend.h ../chat/creategroup.h ../chat/editname.h ../chat/frienditem.h ../chat/mainwindow.h ../chat/groupitem.h ../chat/noticeitem.h ../chat/tcpsocket.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../chat/add_group_member.cpp ../chat/forget_one.cpp ../chat/forget_two.cpp ../chat/group_chat.cpp ../chat/group_chat_message.cpp ../chat/login.cpp ../chat/main.cpp ../chat/notice_dialog.cpp ../chat/private_chat.cpp ../chat/private_chat_message.cpp ../chat/reg_one.cpp ../chat/reg_success.cpp ../chat/reg_two.cpp ../chat/addfriend.cpp ../chat/creategroup.cpp ../chat/editname.cpp ../chat/frienditem.cpp ../chat/mainwindow.cpp ../chat/groupitem.cpp ../chat/noticeitem.cpp ../chat/tcpsocket.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../chat/add_group_member.ui ../chat/forget_one.ui ../chat/forget_two.ui ../chat/group_chat.ui ../chat/group_chat_message.ui ../chat/login.ui ../chat/notice_dialog.ui ../chat/private_chat.ui ../chat/private_chat_message.ui ../chat/reg_one.ui ../chat/reg_success.ui ../chat/reg_two.ui ../chat/addfriend.ui ../chat/creategroup.ui ../chat/editname.ui ../chat/frienditem.ui ../chat/mainwindow.ui ../chat/groupitem.ui ../chat/noticeitem.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../chat/add_group_member.h ../chat/bbs.h ../chat/bbsitem.h ../chat/constant.h ../chat/forget_one.h ../chat/forget_two.h ../chat/group_chat.h ../chat/group_chat_message.h ../chat/login.h ../chat/notice_dialog.h ../chat/private_chat.h ../chat/private_chat_message.h ../chat/reg_one.h ../chat/reg_success.h ../chat/reg_two.h ../chat/addfriend.h ../chat/creategroup.h ../chat/editname.h ../chat/frienditem.h ../chat/mainwindow.h ../chat/groupitem.h ../chat/noticeitem.h ../chat/tcpsocket.h ../chat/newpostwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../chat/add_group_member.cpp ../chat/bbs.cpp ../chat/bbsitem.cpp ../chat/forget_one.cpp ../chat/forget_two.cpp ../chat/group_chat.cpp ../chat/group_chat_message.cpp ../chat/login.cpp ../chat/main.cpp ../chat/notice_dialog.cpp ../chat/private_chat.cpp ../chat/private_chat_message.cpp ../chat/reg_one.cpp ../chat/reg_success.cpp ../chat/reg_two.cpp ../chat/addfriend.cpp ../chat/creategroup.cpp ../chat/editname.cpp ../chat/frienditem.cpp ../chat/mainwindow.cpp ../chat/groupitem.cpp ../chat/noticeitem.cpp ../chat/tcpsocket.cpp ../chat/newpostwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../chat/add_group_member.ui ../chat/bbs.ui ../chat/bbsitem.ui ../chat/forget_one.ui ../chat/forget_two.ui ../chat/group_chat.ui ../chat/group_chat_message.ui ../chat/login.ui ../chat/notice_dialog.ui ../chat/private_chat.ui ../chat/private_chat_message.ui ../chat/reg_one.ui ../chat/reg_success.ui ../chat/reg_two.ui ../chat/addfriend.ui ../chat/creategroup.ui ../chat/editname.ui ../chat/frienditem.ui ../chat/mainwindow.ui ../chat/groupitem.ui ../chat/noticeitem.ui ../chat/newpostwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -828,6 +849,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r chat.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -852,9 +874,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_add_group_member.cpp moc_forget_one.cpp moc_forget_two.cpp moc_group_chat.cpp moc_group_chat_message.cpp moc_login.cpp moc_notice_dialog.cpp moc_private_chat.cpp moc_private_chat_message.cpp moc_reg_one.cpp moc_reg_success.cpp moc_reg_two.cpp moc_addfriend.cpp moc_creategroup.cpp moc_editname.cpp moc_frienditem.cpp moc_mainwindow.cpp moc_groupitem.cpp moc_noticeitem.cpp moc_tcpsocket.cpp
+compiler_moc_header_make_all: moc_add_group_member.cpp moc_bbs.cpp moc_bbsitem.cpp moc_forget_one.cpp moc_forget_two.cpp moc_group_chat.cpp moc_group_chat_message.cpp moc_login.cpp moc_notice_dialog.cpp moc_private_chat.cpp moc_private_chat_message.cpp moc_reg_one.cpp moc_reg_success.cpp moc_reg_two.cpp moc_addfriend.cpp moc_creategroup.cpp moc_editname.cpp moc_frienditem.cpp moc_mainwindow.cpp moc_groupitem.cpp moc_noticeitem.cpp moc_tcpsocket.cpp moc_newpostwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_add_group_member.cpp moc_forget_one.cpp moc_forget_two.cpp moc_group_chat.cpp moc_group_chat_message.cpp moc_login.cpp moc_notice_dialog.cpp moc_private_chat.cpp moc_private_chat_message.cpp moc_reg_one.cpp moc_reg_success.cpp moc_reg_two.cpp moc_addfriend.cpp moc_creategroup.cpp moc_editname.cpp moc_frienditem.cpp moc_mainwindow.cpp moc_groupitem.cpp moc_noticeitem.cpp moc_tcpsocket.cpp
+	-$(DEL_FILE) moc_add_group_member.cpp moc_bbs.cpp moc_bbsitem.cpp moc_forget_one.cpp moc_forget_two.cpp moc_group_chat.cpp moc_group_chat_message.cpp moc_login.cpp moc_notice_dialog.cpp moc_private_chat.cpp moc_private_chat_message.cpp moc_reg_one.cpp moc_reg_success.cpp moc_reg_two.cpp moc_addfriend.cpp moc_creategroup.cpp moc_editname.cpp moc_frienditem.cpp moc_mainwindow.cpp moc_groupitem.cpp moc_noticeitem.cpp moc_tcpsocket.cpp moc_newpostwindow.cpp
 moc_add_group_member.cpp: ../chat/add_group_member.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -864,6 +886,27 @@ moc_add_group_member.cpp: ../chat/add_group_member.h \
 		moc_predefs.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/add_group_member.h -o moc_add_group_member.cpp
+
+moc_bbs.cpp: ../chat/bbs.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../chat/tcpsocket.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../chat/bbsitem.h \
+		moc_predefs.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/bbs.h -o moc_bbs.cpp
+
+moc_bbsitem.cpp: ../chat/bbsitem.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../chat/tcpsocket.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		moc_predefs.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/bbsitem.h -o moc_bbsitem.cpp
 
 moc_forget_one.cpp: ../chat/forget_one.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
@@ -1427,16 +1470,34 @@ moc_tcpsocket.cpp: ../chat/tcpsocket.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/tcpsocket.h -o moc_tcpsocket.cpp
 
+moc_newpostwindow.cpp: ../chat/newpostwindow.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../chat/tcpsocket.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		moc_predefs.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/newpostwindow.h -o moc_newpostwindow.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_add_group_member.h ui_forget_one.h ui_forget_two.h ui_group_chat.h ui_group_chat_message.h ui_login.h ui_notice_dialog.h ui_private_chat.h ui_private_chat_message.h ui_reg_one.h ui_reg_success.h ui_reg_two.h ui_addfriend.h ui_creategroup.h ui_editname.h ui_frienditem.h ui_mainwindow.h ui_groupitem.h ui_noticeitem.h
+compiler_uic_make_all: ui_add_group_member.h ui_bbs.h ui_bbsitem.h ui_forget_one.h ui_forget_two.h ui_group_chat.h ui_group_chat_message.h ui_login.h ui_notice_dialog.h ui_private_chat.h ui_private_chat_message.h ui_reg_one.h ui_reg_success.h ui_reg_two.h ui_addfriend.h ui_creategroup.h ui_editname.h ui_frienditem.h ui_mainwindow.h ui_groupitem.h ui_noticeitem.h ui_newpostwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_add_group_member.h ui_forget_one.h ui_forget_two.h ui_group_chat.h ui_group_chat_message.h ui_login.h ui_notice_dialog.h ui_private_chat.h ui_private_chat_message.h ui_reg_one.h ui_reg_success.h ui_reg_two.h ui_addfriend.h ui_creategroup.h ui_editname.h ui_frienditem.h ui_mainwindow.h ui_groupitem.h ui_noticeitem.h
+	-$(DEL_FILE) ui_add_group_member.h ui_bbs.h ui_bbsitem.h ui_forget_one.h ui_forget_two.h ui_group_chat.h ui_group_chat_message.h ui_login.h ui_notice_dialog.h ui_private_chat.h ui_private_chat_message.h ui_reg_one.h ui_reg_success.h ui_reg_two.h ui_addfriend.h ui_creategroup.h ui_editname.h ui_frienditem.h ui_mainwindow.h ui_groupitem.h ui_noticeitem.h ui_newpostwindow.h
 ui_add_group_member.h: ../chat/add_group_member.ui \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/add_group_member.ui -o ui_add_group_member.h
+
+ui_bbs.h: ../chat/bbs.ui \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/bbs.ui -o ui_bbs.h
+
+ui_bbsitem.h: ../chat/bbsitem.ui \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/bbsitem.ui -o ui_bbsitem.h
 
 ui_forget_one.h: ../chat/forget_one.ui \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
@@ -1510,6 +1571,10 @@ ui_noticeitem.h: ../chat/noticeitem.ui \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/noticeitem.ui -o ui_noticeitem.h
 
+ui_newpostwindow.h: ../chat/newpostwindow.ui \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/newpostwindow.ui -o ui_newpostwindow.h
+
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
 compiler_yacc_decl_make_all:
@@ -1545,6 +1610,28 @@ add_group_member.o: ../chat/add_group_member.cpp ../chat/add_group_member.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o add_group_member.o ../chat/add_group_member.cpp
+
+bbs.o: ../chat/bbs.cpp ../chat/bbs.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../chat/tcpsocket.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../chat/bbsitem.h \
+		ui_bbs.h \
+		../chat/newpostwindow.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bbs.o ../chat/bbs.cpp
+
+bbsitem.o: ../chat/bbsitem.cpp ../chat/bbsitem.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../chat/tcpsocket.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		ui_bbsitem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bbsitem.o ../chat/bbsitem.cpp
 
 forget_one.o: ../chat/forget_one.cpp ../chat/forget_one.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
@@ -1930,7 +2017,9 @@ private_chat.o: ../chat/private_chat.cpp ../chat/private_chat.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/tcpsocket.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		ui_private_chat.h
+		ui_private_chat.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QTextCodec \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o private_chat.o ../chat/private_chat.cpp
 
 private_chat_message.o: ../chat/private_chat_message.cpp ../chat/private_chat_message.h \
@@ -2395,7 +2484,9 @@ mainwindow.o: ../chat/mainwindow.cpp ../chat/mainwindow.h \
 		../chat/group_chat_message.h \
 		../chat/add_group_member.h \
 		../chat/noticeitem.h \
-		../chat/editname.h
+		../chat/editname.h \
+		../chat/bbs.h \
+		../chat/bbsitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../chat/mainwindow.cpp
 
 groupitem.o: ../chat/groupitem.cpp ../chat/groupitem.h \
@@ -2496,8 +2587,36 @@ tcpsocket.o: ../chat/tcpsocket.cpp ../chat/tcpsocket.h \
 		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QHostAddress
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tcpsocket.o ../chat/tcpsocket.cpp
 
+newpostwindow.o: ../chat/newpostwindow.cpp ../chat/newpostwindow.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../chat/tcpsocket.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		ui_newpostwindow.h \
+		../chat/constant.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o newpostwindow.o ../chat/newpostwindow.cpp
+
 moc_add_group_member.o: moc_add_group_member.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_add_group_member.o moc_add_group_member.cpp
+
+moc_bbs.o: moc_bbs.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_bbs.o moc_bbs.cpp
+
+moc_bbsitem.o: moc_bbsitem.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_bbsitem.o moc_bbsitem.cpp
 
 moc_forget_one.o: moc_forget_one.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_forget_one.o moc_forget_one.cpp
@@ -2555,6 +2674,9 @@ moc_noticeitem.o: moc_noticeitem.cpp
 
 moc_tcpsocket.o: moc_tcpsocket.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tcpsocket.o moc_tcpsocket.cpp
+
+moc_newpostwindow.o: moc_newpostwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_newpostwindow.o moc_newpostwindow.cpp
 
 ####### Install
 

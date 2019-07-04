@@ -37,6 +37,7 @@ signals:
     void change_status(int &);
     void new_noti(int &);
     void fresh_list(int &);
+    void get_bbs_list();
 
 private slots:
     void on_adf_but_clicked();
@@ -54,6 +55,9 @@ private slots:
     void get_new_noti(int &);
 
     void get_new_friend(int &);
+
+    void on_bbs_but_clicked();
+
 private:
     Ui::MainWindow *ui;
     tcpsocket *m_tcpsocket;

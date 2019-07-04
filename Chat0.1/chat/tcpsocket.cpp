@@ -2,7 +2,7 @@
 #include<QtNetwork>
 #include<QtWidgets/QMessageBox>
 #include<QHostAddress>
-QHostAddress tcpsocket::s_hostAddress=QHostAddress("192.168.43.104");
+QHostAddress tcpsocket::s_hostAddress=QHostAddress("172.20.10.5");
 int tcpsocket::s_hostPort=1234;
 
 
