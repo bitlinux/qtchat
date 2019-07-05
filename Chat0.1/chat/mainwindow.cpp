@@ -184,12 +184,14 @@ void  MainWindow::on_bbs_but_clicked()
     QByteArray block;
     QDataStream out(&block,QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_8);
-    out<<int(GET_ALL_BBS);
+    out<<int(GET_ALL_BBS)<<this->ui->id_label->text().toInt();
+    qDebug()<<"request get all bbs";
     m_tcpsocket->write(block);
     bbs *bbs_window;
-    bbs_window = new bbs(nullptr, m_tcpsocket, this->ui->id_label->text(),this->ui->edit_name->text(),this);
+    bbs_window = new bbs(nullptr, m_tcpsocket, this->ui->id_label->text(),this->ui->edit_name->text());
     bbs_window->show();
     bbs_window->setWindowTitle("BBS");
+    connect(this,SIGNAL(get_bbs_list()),bbs_window,SLOT(get_item()));
     connect(this,SIGNAL(get_new_bbsitem()),bbs_window,SLOT(get_single_item()));
 }
 
@@ -395,6 +397,10 @@ void MainWindow:: readmessage(int &type)
     }
     case GET_BBS_SUCCESS:{
         qDebug()<<"get_bbs_success";
+        int judge_id;
+        in >> judge_id;
+        if(judge_id != ui->id_label->text().toInt())
+            break;
         emit get_bbs_list();
         break;
     }

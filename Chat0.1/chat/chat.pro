@@ -28,6 +28,7 @@ SOURCES += \
         add_group_member.cpp \
         bbs.cpp \
         bbsitem.cpp \
+        bbsitem_detail.cpp \
         forget_one.cpp \
         forget_two.cpp \
         group_chat.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
         add_group_member.h \
         bbs.h \
         bbsitem.h \
+        bbsitem_detail.h \
         constant.h \
         forget_one.h \
         forget_two.h \
@@ -81,6 +83,7 @@ FORMS += \
         add_group_member.ui \
         bbs.ui \
         bbsitem.ui \
+        bbsitem_detail.ui \
         forget_one.ui \
         forget_two.ui \
         group_chat.ui \

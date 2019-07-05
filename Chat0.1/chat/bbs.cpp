@@ -3,16 +3,14 @@
 #include "newpostwindow.h"
 //#include "mainwindow.h"
 
-bbs::bbs(QWidget *parent, tcpsocket *m, QString myID, QString myname, QWidget *sig) :
+bbs::bbs(QWidget *parent, tcpsocket *m, QString myID, QString myname) :
     QWidget(parent),
     ui(new Ui::bbs)
 {
     ui->setupUi(this);
     m_tcpsocket = m;
-    this->id = myID;
-    this->name = myname;
-    connect(sig,SIGNAL(get_bbs_list()),this,SLOT(get_item()));
-    //connect(sig,SIGNAL(get_new_bbs_item()),this,SLOT(get_single_item()));
+    this->myid = myID;
+    this->myname = myname;
     qDebug()<<"bbs";
     // for loop to get item
 }
@@ -23,13 +21,15 @@ bbs::~bbs()
 }
 
 // add bbsitem
-void bbs::adbbsitem(QString title, QString content, QString name, QString bbs_id){
-
-   bbsitem *item1 = new bbsitem(this, m_tcpsocket, bbs_id,title, content, name);
+void bbs::adbbsitem(QString title, QString content, QString name, QString bbs_id, QString poster_id, QString my_id,QString post_time){
+   //qDebug()<<"add to bbs before";
+   bbsitem *item1 = new bbsitem(this, m_tcpsocket, bbs_id, poster_id, my_id, title, content, name, post_time);
+   //qDebug()<<"add to bbs after";
    QListWidgetItem *listItem1 = new QListWidgetItem();
    listItem1->setSizeHint(QSize(0, 90));
    this->ui->bbs_list->addItem(listItem1);
    this->ui->bbs_list->setItemWidget(listItem1, item1);
+
 }
 
 // open shared file UI
@@ -42,7 +42,7 @@ void bbs::on_shared_button_clicked()
 void bbs::on_postButton_clicked()
 {
     NewPostWindow *psw;
-    psw = new NewPostWindow(nullptr,m_tcpsocket,id);
+    psw = new NewPostWindow(nullptr,m_tcpsocket,myid);
     psw->show();
     psw->setWindowTitle("New Post");
 }
@@ -53,10 +53,24 @@ void bbs::on_upload_button_clicked()
 
 }
 
-// quit bbs UI
+// quit bbs UI and send quit signal
 void bbs::on_quitButton_clicked()
 {
     this->close();
+    //delete this->ui;
+}
+
+// Besides, when close bbs windows tell server bbs_exit, too.
+void bbs::closeEvent(QCloseEvent *event)
+{
+    //this->close();
+    QByteArray block;
+    QDataStream out(&block,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_8);
+    out<<int(EXIT_BBS)<<myid.toInt();
+    m_tcpsocket->write(block);
+    this->deleteLater();
+    qDebug()<<"delete this";
 }
 
 // load bbs item from server
@@ -66,18 +80,20 @@ void bbs::get_item(){
     int length;
 
     in >> length;
-    qDebug()<<"get bbs item call" << QString::number(length);
+    qDebug()<<length;
+    //qDebug()<<"get bbs item call" << QString::number(length);
     for(int i=0; i<length; i++)
     {
         bbsItem bbbsitem;
-        in >> bbbsitem.id >> bbbsitem.name >> bbbsitem.title >> bbbsitem.content;
+        in >> bbbsitem.id >>bbbsitem.poster_id>> bbbsitem.name >> bbbsitem.title >> bbbsitem.content >>bbbsitem.posttime;
+        qDebug()<< bbbsitem.id <<bbbsitem.poster_id<< bbbsitem.name << bbbsitem.title << bbbsitem.content << bbbsitem.posttime;
         bbsItems.append(bbbsitem);
     }
-    qDebug()<<"before add bbs item";
+    //qDebug()<<"before add bbs item";
     for(int i=0;i<length; i++){
-        adbbsitem(this->bbsItems[i].title,bbsItems[i].content,bbsItems[i].name,QString::number(bbsItems[i].id));
+        adbbsitem(this->bbsItems[i].title,bbsItems[i].content,bbsItems[i].name,QString::number(bbsItems[i].id),QString::number(bbsItems[i].poster_id),this->myid, bbsItems[i].posttime);
     }
-    qDebug()<<"after add bbs item";
+    //qDebug()<<"after add bbs item";
 
 }
 
@@ -87,7 +103,8 @@ void bbs::get_single_item(){
     in.setVersion(QDataStream::Qt_4_8);
     qDebug()<<"get_single_item called";
     bbsItem bbbsitem;
-    in >> bbbsitem.id >> bbbsitem.name >> bbbsitem.title >> bbbsitem.content;
-    adbbsitem(bbbsitem.title,bbbsitem.content,bbbsitem.name,QString::number(bbbsitem.id));
+    in >> bbbsitem.id >> bbbsitem.poster_id>> bbbsitem.name >> bbbsitem.title >> bbbsitem.content >> bbbsitem.posttime;
+
+    adbbsitem(bbbsitem.title,bbbsitem.content,bbbsitem.name,QString::number(bbbsitem.id),QString::number(bbbsitem.poster_id),this->myid, bbbsitem.posttime);
 
 }

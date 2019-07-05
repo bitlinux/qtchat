@@ -2,6 +2,7 @@
 #define BBS_H
 
 #include <QWidget>
+#include <QCloseEvent>
 #include "tcpsocket.h"
 #include "bbsitem.h"
 
@@ -14,9 +15,9 @@ class bbs : public QWidget
     Q_OBJECT
 
 public:
-    explicit bbs(QWidget *parent = nullptr, tcpsocket *m = nullptr, QString myID = "000000", QString myname = "name", QWidget *sig = nullptr);
+    explicit bbs(QWidget *parent = nullptr, tcpsocket *m = nullptr, QString myID = "000000", QString myname = "name");
     ~bbs();
-    void adbbsitem(QString title = "title", QString content = "content", QString name = "name", QString bbs_id="");
+    void adbbsitem(QString title = "title", QString content = "content", QString name = "name", QString bbs_id="", QString poster_id = "", QString my_id="", QString post_time = "");
 
 private slots:
     void on_shared_button_clicked();
@@ -31,15 +32,19 @@ private slots:
 
     void get_single_item();
 
+    void closeEvent(QCloseEvent *event);
+
 private:
     Ui::bbs *ui;
     tcpsocket *m_tcpsocket;
-    QString id,name;
+    QString myid,myname;
     struct bbsItem {
         QString title;
         int id;
+        int poster_id;
         QString content;
         QString name;
+        QString posttime;
     };
     QVector<bbsItem> bbsItems;
 

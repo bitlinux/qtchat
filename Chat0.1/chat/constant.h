@@ -340,7 +340,9 @@ enum MessageType
     GET_BBS_FAIL,
     POST_BBS,
     REPLY_BBS,
-    REPLY_BBS_HISTORY
+    REPLY_BBS_HISTORY,
+    EXIT_BBS,
+    DELETE_BBS
 
 };
 
