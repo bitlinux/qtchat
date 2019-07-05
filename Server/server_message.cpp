@@ -19,10 +19,10 @@ ServerMessage::~ServerMessage()
 void ServerMessage::runServer()
 {
     m_tcpserver=new TcpServer(this);
-    if(!m_tcpserver->listen(QHostAddress("192.168.43.91"),1235))
+    if(!m_tcpserver->listen(QHostAddress("192.168.43.104"),1234))
     {
         qDebug()<<"run server fail";
-        QMessageBox::information(nullptr,tr("error"),tr("cannot bind to address %1 port %2").arg(QHostAddress::Any).arg(1235));
+        QMessageBox::information(nullptr,tr("error"),tr("cannot bind to address %1 port %2").arg(QHostAddress::Any).arg(1234));
         exit(EXIT_FAILURE);
     }
     qDebug()<<tr("server is running at ipAddress %1 port %2").arg(m_tcpserver->serverAddress().toString()).arg(m_tcpserver->serverPort());

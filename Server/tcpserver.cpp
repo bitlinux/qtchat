@@ -198,7 +198,7 @@ void TcpServer::sendmessage(const Tmpinfo &tmp)
                 m_tmp.reply=TALK_FLOCK;
                 m_userMap[m_tmp.flocks_member[i].user_id]->sendmessage(m_tmp);
             }
-            m_tmp.reply=-1;
+
         }
         break;
     }
@@ -216,6 +216,55 @@ void TcpServer::sendmessage(const Tmpinfo &tmp)
             m_tmp.reply=SEND_FILE_TO_PEER;
             m_userMap[m_tmp.talk.receive_id]->sendmessage(m_tmp);
         }
+        break;
+    }
+    case GET_ALL_BBS:{
+        m_tmp.bbs_info=tmp.bbs_info;
+        m_tmp.socket=tmp.socket;
+        m_tmp.reply=m_database.get_bbs_record(m_tmp.bbs_history);
+        tmp.socket->sendmessage(m_tmp);
+        if(!m_bbsMap.contains(m_tmp.bbs_info.user_id))
+        {
+            m_bbsMap.insert(m_tmp.bbs_info.user_id,m_tmp.socket);
+            //qDebug()<<"bbs id :"<<m_tmp.bbs_info.user_id;
+        }
+        break;
+    }
+    case POST_BBS:{
+        m_tmp.bbs_info=tmp.bbs_info;
+        m_database.add_new_bbs(m_tmp.bbs_info);
+        m_tmp.reply=POST_BBS;
+        QMap<int, ClientSocket*>::iterator it;
+        for(it=m_bbsMap.begin();it!=m_bbsMap.end();it++)
+        {
+           it.value()->sendmessage(m_tmp);
+        }
+        break;
+    }
+    case EXIT_BBS:{
+        m_tmp.bbs_info=tmp.bbs_info;
+        if(m_bbsMap.contains(m_tmp.bbs_info.user_id))
+        {
+            m_bbsMap.remove(m_tmp.bbs_info.user_id);
+            //qDebug()<<"remove id: "<<m_tmp.bbs_info.user_id;
+        }
+        break;
+    }
+    case REPLY_BBS_HISTORY:{
+        m_tmp.bbs_info=tmp.bbs_info;
+        m_database.get_all_reply_on_bbs(m_tmp.bbs_info,m_tmp.bbs_reply);
+        m_tmp.reply=REPLY_BBS_HISTORY;
+        tmp.socket->sendmessage(m_tmp);
+        break;
+    }
+    case REPLY_BBS:{
+        m_tmp.reply_info=tmp.reply_info;
+        m_database.reply_to_bbs(m_tmp.reply_info);
+        break;
+    }
+    case DELETE_BBS:{
+        m_tmp.bbs_info=tmp.bbs_info;
+        m_database.delete_bbs(m_tmp.bbs_info);
         break;
     }
     default:

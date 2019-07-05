@@ -332,8 +332,16 @@ enum MessageType
     SEND_FILE_TO_PEER,   //121
     SEND_FILE_TO_FLOCK,   //122
 
-    NEW_NOTI_FRIEND,
-    FRESH_FRIEND_LIST
+    NEW_NOTI_FRIEND,  //123
+    FRESH_FRIEND_LIST,  //124
+    GET_ALL_BBS,   //125
+    GET_BBS_SUCCESS, //126
+    GET_BBS_FAIL,  //127
+    POST_BBS,   //128
+    REPLY_BBS,  //129
+    REPLY_BBS_HISTORY, //130
+    EXIT_BBS,   //131
+    DELETE_BBS  //132
 };
 
 //用户信息
@@ -434,6 +442,7 @@ struct UserTalkinfo{
         return in;
     }
 
+
 };
 
 //群聊消息
@@ -451,6 +460,7 @@ struct FlockTalkinfo{
 struct BBSinfo{
     int bbs_id; //帖子id号
     int user_id; //发送用户的id
+    QString username; //用户名
     QString title;//标题
     QString content;//内容
     QDateTime publish_time;//发帖时间
@@ -461,6 +471,7 @@ struct BBSreply{
     int reply_id;//回帖id
     int bbs_id;//被回帖的bbs的id
     int user_id;//回帖用户的id
+    QString username;
     QString text;//回帖的内容
     QDateTime reply_time;//回帖的时间
 };
@@ -488,7 +499,8 @@ struct Tmpinfo{
     QVector<UserTalkinfo> history;//用户聊天历史记录信息
     QVector<FlockTalkinfo> flock_history;//群聊历史记录信息
     QVector<BBSinfo> bbs_history;//bbs缓存消息
-    QMap<QString,QVector<BBSreply>> reply_history;//所有bbs的所有回复消息
+    QVector<BBSreply> bbs_reply; //某一条bbs的所有回复消息
+    QMap<int,QVector<BBSreply>> reply_history;//所有bbs的所有回复消息
 };
 
 #endif // CONSTANT_H

@@ -26,6 +26,7 @@ private:
     QMap<int, ClientSocket*> m_userMap;
     // 在线用户状态
     QMap<int, int> m_userStatus;
+    QMap<int,ClientSocket*> m_bbsMap;
 };
 
 

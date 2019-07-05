@@ -65,6 +65,16 @@ public:
     int search_name_by_id(Userinfo &);
     //更新好友列表
     int update_friend_list(Userinfo &);
+    //获取bbs所有的消息记录
+    int get_bbs_record(QVector<BBSinfo> &);
+    //新增一条bbs消息记录
+    int add_new_bbs(BBSinfo &);
+    //获取某一条帖子的所有回复
+    int get_all_reply_on_bbs(BBSinfo &,QVector<BBSreply> &);
+    //对帖子进行回复
+    int reply_to_bbs(BBSreply &);
+    //删除一个帖子
+    int delete_bbs(BBSinfo &);
 
 private:
     //检查SQL语句的正确性

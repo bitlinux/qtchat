@@ -1,5 +1,6 @@
 #include"clientsocket.h"
 #include<QDataStream>
+#include<QBuffer>
 
 ClientSocket::ClientSocket(QObject *parent):
     QTcpSocket(parent)
@@ -102,11 +103,38 @@ void ClientSocket::receivemessage()
         break;
     }
     case SEND_FILE_TO_PEER:{
-        qDebug()<<"send file to peer";
+        //qDebug()<<"send file to peer";
         in>>m_tmp.talk.send_id>>m_tmp.talk.receive_id>>m_tmp.talk.message>>m_tmp.talk.bit;
+        qDebug()<<"file size "<<m_tmp.talk.bit.size();
         break;
     }
-
+    case GET_ALL_BBS:{
+        //获取进入BBS的信号后，发送回用户所有的bbs帖子记录
+        in>>m_tmp.bbs_info.user_id;
+        //qDebug()<<"get all bbs";
+        break;
+        }
+    case EXIT_BBS:{
+        in>>m_tmp.bbs_info.user_id;
+        qDebug()<<"exit "<<m_tmp.bbs_info.user_id;
+        break;
+    }
+    case POST_BBS:{
+        in>>m_tmp.bbs_info.user_id>>m_tmp.bbs_info.title>>m_tmp.bbs_info.content;
+        break;
+    }
+    case REPLY_BBS_HISTORY:{
+        in>>m_tmp.bbs_info.bbs_id;
+        break;
+    }
+    case REPLY_BBS:{
+        in>>m_tmp.reply_info.user_id>>m_tmp.reply_info.bbs_id>>m_tmp.reply_info.text;
+        break;
+    }
+    case DELETE_BBS:{
+        in>>m_tmp.bbs_info.bbs_id;
+        break;
+    }
     default: {
         break;
     }
@@ -120,7 +148,9 @@ void ClientSocket::receivemessage()
 void ClientSocket::sendmessage(const Tmpinfo &tmp)
 {
     QByteArray block;
-    QDataStream out(&block, QIODevice::WriteOnly);
+    QBuffer buffer(&block);
+    buffer.open(QIODevice::WriteOnly);
+    QDataStream out(&buffer);
     out.setVersion(QDataStream::Qt_4_8);
     out<<tmp.reply;
     qDebug()<<"reply message: "<<tmp.reply;
@@ -162,15 +192,13 @@ void ClientSocket::sendmessage(const Tmpinfo &tmp)
         break;
     }
     case HAVE_MESSAGE_RECODRD:{
-        out<<tmp.talk.send_id<<quint32(0)<<tmp.history.size();
+        out<<tmp.talk.send_id<<tmp.history.size();
         int len=tmp.history.size();
         for(int i=0;i<len;i++)
         {
             out<<tmp.history[i].send_id<<tmp.history[i].message<<tmp.history[i].send_time;
             //qDebug()<<tmp.history[i].send_id<<tmp.history[i].message<<tmp.history[i].send_time;
         }
-        out.device()->seek(2*sizeof(int));
-        out << quint32(block.size() - sizeof(quint32)-2*sizeof(int));
         break;
     }
     case NO_MESSAGE_RECORD:{
@@ -235,6 +263,7 @@ void ClientSocket::sendmessage(const Tmpinfo &tmp)
     }
     case SEND_FILE_TO_PEER:{
         out<<tmp.talk.send_id<<tmp.talk.message<<tmp.talk.bit<<tmp.talk.send_time;
+        qDebug()<<tmp.talk.bit.size()<<tmp.talk.message;
         break;
     }
     case CHANGE_STATUE:{
@@ -249,10 +278,36 @@ void ClientSocket::sendmessage(const Tmpinfo &tmp)
         out<<tmp.user.id<<tmp.user.nickname<<tmp.user.status;
         break;
     }
+    case GET_BBS_SUCCESS:{
+        out<<tmp.bbs_info.user_id<<tmp.bbs_history.size();
+        int len=tmp.bbs_history.size();
+        for(int i=0;i<len;i++)
+        {
+            out<<tmp.bbs_history[i].bbs_id<<tmp.bbs_history[i].user_id<<tmp.bbs_history[i].username<<tmp.bbs_history[i].title<<tmp.bbs_history[i].content<<tmp.bbs_history[i].publish_time.toString("yyyy-MM-dd hh:mm:ss");
+        }
+        break;
+    }
+    case POST_BBS:{
+        out<<tmp.bbs_info.bbs_id<<tmp.bbs_info.user_id<<tmp.bbs_info.username<<tmp.bbs_info.title<<tmp.bbs_info.content<<tmp.bbs_info.publish_time.toString("yyyy-MM-dd hh:mm:ss");
+        break;
+    }
+    case REPLY_BBS_HISTORY:{
+        out<<tmp.bbs_reply.size();
+        qDebug()<<"bbs reply size:"<<tmp.bbs_reply.size();
+        int len=tmp.bbs_reply.size();
+        for(int i=0;i<len;i++)
+        {
+            qDebug()<<i;
+            out<<tmp.bbs_reply[i].username<<tmp.bbs_reply[i].text<<tmp.bbs_reply[i].reply_time.toString("yyyy-MM-dd hh:mm:ss");
+        }
+
+        break;
+    }
     default:
         break;
     }
-    write(block);
+    write(buffer.buffer(),buffer.buffer().size());
+    buffer.close();
 }
 
 //删除当前的socket

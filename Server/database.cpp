@@ -134,6 +134,18 @@ static const QString SEND_FLOCK_MESSAGE=
 static const QString SAVE_FILE_IN_DB=
         "insert into File values(?,?,?,?,?,?);";
 
+static const QString ADD_NEW_RECORD_IN_BBS=
+        "insert into BBS values(?,?,?,?,?);";
+
+static const QString REPLY_TO_BBS=
+        "insert into REPLY values(?,?,?,?,?);";
+
+static const QString DELETE_BBS_IN_BBS=
+        "delete from BBS where bbsID=?;";
+
+static const QString DELETE_BBS_IN_REPLY=
+        "delete from REPLY where bbsID=?;";
+
 //find item
 
 static const QString SEARCH_USER_IN_USERINFORMATION_SQL =
@@ -201,6 +213,18 @@ static const QString SEARCH_NAME_BY_ID=
 
 static const QString SEARCH_PERSONAL_INFO=
         "select nickname,isonline from User where id=?;";
+
+static const QString GET_BBS_RECORD_IN_BBS=
+        "select bbsID,User.nickname,title,content,time,userID from BBS,User where BBS.userID=User.id;";
+
+static const QString GET_BBS_ID=
+        "select max(bbsID)+1 from BBS;";
+
+static const QString GET_BBS_REPLY=
+        "select User.nickname,content,time from User,REPLY where User.id=REPLY.userID and bbsID=?;";
+
+static const QString GET_REPLY_ID=
+        "select count(*) from REPLY;";
 
 Database::Database(QObject *parent) :
     QObject(parent)
@@ -1177,6 +1201,184 @@ int Database::inform_offline_to_friend(int &tmp, QVector<Userinfo> &users)
             user.id=query.value(0).toInt();
             users.push_back(user);
         }
+        m_database->close();
+        return 1;
+    }
+}
+
+int Database::get_bbs_record(QVector<BBSinfo> &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(GET_BBS_RECORD_IN_BBS);
+    query.exec();
+    errorSQLOrder(query,"find all bbs record");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return GET_BBS_FAIL;
+    }
+    else
+    {
+        while(query.next())
+        {
+            BBSinfo temp;
+            temp.bbs_id=query.value(0).toInt();
+            temp.username=query.value(1).toString();
+            temp.title=query.value(2).toString();
+            temp.content=query.value(3).toString();
+            temp.publish_time=query.value(4).toDateTime();
+            temp.user_id=query.value(5).toInt();
+            tmp.push_back(temp);
+        }
+        m_database->close();
+        return GET_BBS_SUCCESS;
+    }
+}
+
+
+int Database::add_new_bbs(BBSinfo &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(GET_BBS_ID);
+    query.exec();
+    errorSQLOrder(query,"add bbs ");
+    if(!query.isActive())
+    {
+        return -1;
+    }
+    else
+    {
+        if(query.next())
+        {
+            tmp.bbs_id=query.value(0).toInt();
+        }
+        tmp.publish_time=QDateTime::currentDateTime();
+
+        QSqlQuery query1(*m_database);
+        query1.prepare(ADD_NEW_RECORD_IN_BBS);
+        query1.addBindValue(tmp.bbs_id);
+        query1.addBindValue(tmp.user_id);
+        query1.addBindValue(tmp.title);
+        query1.addBindValue(tmp.content);
+        query1.addBindValue(tmp.publish_time);
+        query1.exec();
+        errorSQLOrder(query1,"insert record in bbs");
+        if(!query1.isActive())
+        {
+            m_database->close();
+            return -1;
+        }
+        else
+        {
+            QSqlQuery query2(*m_database);
+            query2.prepare(SEARCH_NAME_BY_ID);
+            query2.addBindValue(tmp.user_id);
+            query2.exec();
+            if(!query2.isActive())
+            {
+                m_database->close();
+                return -1;
+            }
+            if(query2.next())
+            {
+                tmp.username=query2.value(0).toString();
+            }
+
+            m_database->close();
+            return 1;
+        }
+    }
+}
+
+int Database::get_all_reply_on_bbs(BBSinfo &inf, QVector<BBSreply> &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(GET_BBS_REPLY);
+    query.addBindValue(inf.bbs_id);
+    query.exec();
+    errorSQLOrder(query,"get all reply");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return -1;
+    }
+    else
+    {
+        while(query.next())
+        {
+            BBSreply temp;
+            temp.username=query.value(0).toString();
+            temp.text=query.value(1).toString();
+            temp.reply_time=query.value(2).toDateTime();
+            tmp.push_back(temp);
+        }
+        m_database->close();
+        return 1;
+    }
+}
+
+
+int Database::reply_to_bbs(BBSreply &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(GET_REPLY_ID);
+    query.exec();
+    errorSQLOrder(query,"get reply ID");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return -1;
+    }
+    else
+    {
+        if(query.next())
+        {
+            tmp.reply_id=query.value(0).toInt();
+        }
+        tmp.reply_time=QDateTime::currentDateTime();
+        QSqlQuery query1(*m_database);
+        query1.prepare(REPLY_TO_BBS);
+        query1.addBindValue(tmp.reply_id);
+        query1.addBindValue(tmp.user_id);
+        query1.addBindValue(tmp.bbs_id);
+        query1.addBindValue(tmp.text);
+        query1.addBindValue(tmp.reply_time);
+        query1.exec();
+        errorSQLOrder(query1,"insert into reply");
+        m_database->close();
+        return 1;
+    }
+}
+
+int Database::delete_bbs(BBSinfo &tmp)
+{
+    if(!createconnection())
+        return false;
+    QSqlQuery query(*m_database);
+    query.prepare(DELETE_BBS_IN_BBS);
+    query.addBindValue(tmp.bbs_id);
+    query.exec();
+    errorSQLOrder(query,"delete bbs in bbs");
+    if(!query.isActive())
+    {
+        m_database->close();
+        return -1;
+    }
+    else
+    {
+        QSqlQuery query1(*m_database);
+        query1.prepare( DELETE_BBS_IN_REPLY);
+        query1.addBindValue(tmp.bbs_id);
+        query1.exec();
+        errorSQLOrder(query1,"delete bbs in reply");
         m_database->close();
         return 1;
     }
