@@ -29,6 +29,7 @@ void bbs::pass_bbs_history(){
 // add bbsitem
 void bbs::adbbsitem(QString title, QString content, QString name, QString bbs_id, QString poster_id, QString my_id,QString post_time){
    // qDebug()<<"add to bbs before";
+   qDebug()<<bbs_id<<title;
    bbsitem *item1 = new bbsitem(this, m_tcpsocket, bbs_id, poster_id, my_id, title, content, name, post_time);
    connect(this,SIGNAL(to_bbs_item()),item1,SLOT(pass_signal()));
    // qDebug()<<"bbstiem construstor"<<bbs_id<<poster_id;
@@ -99,6 +100,7 @@ void bbs::get_item(){
     //qDebug()<<"before add bbs item";
     for(int i=0;i<length; i++){
         adbbsitem(this->bbsItems[i].title,bbsItems[i].content,bbsItems[i].name,QString::number(bbsItems[i].id),QString::number(bbsItems[i].poster_id),this->myid, bbsItems[i].posttime);
+        qDebug()<<this->bbsItems[i].id<<bbsItems[i].title;
     }
     //qDebug()<<"after add bbs item";
 

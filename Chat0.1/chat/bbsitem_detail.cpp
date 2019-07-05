@@ -53,7 +53,7 @@ void bbsitem_detail::on_buttonBox_accepted()
     out.setVersion(QDataStream::Qt_4_8);
 
     out<<int(REPLY_BBS)<<this->myID.toInt()<<this->bbs_id.toInt()<<getContent();
-    qDebug()<<REPLY_BBS<<this->myID<<this->bbs_id.toInt()<<getContent();
+    qDebug()<<REPLY_BBS<<this->myID.toInt()<<this->bbs_id.toInt()<<getContent();
     //qDebug()<<"request delete bbs";
 
     m_tcpsocket->write(block);
@@ -87,6 +87,13 @@ void bbsitem_detail::get_reply_history(){
         in >> rph.name >> rph.content >> rph.time;
         this->historys.append(rph);
     }
+    //QByteArray block;
+    //QDataStream out(&block,QIODevice::WriteOnly);
+    //out.setVersion(QDataStream::Qt_4_8);
+
+    //out<<130;
+    //qDebug()<<"130";
+    //m_tcpsocket->write(block);
     for(int i = 0; i < reply_num; i++){
         QString line1;
         line1 = historys[i].time + historys[i].name + '\n' + historys[i].content + '\n';
