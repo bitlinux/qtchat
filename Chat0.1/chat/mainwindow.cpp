@@ -31,9 +31,9 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
 
     qDebug()<< "test3";
     //header path
-    QString header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/qq.png";
+    QString header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/";
     //draw header
-    QPixmap header_img = QPixmap(header_path).scaled(60,60,Qt::IgnoreAspectRatio);
+    QPixmap header_img = QPixmap(header_path + info.myID + ".png").scaled(60,60,Qt::IgnoreAspectRatio);
     this->ui->edit_header->setIcon(header_img);
     this->ui->edit_header->setStyleSheet("QToolButton{border:0px;}");
     this->ui->edit_header->setIconSize(header_img.size());
@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
         bool isonline = false;
         if(info.friends[i].isonline == true)
             isonline = true;
-        adfrienditem(header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/yl.png", info.friends[i].ID, info.friends[i].name, isonline);
+        adfrienditem(header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/" + info.friends[i].ID + ".png", info.friends[i].ID, info.friends[i].name, isonline);
     }
 
     for(int i=0; i<info.groups.size(); i++)
@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
 
     for(int i=0; i<info.notifications.size(); i++)
     {
-        adnoticeitem(header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/yl.png", info.notifications[i].ID, info.notifications[i].name, info.notifications[i].time, info.notifications[i].message);
+        adnoticeitem(header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/" + info.notifications[i].ID + ".png", info.notifications[i].ID, info.notifications[i].name, info.notifications[i].time, info.notifications[i].message);
     }
 
 }
@@ -120,7 +120,7 @@ void MainWindow::get_new_noti(int &apply_id){
     in.setVersion(QDataStream::Qt_4_8);
     QString msg,time,name,header_path;
     in >> msg >> time >> name;
-    header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/qq.png";
+    header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/" + QString::number(apply_id) + ".png";
     adnoticeitem(header_path, QString::number(apply_id), name, time, msg);
 }
 
@@ -129,7 +129,7 @@ void MainWindow::get_new_friend(int &newfriend_id){
     QDataStream in(m_tcpsocket);
     in.setVersion(QDataStream::Qt_4_8);
     QString header_path,name;
-    header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/qq.png";
+    header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/" + QString::number(newfriend_id) + ".png";
     int is_online;
     bool isonline;
     in >> name >>is_online;
@@ -185,10 +185,12 @@ void  MainWindow::on_bbs_but_clicked()
     QDataStream out(&block,QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_8);
     out<<int(GET_ALL_BBS);
+    m_tcpsocket->write(block);
     bbs *bbs_window;
     bbs_window = new bbs(nullptr, m_tcpsocket, this->ui->id_label->text(),this->ui->edit_name->text(),this);
     bbs_window->show();
     bbs_window->setWindowTitle("BBS");
+    connect(this,SIGNAL(get_new_bbsitem()),bbs_window,SLOT(get_single_item()));
 }
 
 // edit header button
@@ -394,6 +396,11 @@ void MainWindow:: readmessage(int &type)
     case GET_BBS_SUCCESS:{
         qDebug()<<"get_bbs_success";
         emit get_bbs_list();
+        break;
+    }
+    case POST_BBS:{
+        qDebug()<<"get_new_bbsitem call";
+        emit get_new_bbsitem();
         break;
     }
     }

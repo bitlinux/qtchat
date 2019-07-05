@@ -70,7 +70,7 @@ public:
     {
         if (group_chat->objectName().isEmpty())
             group_chat->setObjectName(QString::fromUtf8("group_chat"));
-        group_chat->resize(589, 438);
+        group_chat->resize(594, 456);
         horizontalLayout_13 = new QHBoxLayout(group_chat);
         horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
         verticalLayout_3 = new QVBoxLayout();
@@ -207,7 +207,7 @@ public:
 
         change = new QPushButton(group_chat);
         change->setObjectName(QString::fromUtf8("change"));
-        change->setMinimumSize(QSize(65, 0));
+        change->setMinimumSize(QSize(80, 0));
         change->setMaximumSize(QSize(65, 16777215));
 
         horizontalLayout->addWidget(change);

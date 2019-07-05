@@ -338,7 +338,10 @@ enum MessageType
     GET_ALL_BBS,
     GET_BBS_SUCCESS,
     GET_BBS_FAIL,
-    POST_BBS
+    POST_BBS,
+    REPLY_BBS,
+    REPLY_BBS_HISTORY
+
 };
 
 //用户信息

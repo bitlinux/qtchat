@@ -33,7 +33,7 @@ public:
     {
         if (bbsitem->objectName().isEmpty())
             bbsitem->setObjectName(QString::fromUtf8("bbsitem"));
-        bbsitem->resize(323, 97);
+        bbsitem->resize(482, 97);
         verticalLayout_2 = new QVBoxLayout(bbsitem);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
@@ -52,11 +52,14 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         content_label = new QLabel(bbsitem);
         content_label->setObjectName(QString::fromUtf8("content_label"));
+        content_label->setMargin(0);
+        content_label->setIndent(0);
 
         horizontalLayout->addWidget(content_label);
 
         poster_name = new QLabel(bbsitem);
         poster_name->setObjectName(QString::fromUtf8("poster_name"));
+        poster_name->setMaximumSize(QSize(90, 16777215));
 
         horizontalLayout->addWidget(poster_name);
 

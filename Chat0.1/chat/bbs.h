@@ -29,6 +29,8 @@ private slots:
 
     void get_item();
 
+    void get_single_item();
+
 private:
     Ui::bbs *ui;
     tcpsocket *m_tcpsocket;

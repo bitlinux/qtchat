@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[25];
-    char stringdata0[320];
+    QByteArrayData data[26];
+    char stringdata0[336];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,27 +46,29 @@ QT_MOC_LITERAL(10, 101, 13), // "change_status"
 QT_MOC_LITERAL(11, 115, 8), // "new_noti"
 QT_MOC_LITERAL(12, 124, 10), // "fresh_list"
 QT_MOC_LITERAL(13, 135, 12), // "get_bbs_list"
-QT_MOC_LITERAL(14, 148, 18), // "on_adf_but_clicked"
-QT_MOC_LITERAL(15, 167, 19), // "on_crgp_but_clicked"
-QT_MOC_LITERAL(16, 187, 20), // "on_edit_name_clicked"
-QT_MOC_LITERAL(17, 208, 22), // "on_edit_header_clicked"
-QT_MOC_LITERAL(18, 231, 11), // "readmessage"
-QT_MOC_LITERAL(19, 243, 10), // "closeEvent"
-QT_MOC_LITERAL(20, 254, 12), // "QCloseEvent*"
-QT_MOC_LITERAL(21, 267, 5), // "event"
-QT_MOC_LITERAL(22, 273, 12), // "get_new_noti"
-QT_MOC_LITERAL(23, 286, 14), // "get_new_friend"
-QT_MOC_LITERAL(24, 301, 18) // "on_bbs_but_clicked"
+QT_MOC_LITERAL(14, 148, 15), // "get_new_bbsitem"
+QT_MOC_LITERAL(15, 164, 18), // "on_adf_but_clicked"
+QT_MOC_LITERAL(16, 183, 19), // "on_crgp_but_clicked"
+QT_MOC_LITERAL(17, 203, 20), // "on_edit_name_clicked"
+QT_MOC_LITERAL(18, 224, 22), // "on_edit_header_clicked"
+QT_MOC_LITERAL(19, 247, 11), // "readmessage"
+QT_MOC_LITERAL(20, 259, 10), // "closeEvent"
+QT_MOC_LITERAL(21, 270, 12), // "QCloseEvent*"
+QT_MOC_LITERAL(22, 283, 5), // "event"
+QT_MOC_LITERAL(23, 289, 12), // "get_new_noti"
+QT_MOC_LITERAL(24, 302, 14), // "get_new_friend"
+QT_MOC_LITERAL(25, 317, 18) // "on_bbs_but_clicked"
 
     },
     "MainWindow\0send_ID\0\0QString&\0receive_ID\0"
     "int&\0send_record_ID\0change_name\0"
     "init_flock_message\0send_file\0change_status\0"
     "new_noti\0fresh_list\0get_bbs_list\0"
-    "on_adf_but_clicked\0on_crgp_but_clicked\0"
-    "on_edit_name_clicked\0on_edit_header_clicked\0"
-    "readmessage\0closeEvent\0QCloseEvent*\0"
-    "event\0get_new_noti\0get_new_friend\0"
+    "get_new_bbsitem\0on_adf_but_clicked\0"
+    "on_crgp_but_clicked\0on_edit_name_clicked\0"
+    "on_edit_header_clicked\0readmessage\0"
+    "closeEvent\0QCloseEvent*\0event\0"
+    "get_new_noti\0get_new_friend\0"
     "on_bbs_but_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -77,35 +79,36 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      10,       // signalCount
+      11,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  109,    2, 0x06 /* Public */,
-       4,    1,  112,    2, 0x06 /* Public */,
-       6,    1,  115,    2, 0x06 /* Public */,
-       7,    1,  118,    2, 0x06 /* Public */,
-       8,    1,  121,    2, 0x06 /* Public */,
-       9,    1,  124,    2, 0x06 /* Public */,
-      10,    1,  127,    2, 0x06 /* Public */,
-      11,    1,  130,    2, 0x06 /* Public */,
-      12,    1,  133,    2, 0x06 /* Public */,
-      13,    0,  136,    2, 0x06 /* Public */,
+       1,    1,  114,    2, 0x06 /* Public */,
+       4,    1,  117,    2, 0x06 /* Public */,
+       6,    1,  120,    2, 0x06 /* Public */,
+       7,    1,  123,    2, 0x06 /* Public */,
+       8,    1,  126,    2, 0x06 /* Public */,
+       9,    1,  129,    2, 0x06 /* Public */,
+      10,    1,  132,    2, 0x06 /* Public */,
+      11,    1,  135,    2, 0x06 /* Public */,
+      12,    1,  138,    2, 0x06 /* Public */,
+      13,    0,  141,    2, 0x06 /* Public */,
+      14,    0,  142,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      14,    0,  137,    2, 0x08 /* Private */,
-      15,    0,  138,    2, 0x08 /* Private */,
-      16,    0,  139,    2, 0x08 /* Private */,
-      17,    0,  140,    2, 0x08 /* Private */,
-      18,    1,  141,    2, 0x08 /* Private */,
-      19,    1,  144,    2, 0x08 /* Private */,
-      22,    1,  147,    2, 0x08 /* Private */,
-      23,    1,  150,    2, 0x08 /* Private */,
-      24,    0,  153,    2, 0x08 /* Private */,
+      15,    0,  143,    2, 0x08 /* Private */,
+      16,    0,  144,    2, 0x08 /* Private */,
+      17,    0,  145,    2, 0x08 /* Private */,
+      18,    0,  146,    2, 0x08 /* Private */,
+      19,    1,  147,    2, 0x08 /* Private */,
+      20,    1,  150,    2, 0x08 /* Private */,
+      23,    1,  153,    2, 0x08 /* Private */,
+      24,    1,  156,    2, 0x08 /* Private */,
+      25,    0,  159,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    2,
@@ -118,6 +121,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, 0x80000000 | 5,    2,
     QMetaType::Void, 0x80000000 | 5,    2,
     QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
@@ -125,7 +129,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 5,    2,
-    QMetaType::Void, 0x80000000 | 20,   21,
+    QMetaType::Void, 0x80000000 | 21,   22,
     QMetaType::Void, 0x80000000 | 5,    2,
     QMetaType::Void, 0x80000000 | 5,    2,
     QMetaType::Void,
@@ -149,15 +153,16 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: _t->new_noti((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 8: _t->fresh_list((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 9: _t->get_bbs_list(); break;
-        case 10: _t->on_adf_but_clicked(); break;
-        case 11: _t->on_crgp_but_clicked(); break;
-        case 12: _t->on_edit_name_clicked(); break;
-        case 13: _t->on_edit_header_clicked(); break;
-        case 14: _t->readmessage((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 15: _t->closeEvent((*reinterpret_cast< QCloseEvent*(*)>(_a[1]))); break;
-        case 16: _t->get_new_noti((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 17: _t->get_new_friend((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 18: _t->on_bbs_but_clicked(); break;
+        case 10: _t->get_new_bbsitem(); break;
+        case 11: _t->on_adf_but_clicked(); break;
+        case 12: _t->on_crgp_but_clicked(); break;
+        case 13: _t->on_edit_name_clicked(); break;
+        case 14: _t->on_edit_header_clicked(); break;
+        case 15: _t->readmessage((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 16: _t->closeEvent((*reinterpret_cast< QCloseEvent*(*)>(_a[1]))); break;
+        case 17: _t->get_new_noti((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 18: _t->get_new_friend((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 19: _t->on_bbs_but_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -232,6 +237,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 return;
             }
         }
+        {
+            using _t = void (MainWindow::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MainWindow::get_new_bbsitem)) {
+                *result = 10;
+                return;
+            }
+        }
     }
 }
 
@@ -264,13 +276,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 20)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 19;
+        _id -= 20;
     }
     return _id;
 }
@@ -342,6 +354,12 @@ void MainWindow::fresh_list(int & _t1)
 void MainWindow::get_bbs_list()
 {
     QMetaObject::activate(this, &staticMetaObject, 9, nullptr);
+}
+
+// SIGNAL 10
+void MainWindow::get_new_bbsitem()
+{
+    QMetaObject::activate(this, &staticMetaObject, 10, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

@@ -99,6 +99,7 @@ public:
 
         register_2 = new QPushButton(login);
         register_2->setObjectName(QString::fromUtf8("register_2"));
+        register_2->setMaximumSize(QSize(95, 16777215));
 
         horizontalLayout_3->addWidget(register_2);
 
@@ -122,6 +123,7 @@ public:
 
         forget = new QPushButton(login);
         forget->setObjectName(QString::fromUtf8("forget"));
+        forget->setMinimumSize(QSize(95, 0));
 
         horizontalLayout_4->addWidget(forget);
 

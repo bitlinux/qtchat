@@ -38,6 +38,7 @@ signals:
     void new_noti(int &);
     void fresh_list(int &);
     void get_bbs_list();
+    void get_new_bbsitem();
 
 private slots:
     void on_adf_but_clicked();

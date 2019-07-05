@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>323</width>
+    <width>482</width>
     <height>97</height>
    </rect>
   </property>
@@ -41,10 +41,22 @@
          <property name="text">
           <string>content</string>
          </property>
+         <property name="margin">
+          <number>0</number>
+         </property>
+         <property name="indent">
+          <number>0</number>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="poster_name">
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>poster_name</string>
          </property>

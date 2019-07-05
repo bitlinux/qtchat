@@ -16,7 +16,7 @@ bbsitem::bbsitem(QWidget *parent, tcpsocket *m, QString bbs_id ,QString ititle, 
     // title align left
     this->ui->post_title->setStyleSheet("text-align:left;");
 
-    this->ui->content_label->setText(this->content);
+    this->ui->content_label->setText("    "+this->content);
     this->ui->content_label->setStyleSheet("text-align:left;");
 
     this->ui->poster_name->setText(this->name);

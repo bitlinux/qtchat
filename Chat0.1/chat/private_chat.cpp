@@ -142,7 +142,7 @@ void private_chat::receive_file(int &send_ID){
 
     qDebug()<<filename_list[filename_list.count()-1];
     QString strs = "                " + time + "\n" + otherID + ":   ";
-    strs += "file (" + filename_list[filename_list.count()-1] + ")  \n";
+    strs += "Receieve file (" + filename_list[filename_list.count()-1] + ")  \n";
     this->ui->chat_browser->append(strs);
     QFile p_file(file_path);
     QDataStream data_stream(&p_file);
@@ -234,13 +234,6 @@ void private_chat::read_record_message(QString &s)
     recordinfo = {};
     QDataStream in(m_tcpsocket);
     in.setVersion(QDataStream::Qt_4_8);
-    quint16 size = 0;
-    in >> size;
-    if(m_tcpsocket->bytesAvailable() < size)
-    {
-        qDebug() << "small";
-        return;
-    }
     int length;
     in >> length;
     for(int i=0; i<length; i++)
