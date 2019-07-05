@@ -20,11 +20,18 @@ bbs::~bbs()
     delete ui;
 }
 
+// pass get history signal
+void bbs::pass_bbs_history(){
+    emit to_bbs_item();
+    qDebug()<<"Pass history signal to bbs success";
+}
+
 // add bbsitem
 void bbs::adbbsitem(QString title, QString content, QString name, QString bbs_id, QString poster_id, QString my_id,QString post_time){
-   //qDebug()<<"add to bbs before";
+   // qDebug()<<"add to bbs before";
    bbsitem *item1 = new bbsitem(this, m_tcpsocket, bbs_id, poster_id, my_id, title, content, name, post_time);
-   //qDebug()<<"add to bbs after";
+   connect(this,SIGNAL(to_bbs_item()),item1,SLOT(pass_signal()));
+   // qDebug()<<"bbstiem construstor"<<bbs_id<<poster_id;
    QListWidgetItem *listItem1 = new QListWidgetItem();
    listItem1->setSizeHint(QSize(0, 90));
    this->ui->bbs_list->addItem(listItem1);

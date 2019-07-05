@@ -26,6 +26,8 @@ bbsitem::bbsitem(QWidget *parent, tcpsocket *m, QString bbs_id, QString poster_i
     //name align right
     this->ui->poster_name->setStyleSheet("text-align:right;color:gray;");
     this->bbs_id = bbs_id;
+    qDebug()<<"bbs_item"<<this->bbs_id<<posterID<<myID;
+
 }
 
 bbsitem::~bbsitem()
@@ -43,5 +45,10 @@ void bbsitem::on_post_title_clicked()
     m_tcpsocket->write(block);
     bbsitem_detail *detail_dialog;
     detail_dialog = new bbsitem_detail(nullptr,m_tcpsocket,this->bbs_id,this->posterID,this->myID,this->content,this->title,this->otherName,this->postTime);
+    connect(this,SIGNAL(to_detail_dialog()),detail_dialog,SLOT(get_reply_history()));
     detail_dialog->show();
+}
+
+void bbsitem::pass_signal(){
+    emit to_detail_dialog();
 }

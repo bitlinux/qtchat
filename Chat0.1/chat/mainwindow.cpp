@@ -193,6 +193,7 @@ void  MainWindow::on_bbs_but_clicked()
     bbs_window->setWindowTitle("BBS");
     connect(this,SIGNAL(get_bbs_list()),bbs_window,SLOT(get_item()));
     connect(this,SIGNAL(get_new_bbsitem()),bbs_window,SLOT(get_single_item()));
+    connect(this,SIGNAL(get_bbs_history()),bbs_window,SLOT(pass_bbs_history()));
 }
 
 // edit header button
@@ -407,6 +408,11 @@ void MainWindow:: readmessage(int &type)
     case POST_BBS:{
         qDebug()<<"get_new_bbsitem call";
         emit get_new_bbsitem();
+        break;
+    }
+    case REPLY_BBS_HISTORY:{
+        qDebug()<<"reply_bbs_history";
+        emit get_bbs_history();
         break;
     }
     }

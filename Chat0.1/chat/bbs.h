@@ -19,6 +19,9 @@ public:
     ~bbs();
     void adbbsitem(QString title = "title", QString content = "content", QString name = "name", QString bbs_id="", QString poster_id = "", QString my_id="", QString post_time = "");
 
+signals:
+    void to_bbs_item();
+
 private slots:
     void on_shared_button_clicked();
 
@@ -33,6 +36,8 @@ private slots:
     void get_single_item();
 
     void closeEvent(QCloseEvent *event);
+
+    void pass_bbs_history();
 
 private:
     Ui::bbs *ui;

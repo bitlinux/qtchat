@@ -18,6 +18,8 @@ notice_dialog::notice_dialog(QWidget *parent, tcpsocket *m, QString myid, QStrin
     connect(m_tcpsocket,SIGNAL(send_type(int &)),this,SLOT(readmessage(int &)));
 }
 
+
+
 notice_dialog::~notice_dialog()
 {
     delete ui;

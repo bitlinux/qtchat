@@ -39,6 +39,7 @@ signals:
     void fresh_list(int &);
     void get_bbs_list();
     void get_new_bbsitem();
+    void get_bbs_history();
 
 private slots:
     void on_adf_but_clicked();
@@ -63,7 +64,6 @@ private:
     Ui::MainWindow *ui;
     tcpsocket *m_tcpsocket;
     MainWindowInfo maininfo;
-
 
 };
 
