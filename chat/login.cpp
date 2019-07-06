@@ -11,6 +11,10 @@ login::login(QWidget *parent) :
     QDesktopWidget *deskdop = QApplication::desktop();
     move((deskdop->width() - this->width())/2, (deskdop->height() - this->height())/2);
     ui->setupUi(this);
+    QPixmap pix("/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/logo.png");
+    ui->talkphoto->resize(400,300);
+    QPixmap logo =pix.scaled(ui->talkphoto->size(),Qt::KeepAspectRatio);
+    ui->talkphoto->setPixmap(logo);
     m_tcpsocket=new tcpsocket(this);
     connect(m_tcpsocket,SIGNAL(send_type(int &)),this,SLOT(readmessage2(int &)));
     connect(m_tcpsocket,SIGNAL(connected()),this,SLOT(send_request()));

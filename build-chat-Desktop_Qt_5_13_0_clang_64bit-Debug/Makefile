@@ -17,7 +17,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../chat -I. -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib
+INCPATH       = -I../chat -I. -I../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib
 QMAKE         = /Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = chat1.0.0
-DISTDIR = /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/.tmp/chat1.0.0
+DISTDIR = /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/.tmp/chat1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtNetwork -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
@@ -76,7 +76,8 @@ SOURCES       = ../chat/add_group_member.cpp \
 		../chat/groupitem.cpp \
 		../chat/noticeitem.cpp \
 		../chat/tcpsocket.cpp \
-		../chat/newpostwindow.cpp moc_add_group_member.cpp \
+		../chat/newpostwindow.cpp \
+		../chat/widget.cpp moc_add_group_member.cpp \
 		moc_bbs.cpp \
 		moc_bbsitem.cpp \
 		moc_bbsitem_detail.cpp \
@@ -99,7 +100,8 @@ SOURCES       = ../chat/add_group_member.cpp \
 		moc_groupitem.cpp \
 		moc_noticeitem.cpp \
 		moc_tcpsocket.cpp \
-		moc_newpostwindow.cpp
+		moc_newpostwindow.cpp \
+		moc_widget.cpp
 OBJECTS       = add_group_member.o \
 		bbs.o \
 		bbsitem.o \
@@ -125,6 +127,7 @@ OBJECTS       = add_group_member.o \
 		noticeitem.o \
 		tcpsocket.o \
 		newpostwindow.o \
+		widget.o \
 		moc_add_group_member.o \
 		moc_bbs.o \
 		moc_bbsitem.o \
@@ -148,201 +151,202 @@ OBJECTS       = add_group_member.o \
 		moc_groupitem.o \
 		moc_noticeitem.o \
 		moc_tcpsocket.o \
-		moc_newpostwindow.o
-DIST          = /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/qdevice.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/device_config.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/unix.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/mac.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/macx.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/sanitize.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base-mac.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang-mac.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/qconfig.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bodymovin_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickshapes_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_service_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_functions.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf \
+		moc_newpostwindow.o \
+		moc_widget.o
+DIST          = ../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/qdevice.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/device_config.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/unix.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/mac.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/macx.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/sanitize.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base-mac.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang-mac.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/qconfig.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bodymovin_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickshapes_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_service_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_functions.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf \
 		../chat/.qmake.stash \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/toolchain.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_pre.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_pre.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/resolve_config.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_post.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_post.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/objective_c.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qml_debug.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/mac.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/warn_on.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/resources.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/moc.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/opengl.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/uic.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/thread.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qmake_use.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/file_copies.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/rez.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/asset_catalogs.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/testcase_targets.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exceptions.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/yacc.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/lex.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/toolchain.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_pre.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_pre.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/resolve_config.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_post.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_post.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/objective_c.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qml_debug.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/mac.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/warn_on.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/resources.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/moc.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/opengl.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/uic.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/thread.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qmake_use.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/file_copies.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/rez.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/asset_catalogs.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/testcase_targets.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/exceptions.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/yacc.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/lex.prf \
 		../chat/chat.pro ../chat/add_group_member.h \
 		../chat/bbs.h \
 		../chat/bbsitem.h \
@@ -367,7 +371,8 @@ DIST          = /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.pr
 		../chat/groupitem.h \
 		../chat/noticeitem.h \
 		../chat/tcpsocket.h \
-		../chat/newpostwindow.h ../chat/add_group_member.cpp \
+		../chat/newpostwindow.h \
+		../chat/widget.h ../chat/add_group_member.cpp \
 		../chat/bbs.cpp \
 		../chat/bbsitem.cpp \
 		../chat/bbsitem_detail.cpp \
@@ -391,7 +396,8 @@ DIST          = /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.pr
 		../chat/groupitem.cpp \
 		../chat/noticeitem.cpp \
 		../chat/tcpsocket.cpp \
-		../chat/newpostwindow.cpp
+		../chat/newpostwindow.cpp \
+		../chat/widget.cpp
 QMAKE_TARGET  = chat
 DESTDIR       = 
 TARGET        = chat.app/Contents/MacOS/chat
@@ -403,7 +409,7 @@ EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_ACTIVE_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(ARCHS))
 EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_ARCHS), $(EXPORT_VALID_ARCHS)), -arch $(arch))
-EXPORT__PRO_FILE_ = /Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat/chat.pro
+EXPORT__PRO_FILE_ = /Users/JIE/Desktop/Linux/qtchat/chat/chat.pro
 
 
 include /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.mk
@@ -414,405 +420,405 @@ chat.app/Contents/MacOS/chat: ui_add_group_member.h ui_bbs.h ui_bbsitem.h ui_bbs
 	@test -d chat.app/Contents/MacOS/ || mkdir -p chat.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
-Makefile: ../chat/chat.pro /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/qdevice.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/device_config.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/unix.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/mac.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/macx.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/sanitize.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base-mac.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang-mac.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/qconfig.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bodymovin_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickshapes_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_service_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_functions.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf \
+Makefile: ../chat/chat.pro ../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf ../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/qdevice.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/device_config.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/unix.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/mac.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/macx.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/sanitize.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base-mac.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang-mac.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/qconfig.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bodymovin_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickshapes_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_service_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_functions.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf \
 		.qmake.stash \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/toolchain.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_pre.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_pre.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/resolve_config.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_post.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_post.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/objective_c.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qml_debug.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/mac.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/warn_on.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/resources.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/moc.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/opengl.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/uic.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/thread.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qmake_use.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/file_copies.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/rez.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/asset_catalogs.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/testcase_targets.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exceptions.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/yacc.prf \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/lex.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/toolchain.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_pre.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_pre.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/resolve_config.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_post.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_post.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/objective_c.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qml_debug.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/mac.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/warn_on.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/resources.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/moc.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/opengl.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/uic.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/thread.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qmake_use.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/file_copies.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/rez.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/asset_catalogs.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/testcase_targets.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/exceptions.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/yacc.prf \
+		../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/lex.prf \
 		../chat/chat.pro \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/QtGui.prl \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork.prl \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/QtCore.prl
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/QtGui.prl \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork.prl \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/QtCore.prl
 	$(QMAKE) -o Makefile ../chat/chat.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/qdevice.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/device_config.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/unix.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/mac.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/macx.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/sanitize.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base-mac.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang-mac.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/qconfig.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bodymovin_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickshapes_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_service_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_functions.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_pre.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/qdevice.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/device_config.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/unix.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/mac.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/macx.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/sanitize.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/gcc-base-mac.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/common/clang-mac.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/qconfig.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bodymovin_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_core_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_help_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_location_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_network_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickshapes_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_script_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_service_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_functions.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt_config.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/qmake.conf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/spec_post.prf:
 .qmake.stash:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/toolchain.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_pre.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_pre.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/resolve_config.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_post.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_post.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/objective_c.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qml_debug.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/mac.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/warn_on.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/resources.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/moc.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/opengl.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/uic.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/thread.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/qmake_use.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/file_copies.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/rez.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/asset_catalogs.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/testcase_targets.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/exceptions.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/yacc.prf:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/lex.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/exclusive_builds.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/sdk.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/toolchain.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/toolchain.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_pre.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_pre.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/resolve_config.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/default_post.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/default_post.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/objective_c.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qml_debug.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/mac.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/warn_on.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qt.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/resources.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/moc.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/opengl.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/uic.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/unix/thread.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/qmake_use.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/file_copies.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/rez.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/mac/asset_catalogs.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/testcase_targets.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/exceptions.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/yacc.prf:
+../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/lex.prf:
 ../chat/chat.pro:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/QtGui.prl:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork.prl:
-/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/QtCore.prl:
+../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
+../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/QtGui.prl:
+../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork.prl:
+../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../chat/chat.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 
@@ -829,7 +835,7 @@ chat.app/Contents/Resources/empty.lproj:
 chat.app/Contents/Info.plist: 
 	@test -d chat.app/Contents || mkdir -p chat.app/Contents
 	@$(DEL_FILE) chat.app/Contents/Info.plist
-	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,\$${QMAKE_SHORT_VERSION},1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,\$${QMAKE_FULL_VERSION},1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" -e "s,@BUNDLEIDENTIFIER@,bit.chat,g" -e "s,\$${PRODUCT_BUNDLE_IDENTIFIER},bit.chat,g" -e "s,\$${MACOSX_DEPLOYMENT_TARGET},10.12,g" -e "s,\$${IPHONEOS_DEPLOYMENT_TARGET},,g" -e "s,\$${TVOS_DEPLOYMENT_TARGET},,g" -e "s,\$${WATCHOS_DEPLOYMENT_TARGET},,g" -e "s,@ICON@,,g" -e "s,\$${ASSETCATALOG_COMPILER_APPICON_NAME},,g" -e "s,@EXECUTABLE@,chat,g" -e "s,@LIBRARY@,chat,g" -e "s,\$${EXECUTABLE_NAME},chat,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/Info.plist.app >chat.app/Contents/Info.plist
+	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,\$${QMAKE_SHORT_VERSION},1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,\$${QMAKE_FULL_VERSION},1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" -e "s,@BUNDLEIDENTIFIER@,bit.chat,g" -e "s,\$${PRODUCT_BUNDLE_IDENTIFIER},bit.chat,g" -e "s,\$${MACOSX_DEPLOYMENT_TARGET},10.12,g" -e "s,\$${IPHONEOS_DEPLOYMENT_TARGET},,g" -e "s,\$${TVOS_DEPLOYMENT_TARGET},,g" -e "s,\$${WATCHOS_DEPLOYMENT_TARGET},,g" -e "s,@ICON@,,g" -e "s,\$${ASSETCATALOG_COMPILER_APPICON_NAME},,g" -e "s,@EXECUTABLE@,chat,g" -e "s,@LIBRARY@,chat,g" -e "s,\$${EXECUTABLE_NAME},chat,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" ../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang/Info.plist.app >chat.app/Contents/Info.plist
 
 all: Makefile \
 		chat.app/Contents/PkgInfo \
@@ -842,9 +848,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../chat/add_group_member.h ../chat/bbs.h ../chat/bbsitem.h ../chat/bbsitem_detail.h ../chat/constant.h ../chat/forget_one.h ../chat/forget_two.h ../chat/group_chat.h ../chat/group_chat_message.h ../chat/login.h ../chat/notice_dialog.h ../chat/private_chat.h ../chat/private_chat_message.h ../chat/reg_one.h ../chat/reg_success.h ../chat/reg_two.h ../chat/addfriend.h ../chat/creategroup.h ../chat/editname.h ../chat/frienditem.h ../chat/mainwindow.h ../chat/groupitem.h ../chat/noticeitem.h ../chat/tcpsocket.h ../chat/newpostwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../chat/add_group_member.cpp ../chat/bbs.cpp ../chat/bbsitem.cpp ../chat/bbsitem_detail.cpp ../chat/forget_one.cpp ../chat/forget_two.cpp ../chat/group_chat.cpp ../chat/group_chat_message.cpp ../chat/login.cpp ../chat/main.cpp ../chat/notice_dialog.cpp ../chat/private_chat.cpp ../chat/private_chat_message.cpp ../chat/reg_one.cpp ../chat/reg_success.cpp ../chat/reg_two.cpp ../chat/addfriend.cpp ../chat/creategroup.cpp ../chat/editname.cpp ../chat/frienditem.cpp ../chat/mainwindow.cpp ../chat/groupitem.cpp ../chat/noticeitem.cpp ../chat/tcpsocket.cpp ../chat/newpostwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../chat/add_group_member.h ../chat/bbs.h ../chat/bbsitem.h ../chat/bbsitem_detail.h ../chat/constant.h ../chat/forget_one.h ../chat/forget_two.h ../chat/group_chat.h ../chat/group_chat_message.h ../chat/login.h ../chat/notice_dialog.h ../chat/private_chat.h ../chat/private_chat_message.h ../chat/reg_one.h ../chat/reg_success.h ../chat/reg_two.h ../chat/addfriend.h ../chat/creategroup.h ../chat/editname.h ../chat/frienditem.h ../chat/mainwindow.h ../chat/groupitem.h ../chat/noticeitem.h ../chat/tcpsocket.h ../chat/newpostwindow.h ../chat/widget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../chat/add_group_member.cpp ../chat/bbs.cpp ../chat/bbsitem.cpp ../chat/bbsitem_detail.cpp ../chat/forget_one.cpp ../chat/forget_two.cpp ../chat/group_chat.cpp ../chat/group_chat_message.cpp ../chat/login.cpp ../chat/main.cpp ../chat/notice_dialog.cpp ../chat/private_chat.cpp ../chat/private_chat_message.cpp ../chat/reg_one.cpp ../chat/reg_success.cpp ../chat/reg_two.cpp ../chat/addfriend.cpp ../chat/creategroup.cpp ../chat/editname.cpp ../chat/frienditem.cpp ../chat/mainwindow.cpp ../chat/groupitem.cpp ../chat/noticeitem.cpp ../chat/tcpsocket.cpp ../chat/newpostwindow.cpp ../chat/widget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../chat/add_group_member.ui ../chat/bbs.ui ../chat/bbsitem.ui ../chat/bbsitem_detail.ui ../chat/forget_one.ui ../chat/forget_two.ui ../chat/group_chat.ui ../chat/group_chat_message.ui ../chat/login.ui ../chat/notice_dialog.ui ../chat/private_chat.ui ../chat/private_chat_message.ui ../chat/reg_one.ui ../chat/reg_success.ui ../chat/reg_two.ui ../chat/addfriend.ui ../chat/creategroup.ui ../chat/editname.ui ../chat/frienditem.ui ../chat/mainwindow.ui ../chat/groupitem.ui ../chat/noticeitem.ui ../chat/newpostwindow.ui $(DISTDIR)/
 
 
@@ -877,656 +883,705 @@ compiler_rcc_clean:
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
-moc_predefs.h: /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp
+moc_predefs.h: ../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h ../../../../Qt5.13.0/5.13.0/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_add_group_member.cpp moc_bbs.cpp moc_bbsitem.cpp moc_bbsitem_detail.cpp moc_forget_one.cpp moc_forget_two.cpp moc_group_chat.cpp moc_group_chat_message.cpp moc_login.cpp moc_notice_dialog.cpp moc_private_chat.cpp moc_private_chat_message.cpp moc_reg_one.cpp moc_reg_success.cpp moc_reg_two.cpp moc_addfriend.cpp moc_creategroup.cpp moc_editname.cpp moc_frienditem.cpp moc_mainwindow.cpp moc_groupitem.cpp moc_noticeitem.cpp moc_tcpsocket.cpp moc_newpostwindow.cpp
+compiler_moc_header_make_all: moc_add_group_member.cpp moc_bbs.cpp moc_bbsitem.cpp moc_bbsitem_detail.cpp moc_forget_one.cpp moc_forget_two.cpp moc_group_chat.cpp moc_group_chat_message.cpp moc_login.cpp moc_notice_dialog.cpp moc_private_chat.cpp moc_private_chat_message.cpp moc_reg_one.cpp moc_reg_success.cpp moc_reg_two.cpp moc_addfriend.cpp moc_creategroup.cpp moc_editname.cpp moc_frienditem.cpp moc_mainwindow.cpp moc_groupitem.cpp moc_noticeitem.cpp moc_tcpsocket.cpp moc_newpostwindow.cpp moc_widget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_add_group_member.cpp moc_bbs.cpp moc_bbsitem.cpp moc_bbsitem_detail.cpp moc_forget_one.cpp moc_forget_two.cpp moc_group_chat.cpp moc_group_chat_message.cpp moc_login.cpp moc_notice_dialog.cpp moc_private_chat.cpp moc_private_chat_message.cpp moc_reg_one.cpp moc_reg_success.cpp moc_reg_two.cpp moc_addfriend.cpp moc_creategroup.cpp moc_editname.cpp moc_frienditem.cpp moc_mainwindow.cpp moc_groupitem.cpp moc_noticeitem.cpp moc_tcpsocket.cpp moc_newpostwindow.cpp
+	-$(DEL_FILE) moc_add_group_member.cpp moc_bbs.cpp moc_bbsitem.cpp moc_bbsitem_detail.cpp moc_forget_one.cpp moc_forget_two.cpp moc_group_chat.cpp moc_group_chat_message.cpp moc_login.cpp moc_notice_dialog.cpp moc_private_chat.cpp moc_private_chat_message.cpp moc_reg_one.cpp moc_reg_success.cpp moc_reg_two.cpp moc_addfriend.cpp moc_creategroup.cpp moc_editname.cpp moc_frienditem.cpp moc_mainwindow.cpp moc_groupitem.cpp moc_noticeitem.cpp moc_tcpsocket.cpp moc_newpostwindow.cpp moc_widget.cpp
 moc_add_group_member.cpp: ../chat/add_group_member.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/add_group_member.h -o moc_add_group_member.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/add_group_member.h -o moc_add_group_member.cpp
 
 moc_bbs.cpp: ../chat/bbs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/bbsitem.h \
 		../chat/bbsitem_detail.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/bbs.h -o moc_bbs.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/bbs.h -o moc_bbs.cpp
 
 moc_bbsitem.cpp: ../chat/bbsitem.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/bbsitem_detail.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/bbsitem.h -o moc_bbsitem.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/bbsitem.h -o moc_bbsitem.cpp
 
 moc_bbsitem_detail.cpp: ../chat/bbsitem_detail.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/bbsitem_detail.h -o moc_bbsitem_detail.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/bbsitem_detail.h -o moc_bbsitem_detail.cpp
 
 moc_forget_one.cpp: ../chat/forget_one.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
 		../chat/forget_two.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/forget_one.h -o moc_forget_one.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/forget_one.h -o moc_forget_one.cpp
 
 moc_forget_two.cpp: ../chat/forget_two.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/forget_two.h -o moc_forget_two.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/forget_two.h -o moc_forget_two.cpp
 
 moc_group_chat.cpp: ../chat/group_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/group_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/add_group_member.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/group_chat.h -o moc_group_chat.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/group_chat.h -o moc_group_chat.cpp
 
 moc_group_chat_message.cpp: ../chat/group_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/group_chat_message.h -o moc_group_chat_message.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/group_chat_message.h -o moc_group_chat_message.cpp
 
 moc_login.cpp: ../chat/login.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/reg_one.h \
 		../chat/reg_two.h \
 		../chat/reg_success.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../chat/forget_one.h \
 		../chat/forget_two.h \
 		../chat/mainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/addfriend.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
 		../chat/private_chat_message.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/login.h -o moc_login.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/login.h -o moc_login.cpp
 
 moc_notice_dialog.cpp: ../chat/notice_dialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/notice_dialog.h -o moc_notice_dialog.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/notice_dialog.h -o moc_notice_dialog.cpp
 
 moc_private_chat.cpp: ../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/private_chat.h -o moc_private_chat.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/private_chat.h -o moc_private_chat.cpp
 
 moc_private_chat_message.cpp: ../chat/private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/private_chat_message.h -o moc_private_chat_message.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/private_chat_message.h -o moc_private_chat_message.cpp
 
 moc_reg_one.cpp: ../chat/reg_one.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
 		../chat/reg_two.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/reg_success.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/reg_one.h -o moc_reg_one.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/reg_one.h -o moc_reg_one.cpp
 
 moc_reg_success.cpp: ../chat/reg_success.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/reg_success.h -o moc_reg_success.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/reg_success.h -o moc_reg_success.cpp
 
 moc_reg_two.cpp: ../chat/reg_two.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/reg_success.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/reg_two.h -o moc_reg_two.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/reg_two.h -o moc_reg_two.cpp
 
 moc_addfriend.cpp: ../chat/addfriend.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/addfriend.h -o moc_addfriend.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/addfriend.h -o moc_addfriend.cpp
 
 moc_creategroup.cpp: ../chat/creategroup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/creategroup.h -o moc_creategroup.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/creategroup.h -o moc_creategroup.cpp
 
 moc_editname.cpp: ../chat/editname.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/editname.h -o moc_editname.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/editname.h -o moc_editname.cpp
 
 moc_frienditem.cpp: ../chat/frienditem.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		../chat/private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/frienditem.h -o moc_frienditem.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/frienditem.h -o moc_frienditem.cpp
 
 moc_mainwindow.cpp: ../chat/mainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/addfriend.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/private_chat_message.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/mainwindow.h -o moc_mainwindow.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/mainwindow.h -o moc_mainwindow.cpp
 
 moc_groupitem.cpp: ../chat/groupitem.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../chat/group_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/group_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/add_group_member.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/groupitem.h -o moc_groupitem.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/groupitem.h -o moc_groupitem.cpp
 
 moc_noticeitem.cpp: ../chat/noticeitem.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/noticeitem.h -o moc_noticeitem.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/noticeitem.h -o moc_noticeitem.cpp
 
 moc_tcpsocket.cpp: ../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/tcpsocket.h -o moc_tcpsocket.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/tcpsocket.h -o moc_tcpsocket.cpp
 
 moc_newpostwindow.cpp: ../chat/newpostwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		moc_predefs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc
-	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/Chat0.1/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/Chat0.1/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/newpostwindow.h -o moc_newpostwindow.cpp
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/newpostwindow.h -o moc_newpostwindow.cpp
+
+moc_widget.cpp: ../chat/widget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QHostAddress \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFileInfo \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFileInfoList \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QByteArray \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QUrl \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qurl.h \
+		moc_predefs.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/moc
+	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/moc $(DEFINES) --include /Users/JIE/Desktop/Linux/qtchat/build-chat-Desktop_Qt_5_13_0_clang_64bit-Debug/moc_predefs.h -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/mkspecs/macx-clang -I/Users/JIE/Desktop/Linux/qtchat/chat -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib ../chat/widget.h -o moc_widget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1536,95 +1591,95 @@ compiler_uic_make_all: ui_add_group_member.h ui_bbs.h ui_bbsitem.h ui_bbsitem_de
 compiler_uic_clean:
 	-$(DEL_FILE) ui_add_group_member.h ui_bbs.h ui_bbsitem.h ui_bbsitem_detail.h ui_forget_one.h ui_forget_two.h ui_group_chat.h ui_group_chat_message.h ui_login.h ui_notice_dialog.h ui_private_chat.h ui_private_chat_message.h ui_reg_one.h ui_reg_success.h ui_reg_two.h ui_addfriend.h ui_creategroup.h ui_editname.h ui_frienditem.h ui_mainwindow.h ui_groupitem.h ui_noticeitem.h ui_newpostwindow.h
 ui_add_group_member.h: ../chat/add_group_member.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/add_group_member.ui -o ui_add_group_member.h
 
 ui_bbs.h: ../chat/bbs.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/bbs.ui -o ui_bbs.h
 
 ui_bbsitem.h: ../chat/bbsitem.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/bbsitem.ui -o ui_bbsitem.h
 
 ui_bbsitem_detail.h: ../chat/bbsitem_detail.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/bbsitem_detail.ui -o ui_bbsitem_detail.h
 
 ui_forget_one.h: ../chat/forget_one.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/forget_one.ui -o ui_forget_one.h
 
 ui_forget_two.h: ../chat/forget_two.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/forget_two.ui -o ui_forget_two.h
 
 ui_group_chat.h: ../chat/group_chat.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/group_chat.ui -o ui_group_chat.h
 
 ui_group_chat_message.h: ../chat/group_chat_message.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/group_chat_message.ui -o ui_group_chat_message.h
 
 ui_login.h: ../chat/login.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/login.ui -o ui_login.h
 
 ui_notice_dialog.h: ../chat/notice_dialog.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/notice_dialog.ui -o ui_notice_dialog.h
 
 ui_private_chat.h: ../chat/private_chat.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/private_chat.ui -o ui_private_chat.h
 
 ui_private_chat_message.h: ../chat/private_chat_message.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/private_chat_message.ui -o ui_private_chat_message.h
 
 ui_reg_one.h: ../chat/reg_one.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/reg_one.ui -o ui_reg_one.h
 
 ui_reg_success.h: ../chat/reg_success.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/reg_success.ui -o ui_reg_success.h
 
 ui_reg_two.h: ../chat/reg_two.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/reg_two.ui -o ui_reg_two.h
 
 ui_addfriend.h: ../chat/addfriend.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/addfriend.ui -o ui_addfriend.h
 
 ui_creategroup.h: ../chat/creategroup.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/creategroup.ui -o ui_creategroup.h
 
 ui_editname.h: ../chat/editname.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/editname.ui -o ui_editname.h
 
 ui_frienditem.h: ../chat/frienditem.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/frienditem.ui -o ui_frienditem.h
 
 ui_mainwindow.h: ../chat/mainwindow.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/mainwindow.ui -o ui_mainwindow.h
 
 ui_groupitem.h: ../chat/groupitem.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/groupitem.ui -o ui_groupitem.h
 
 ui_noticeitem.h: ../chat/noticeitem.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/noticeitem.ui -o ui_noticeitem.h
 
 ui_newpostwindow.h: ../chat/newpostwindow.ui \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic
+		../../../../Qt5.13.0/5.13.0/clang_64/bin/uic
 	/Users/JIE/Qt5.13.0/5.13.0/clang_64/bin/uic ../chat/newpostwindow.ui -o ui_newpostwindow.h
 
 compiler_rez_source_make_all:
@@ -1640,935 +1695,952 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 add_group_member.o: ../chat/add_group_member.cpp ../chat/add_group_member.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		ui_add_group_member.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o add_group_member.o ../chat/add_group_member.cpp
 
 bbs.o: ../chat/bbs.cpp ../chat/bbs.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/bbsitem.h \
 		../chat/bbsitem_detail.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		ui_bbs.h \
 		../chat/newpostwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bbs.o ../chat/bbs.cpp
 
 bbsitem.o: ../chat/bbsitem.cpp ../chat/bbsitem.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/bbsitem_detail.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		ui_bbsitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bbsitem.o ../chat/bbsitem.cpp
 
 bbsitem_detail.o: ../chat/bbsitem_detail.cpp ../chat/bbsitem_detail.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-		ui_bbsitem_detail.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		ui_bbsitem_detail.h \
+		../chat/constant.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bbsitem_detail.o ../chat/bbsitem_detail.cpp
 
 forget_one.o: ../chat/forget_one.cpp ../chat/forget_one.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
 		../chat/forget_two.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		ui_forget_one.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o forget_one.o ../chat/forget_one.cpp
 
 forget_two.o: ../chat/forget_two.cpp ../chat/forget_two.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		ui_forget_two.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o forget_two.o ../chat/forget_two.cpp
 
 group_chat.o: ../chat/group_chat.cpp ../chat/group_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/group_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/add_group_member.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		ui_group_chat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o group_chat.o ../chat/group_chat.cpp
 
 group_chat_message.o: ../chat/group_chat_message.cpp ../chat/group_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		ui_group_chat_message.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o group_chat_message.o ../chat/group_chat_message.cpp
 
 login.o: ../chat/login.cpp ../chat/login.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/reg_one.h \
 		../chat/reg_two.h \
 		../chat/reg_success.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../chat/forget_one.h \
 		../chat/forget_two.h \
 		../chat/mainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/addfriend.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
 		../chat/private_chat_message.h \
 		ui_login.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QByteArray \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QByteArray \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o login.o ../chat/login.cpp
 
 main.o: ../chat/main.cpp ../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
 		../chat/group_chat.h \
 		../chat/group_chat_message.h \
 		../chat/add_group_member.h \
 		../chat/login.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
 		../chat/reg_one.h \
 		../chat/reg_two.h \
 		../chat/reg_success.h \
 		../chat/forget_one.h \
 		../chat/forget_two.h \
 		../chat/mainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/addfriend.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../chat/main.cpp
 
 notice_dialog.o: ../chat/notice_dialog.cpp ../chat/notice_dialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		ui_notice_dialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o notice_dialog.o ../chat/notice_dialog.cpp
 
 private_chat.o: ../chat/private_chat.cpp ../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
 		ui_private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QTextCodec \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QTextCodec \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o private_chat.o ../chat/private_chat.cpp
 
 private_chat_message.o: ../chat/private_chat_message.cpp ../chat/private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		ui_private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o private_chat_message.o ../chat/private_chat_message.cpp
 
 reg_one.o: ../chat/reg_one.cpp ../chat/reg_one.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
 		../chat/reg_two.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/reg_success.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		ui_reg_one.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reg_one.o ../chat/reg_one.cpp
 
 reg_success.o: ../chat/reg_success.cpp ../chat/reg_success.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		ui_reg_success.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reg_success.o ../chat/reg_success.cpp
 
 reg_two.o: ../chat/reg_two.cpp ../chat/reg_two.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/reg_success.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		ui_reg_two.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		../chat/login.h \
 		../chat/reg_one.h \
 		../chat/forget_one.h \
 		../chat/forget_two.h \
 		../chat/mainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/addfriend.h \
 		../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
 		../chat/private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QByteArray \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QByteArray \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reg_two.o ../chat/reg_two.cpp
 
 addfriend.o: ../chat/addfriend.cpp ../chat/addfriend.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		ui_addfriend.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addfriend.o ../chat/addfriend.cpp
 
 creategroup.o: ../chat/creategroup.cpp ../chat/creategroup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		ui_creategroup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/group_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
 		../chat/group_chat_message.h \
 		../chat/add_group_member.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o creategroup.o ../chat/creategroup.cpp
 
 editname.o: ../chat/editname.cpp ../chat/editname.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		ui_editname.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/mainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/addfriend.h \
 		../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/private_chat_message.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editname.o ../chat/editname.cpp
 
 frienditem.o: ../chat/frienditem.cpp ../chat/frienditem.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		../chat/private_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
 		ui_frienditem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o frienditem.o ../chat/frienditem.cpp
 
 mainwindow.o: ../chat/mainwindow.cpp ../chat/mainwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../chat/addfriend.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/private_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/private_chat_message.h \
 		ui_mainwindow.h \
 		../chat/creategroup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMenu \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMenu \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
 		../chat/frienditem.h \
 		../chat/groupitem.h \
 		../chat/group_chat.h \
@@ -2582,124 +2654,211 @@ mainwindow.o: ../chat/mainwindow.cpp ../chat/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../chat/mainwindow.cpp
 
 groupitem.o: ../chat/groupitem.cpp ../chat/groupitem.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../chat/group_chat.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../chat/group_chat_message.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/add_group_member.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
 		ui_groupitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o groupitem.o ../chat/groupitem.cpp
 
 noticeitem.o: ../chat/noticeitem.cpp ../chat/noticeitem.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		ui_noticeitem.h \
 		../chat/notice_dialog.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o noticeitem.o ../chat/noticeitem.cpp
 
 tcpsocket.o: ../chat/tcpsocket.cpp ../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QHostAddress
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QHostAddress
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tcpsocket.o ../chat/tcpsocket.cpp
 
 newpostwindow.o: ../chat/newpostwindow.cpp ../chat/newpostwindow.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../chat/tcpsocket.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		ui_newpostwindow.h \
 		../chat/constant.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
-		/Users/JIE/Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o newpostwindow.o ../chat/newpostwindow.cpp
+
+widget.o: ../chat/widget.cpp ../chat/widget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QHostAddress \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDataStream \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFileInfo \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QDir \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QFileInfoList \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QByteArray \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/QUrl \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtCore.framework/Headers/qurl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qdtls.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhstspolicy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdatagram.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qocspresponse.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qpassworddigestor.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsctpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qssldiffiehellmanparameters.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Qt5.13.0/5.13.0/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widget.o ../chat/widget.cpp
 
 moc_add_group_member.o: moc_add_group_member.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_add_group_member.o moc_add_group_member.cpp
@@ -2772,6 +2931,9 @@ moc_tcpsocket.o: moc_tcpsocket.cpp
 
 moc_newpostwindow.o: moc_newpostwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_newpostwindow.o moc_newpostwindow.cpp
+
+moc_widget.o: moc_widget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_widget.o moc_widget.cpp
 
 ####### Install
 

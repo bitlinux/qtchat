@@ -49,7 +49,8 @@ SOURCES += \
         groupitem.cpp \
         noticeitem.cpp \
         tcpsocket.cpp \
-        newpostwindow.cpp
+        newpostwindow.cpp \
+        widget.cpp
 
 HEADERS += \
         add_group_member.h \
@@ -76,7 +77,8 @@ HEADERS += \
         groupitem.h \
         noticeitem.h \
         tcpsocket.h \
-        newpostwindow.h
+        newpostwindow.h \
+        widget.h
 
 
 FORMS += \

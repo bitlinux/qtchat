@@ -1,6 +1,7 @@
 #include "bbs.h"
 #include "ui_bbs.h"
 #include "newpostwindow.h"
+#include "widget.h"
 //#include "mainwindow.h"
 
 bbs::bbs(QWidget *parent, tcpsocket *m, QString myID, QString myname) :
@@ -43,7 +44,8 @@ void bbs::adbbsitem(QString title, QString content, QString name, QString bbs_id
 // open shared file UI
 void bbs::on_shared_button_clicked()
 {
-
+    Widget *file_window;
+    file_window = new Widget();
 }
 
 // open post(发帖）UI

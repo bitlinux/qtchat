@@ -65,8 +65,9 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         talkphoto = new QLabel(login);
         talkphoto->setObjectName(QString::fromUtf8("talkphoto"));
-        talkphoto->setMinimumSize(QSize(500, 100));
-        talkphoto->setMaximumSize(QSize(500, 100));
+        talkphoto->setMinimumSize(QSize(200, 120));
+        talkphoto->setMaximumSize(QSize(200, 120));
+        talkphoto->setScaledContents(true);
 
         horizontalLayout_2->addWidget(talkphoto);
 

@@ -63,6 +63,7 @@ public:
 
         online_label = new QLabel(frienditem);
         online_label->setObjectName(QString::fromUtf8("online_label"));
+        online_label->setAlignment(Qt::AlignCenter);
 
         horizontalLayout->addWidget(online_label);
 
