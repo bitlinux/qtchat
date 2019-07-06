@@ -79,26 +79,39 @@
               </size>
              </property>
              <property name="text">
-              <string>ID</string>
+              <string>Your ID:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="ID"/>
+            <widget class="QLineEdit" name="ID">
+             <property name="minimumSize">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="register_2">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
-               <width>95</width>
+               <width>100</width>
                <height>16777215</height>
               </size>
              </property>
              <property name="text">
-              <string>REGISTER</string>
+              <string>Register</string>
              </property>
             </widget>
            </item>
@@ -115,15 +128,21 @@
               </size>
              </property>
              <property name="text">
-              <string>PASSWORD</string>
+              <string>Password:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QLineEdit" name="password">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>20</height>
+              </size>
+             </property>
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>
              </property>
@@ -133,12 +152,18 @@
             <widget class="QPushButton" name="forget">
              <property name="minimumSize">
               <size>
-               <width>95</width>
+               <width>100</width>
                <height>0</height>
               </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
-              <string>FORGET</string>
+              <string>Forget Psw</string>
              </property>
             </widget>
            </item>
@@ -185,7 +210,7 @@
           </size>
          </property>
          <property name="text">
-          <string>REMEMBER ME</string>
+          <string>Remember Me</string>
          </property>
         </widget>
        </item>
@@ -228,7 +253,7 @@
           </size>
          </property>
          <property name="text">
-          <string>LOGIN</string>
+          <string>Login</string>
          </property>
         </widget>
        </item>

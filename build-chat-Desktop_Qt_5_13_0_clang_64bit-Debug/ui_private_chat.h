@@ -51,7 +51,7 @@ public:
     {
         if (private_chat->objectName().isEmpty())
             private_chat->setObjectName(QString::fromUtf8("private_chat"));
-        private_chat->resize(458, 417);
+        private_chat->resize(458, 420);
         verticalLayout_2 = new QVBoxLayout(private_chat);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -173,11 +173,11 @@ public:
         photo->setText(QCoreApplication::translate("private_chat", "PHOTO", nullptr));
         id->setText(QCoreApplication::translate("private_chat", "ID:", nullptr));
         name->setText(QCoreApplication::translate("private_chat", "NAME:", nullptr));
-        file->setText(QCoreApplication::translate("private_chat", "FILE", nullptr));
-        sendfile->setText(QCoreApplication::translate("private_chat", "SEND FILE", nullptr));
-        records->setText(QCoreApplication::translate("private_chat", "RECORDS", nullptr));
+        file->setText(QCoreApplication::translate("private_chat", "File", nullptr));
+        sendfile->setText(QCoreApplication::translate("private_chat", "Send File", nullptr));
+        records->setText(QCoreApplication::translate("private_chat", "Records", nullptr));
         filename->setText(QString());
-        send->setText(QCoreApplication::translate("private_chat", "SEND", nullptr));
+        send->setText(QCoreApplication::translate("private_chat", "Send", nullptr));
     } // retranslateUi
 
 };

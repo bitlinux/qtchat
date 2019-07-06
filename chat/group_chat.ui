@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
+    <width>601</width>
     <height>456</height>
    </rect>
   </property>
@@ -106,14 +106,14 @@
            <item>
             <widget class="QPushButton" name="file">
              <property name="text">
-              <string>FILE</string>
+              <string>File</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="sendfile">
              <property name="text">
-              <string>SEND FILE</string>
+              <string>Send File</string>
              </property>
             </widget>
            </item>
@@ -133,7 +133,7 @@
            <item>
             <widget class="QPushButton" name="records">
              <property name="text">
-              <string>RECORDS</string>
+              <string>Records</string>
              </property>
             </widget>
            </item>
@@ -178,7 +178,7 @@
            <item>
             <widget class="QPushButton" name="send">
              <property name="text">
-              <string>SEND</string>
+              <string>Send</string>
              </property>
             </widget>
            </item>
@@ -204,7 +204,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>NEW GROUP NAME:</string>
+                <string>New Group Name:</string>
                </property>
               </widget>
              </item>
@@ -241,7 +241,7 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>CHANGE</string>
+                  <string>Apply</string>
                  </property>
                 </widget>
                </item>
@@ -266,7 +266,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>ONLINE</string>
+              <string>Online</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -305,7 +305,7 @@
               </size>
              </property>
              <property name="text">
-              <string>ADD NEW MEMBER</string>
+              <string>Add New Member</string>
              </property>
             </widget>
            </item>

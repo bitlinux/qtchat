@@ -47,6 +47,7 @@ public:
 
         label = new QLabel(NewPostWindow);
         label->setObjectName(QString::fromUtf8("label"));
+        label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
@@ -57,6 +58,7 @@ public:
 
         label_2 = new QLabel(NewPostWindow);
         label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setAlignment(Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing);
 
         gridLayout->addWidget(label_2, 1, 0, 1, 1);
 

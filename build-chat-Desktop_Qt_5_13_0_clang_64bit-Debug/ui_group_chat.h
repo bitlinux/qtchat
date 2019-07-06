@@ -70,7 +70,7 @@ public:
     {
         if (group_chat->objectName().isEmpty())
             group_chat->setObjectName(QString::fromUtf8("group_chat"));
-        group_chat->resize(594, 456);
+        group_chat->resize(601, 456);
         horizontalLayout_13 = new QHBoxLayout(group_chat);
         horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
         verticalLayout_3 = new QVBoxLayout();
@@ -286,16 +286,16 @@ public:
         photo->setText(QCoreApplication::translate("group_chat", "PHOTO", nullptr));
         id->setText(QCoreApplication::translate("group_chat", "ID:", nullptr));
         name->setText(QCoreApplication::translate("group_chat", "NAME", nullptr));
-        file->setText(QCoreApplication::translate("group_chat", "FILE", nullptr));
-        sendfile->setText(QCoreApplication::translate("group_chat", "SEND FILE", nullptr));
-        records->setText(QCoreApplication::translate("group_chat", "RECORDS", nullptr));
+        file->setText(QCoreApplication::translate("group_chat", "File", nullptr));
+        sendfile->setText(QCoreApplication::translate("group_chat", "Send File", nullptr));
+        records->setText(QCoreApplication::translate("group_chat", "Records", nullptr));
         filename->setText(QString());
-        send->setText(QCoreApplication::translate("group_chat", "SEND", nullptr));
-        label_4->setText(QCoreApplication::translate("group_chat", "NEW GROUP NAME:", nullptr));
-        change->setText(QCoreApplication::translate("group_chat", "CHANGE", nullptr));
+        send->setText(QCoreApplication::translate("group_chat", "Send", nullptr));
+        label_4->setText(QCoreApplication::translate("group_chat", "New Group Name:", nullptr));
+        change->setText(QCoreApplication::translate("group_chat", "Apply", nullptr));
         label->setText(QCoreApplication::translate("group_chat", "ID", nullptr));
-        label_2->setText(QCoreApplication::translate("group_chat", "ONLINE", nullptr));
-        addnew->setText(QCoreApplication::translate("group_chat", "ADD NEW MEMBER", nullptr));
+        label_2->setText(QCoreApplication::translate("group_chat", "Online", nullptr));
+        addnew->setText(QCoreApplication::translate("group_chat", "Add New Member", nullptr));
     } // retranslateUi
 
 };

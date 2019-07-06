@@ -49,47 +49,56 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>10</x>
      <y>80</y>
      <width>121</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Request Time</string>
+    <string>Request Time:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>10</x>
      <y>20</y>
      <width>121</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Request ID</string>
+    <string>Request ID:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="notice_time">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>10</x>
      <y>50</y>
-     <width>101</width>
+     <width>121</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Request Name</string>
+    <string>Request Name:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>110</y>
+     <y>120</y>
      <width>121</width>
      <height>20</height>
     </rect>
@@ -101,7 +110,7 @@
   <widget class="QLabel" name="ID">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>140</x>
      <y>20</y>
      <width>151</width>
      <height>16</height>
@@ -114,7 +123,7 @@
   <widget class="QLabel" name="name">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>140</x>
      <y>50</y>
      <width>191</width>
      <height>16</height>
@@ -127,7 +136,7 @@
   <widget class="QLabel" name="time">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>140</x>
      <y>80</y>
      <width>201</width>
      <height>16</height>

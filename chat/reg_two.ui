@@ -85,10 +85,10 @@
               </size>
              </property>
              <property name="text">
-              <string>PROBLEM1</string>
+              <string>Problem1:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -108,10 +108,10 @@
               </size>
              </property>
              <property name="text">
-              <string>ANSWER1</string>
+              <string>Answer1:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -131,10 +131,10 @@
               </size>
              </property>
              <property name="text">
-              <string>PROBLEM2</string>
+              <string>Problem2:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -154,10 +154,10 @@
               </size>
              </property>
              <property name="text">
-              <string>ANSWER2</string>
+              <string>Answer2:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -207,7 +207,7 @@
        <item>
         <widget class="QPushButton" name="back">
          <property name="text">
-          <string>BACK</string>
+          <string>Back</string>
          </property>
         </widget>
        </item>
@@ -230,7 +230,7 @@
        <item>
         <widget class="QPushButton" name="register_2">
          <property name="text">
-          <string>REGISTER</string>
+          <string>Register</string>
          </property>
         </widget>
        </item>

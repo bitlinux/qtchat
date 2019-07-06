@@ -86,10 +86,10 @@
               </size>
              </property>
              <property name="text">
-              <string>ID</string>
+              <string>ID:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -122,10 +122,10 @@
               </size>
              </property>
              <property name="text">
-              <string>PROBLEM1</string>
+              <string>Problem1:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -158,10 +158,10 @@
               </size>
              </property>
              <property name="text">
-              <string>ANSWER1</string>
+              <string>Answer1:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -194,10 +194,10 @@
               </size>
              </property>
              <property name="text">
-              <string>PROBLEM2</string>
+              <string>Problem:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -230,10 +230,10 @@
               </size>
              </property>
              <property name="text">
-              <string>ANSWER2</string>
+              <string>Answer2:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -310,7 +310,7 @@
        <item>
         <widget class="QPushButton" name="next">
          <property name="text">
-          <string>NEXT</string>
+          <string>Next</string>
          </property>
         </widget>
        </item>

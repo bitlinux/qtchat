@@ -76,7 +76,7 @@ public:
     void retranslateUi(QDialog *private_chat_message)
     {
         private_chat_message->setWindowTitle(QCoreApplication::translate("private_chat_message", "record", nullptr));
-        close->setText(QCoreApplication::translate("private_chat_message", "CLOSE", nullptr));
+        close->setText(QCoreApplication::translate("private_chat_message", "Close", nullptr));
     } // retranslateUi
 
 };

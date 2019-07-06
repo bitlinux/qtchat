@@ -28,7 +28,6 @@ public:
     QVBoxLayout *verticalLayout;
     QPushButton *postButton;
     QPushButton *shared_button;
-    QPushButton *upload_button;
     QPushButton *quitButton;
 
     void setupUi(QWidget *bbs)
@@ -59,12 +58,6 @@ public:
 
         verticalLayout->addWidget(shared_button);
 
-        upload_button = new QPushButton(bbs);
-        upload_button->setObjectName(QString::fromUtf8("upload_button"));
-        upload_button->setCursor(QCursor(Qt::PointingHandCursor));
-
-        verticalLayout->addWidget(upload_button);
-
         quitButton = new QPushButton(bbs);
         quitButton->setObjectName(QString::fromUtf8("quitButton"));
         quitButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -87,8 +80,7 @@ public:
     {
         bbs->setWindowTitle(QCoreApplication::translate("bbs", "Form", nullptr));
         postButton->setText(QCoreApplication::translate("bbs", "Post", nullptr));
-        shared_button->setText(QCoreApplication::translate("bbs", "Shared File", nullptr));
-        upload_button->setText(QCoreApplication::translate("bbs", "File Upload", nullptr));
+        shared_button->setText(QCoreApplication::translate("bbs", "File Sharing", nullptr));
         quitButton->setText(QCoreApplication::translate("bbs", "Quit BBS", nullptr));
     } // retranslateUi
 

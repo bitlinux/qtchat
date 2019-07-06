@@ -87,7 +87,7 @@ public:
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setMinimumSize(QSize(80, 25));
         label_4->setMaximumSize(QSize(80, 25));
-        label_4->setAlignment(Qt::AlignCenter);
+        label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_8->addWidget(label_4);
 
@@ -107,7 +107,7 @@ public:
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setMinimumSize(QSize(80, 0));
         label_2->setMaximumSize(QSize(80, 16777215));
-        label_2->setAlignment(Qt::AlignCenter);
+        label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_6->addWidget(label_2);
 
@@ -128,7 +128,7 @@ public:
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setMinimumSize(QSize(80, 0));
         label_3->setMaximumSize(QSize(80, 16777215));
-        label_3->setAlignment(Qt::AlignCenter);
+        label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_7->addWidget(label_3);
 
@@ -193,10 +193,10 @@ public:
     {
         forget_two->setWindowTitle(QCoreApplication::translate("forget_two", "Forget Password", nullptr));
         talkphoto->setText(QString());
-        label_4->setText(QCoreApplication::translate("forget_two", "ID", nullptr));
-        label_2->setText(QCoreApplication::translate("forget_two", "PASSWORD", nullptr));
-        label_3->setText(QCoreApplication::translate("forget_two", "AGAIN", nullptr));
-        reset->setText(QCoreApplication::translate("forget_two", "RESET", nullptr));
+        label_4->setText(QCoreApplication::translate("forget_two", "ID:", nullptr));
+        label_2->setText(QCoreApplication::translate("forget_two", "Password:", nullptr));
+        label_3->setText(QCoreApplication::translate("forget_two", "Again:", nullptr));
+        reset->setText(QCoreApplication::translate("forget_two", "Reset", nullptr));
     } // retranslateUi
 
 };

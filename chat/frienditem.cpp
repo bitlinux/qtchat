@@ -21,6 +21,7 @@ frienditem::frienditem(QWidget *parent, tcpsocket *m, QString header_path, QStri
     this->ui->name_label->setText(name);
     if(isonline)
         this->ui->online_label->setText("online");
+    this->ui->online_label->setStyleSheet("text-align:center;color:gray;");
     this->myID = myid;
     this->myname = myname;
     this->otherID = id;

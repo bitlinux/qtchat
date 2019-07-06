@@ -76,7 +76,7 @@ public:
     void retranslateUi(QDialog *group_chat_message)
     {
         group_chat_message->setWindowTitle(QCoreApplication::translate("group_chat_message", "Dialog", nullptr));
-        close->setText(QCoreApplication::translate("group_chat_message", "CLOSE", nullptr));
+        close->setText(QCoreApplication::translate("group_chat_message", "Close", nullptr));
     } // retranslateUi
 
 };

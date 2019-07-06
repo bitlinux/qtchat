@@ -89,6 +89,7 @@ public:
 
         add = new QPushButton(add_group_member);
         add->setObjectName(QString::fromUtf8("add"));
+        add->setMinimumSize(QSize(85, 0));
 
         horizontalLayout->addWidget(add);
 
@@ -111,9 +112,9 @@ public:
     void retranslateUi(QDialog *add_group_member)
     {
         add_group_member->setWindowTitle(QCoreApplication::translate("add_group_member", "Add Group Member", nullptr));
-        label->setText(QCoreApplication::translate("add_group_member", "INPUT ID:", nullptr));
-        pushButton->setText(QCoreApplication::translate("add_group_member", "CANCEL", nullptr));
-        add->setText(QCoreApplication::translate("add_group_member", "ADD", nullptr));
+        label->setText(QCoreApplication::translate("add_group_member", "Input ID:", nullptr));
+        pushButton->setText(QCoreApplication::translate("add_group_member", "Cancel", nullptr));
+        add->setText(QCoreApplication::translate("add_group_member", "Add", nullptr));
     } // retranslateUi
 
 };

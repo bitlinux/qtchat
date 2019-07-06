@@ -96,7 +96,7 @@ public:
         label_6 = new QLabel(forget_one);
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setMinimumSize(QSize(80, 0));
-        label_6->setAlignment(Qt::AlignCenter);
+        label_6->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_8->addWidget(label_6);
 
@@ -115,7 +115,7 @@ public:
         label_5 = new QLabel(forget_one);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setMinimumSize(QSize(80, 0));
-        label_5->setAlignment(Qt::AlignCenter);
+        label_5->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_7->addWidget(label_5);
 
@@ -134,7 +134,7 @@ public:
         label_4 = new QLabel(forget_one);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setMinimumSize(QSize(80, 0));
-        label_4->setAlignment(Qt::AlignCenter);
+        label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_5->addWidget(label_4);
 
@@ -153,7 +153,7 @@ public:
         label_3 = new QLabel(forget_one);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setMinimumSize(QSize(80, 0));
-        label_3->setAlignment(Qt::AlignCenter);
+        label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_4->addWidget(label_3);
 
@@ -172,7 +172,7 @@ public:
         label_2 = new QLabel(forget_one);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setMinimumSize(QSize(80, 0));
-        label_2->setAlignment(Qt::AlignCenter);
+        label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_3->addWidget(label_2);
 
@@ -232,12 +232,12 @@ public:
     {
         forget_one->setWindowTitle(QCoreApplication::translate("forget_one", "Forget Password", nullptr));
         talkphoto->setText(QString());
-        label_6->setText(QCoreApplication::translate("forget_one", "ID", nullptr));
-        label_5->setText(QCoreApplication::translate("forget_one", "PROBLEM1", nullptr));
-        label_4->setText(QCoreApplication::translate("forget_one", "ANSWER1", nullptr));
-        label_3->setText(QCoreApplication::translate("forget_one", "PROBLEM2", nullptr));
-        label_2->setText(QCoreApplication::translate("forget_one", "ANSWER2", nullptr));
-        next->setText(QCoreApplication::translate("forget_one", "NEXT", nullptr));
+        label_6->setText(QCoreApplication::translate("forget_one", "ID:", nullptr));
+        label_5->setText(QCoreApplication::translate("forget_one", "Problem1:", nullptr));
+        label_4->setText(QCoreApplication::translate("forget_one", "Answer1:", nullptr));
+        label_3->setText(QCoreApplication::translate("forget_one", "Problem:", nullptr));
+        label_2->setText(QCoreApplication::translate("forget_one", "Answer2:", nullptr));
+        next->setText(QCoreApplication::translate("forget_one", "Next", nullptr));
     } // retranslateUi
 
 };

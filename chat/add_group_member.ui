@@ -24,7 +24,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>INPUT ID:</string>
+          <string>Input ID:</string>
          </property>
         </widget>
        </item>
@@ -54,7 +54,7 @@
        <item>
         <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>CANCEL</string>
+          <string>Cancel</string>
          </property>
         </widget>
        </item>
@@ -73,8 +73,14 @@
        </item>
        <item>
         <widget class="QPushButton" name="add">
+         <property name="minimumSize">
+          <size>
+           <width>85</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="text">
-          <string>ADD</string>
+          <string>Add</string>
          </property>
         </widget>
        </item>

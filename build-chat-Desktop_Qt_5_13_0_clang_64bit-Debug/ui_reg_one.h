@@ -87,7 +87,7 @@ public:
         label_3 = new QLabel(reg_one);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setMinimumSize(QSize(80, 0));
-        label_3->setAlignment(Qt::AlignCenter);
+        label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_5->addWidget(label_3);
 
@@ -112,7 +112,7 @@ public:
         label = new QLabel(reg_one);
         label->setObjectName(QString::fromUtf8("label"));
         label->setMinimumSize(QSize(80, 0));
-        label->setAlignment(Qt::AlignCenter);
+        label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_3->addWidget(label);
 
@@ -138,7 +138,7 @@ public:
         label_2 = new QLabel(reg_one);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setMinimumSize(QSize(80, 0));
-        label_2->setAlignment(Qt::AlignCenter);
+        label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_4->addWidget(label_2);
 
@@ -197,10 +197,10 @@ public:
     {
         reg_one->setWindowTitle(QCoreApplication::translate("reg_one", "Register", nullptr));
         talkphoto->setText(QString());
-        label_3->setText(QCoreApplication::translate("reg_one", "NICKNAME", nullptr));
-        label->setText(QCoreApplication::translate("reg_one", "PASSWORD", nullptr));
-        label_2->setText(QCoreApplication::translate("reg_one", "AGAIN", nullptr));
-        next->setText(QCoreApplication::translate("reg_one", "NEXT", nullptr));
+        label_3->setText(QCoreApplication::translate("reg_one", "Nickname:", nullptr));
+        label->setText(QCoreApplication::translate("reg_one", "Password:", nullptr));
+        label_2->setText(QCoreApplication::translate("reg_one", "Again:", nullptr));
+        next->setText(QCoreApplication::translate("reg_one", "Next", nullptr));
     } // retranslateUi
 
 };

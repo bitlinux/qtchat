@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>458</width>
-    <height>417</height>
+    <height>420</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -92,14 +92,14 @@
        <item>
         <widget class="QPushButton" name="file">
          <property name="text">
-          <string>FILE</string>
+          <string>File</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="sendfile">
          <property name="text">
-          <string>SEND FILE</string>
+          <string>Send File</string>
          </property>
         </widget>
        </item>
@@ -119,7 +119,7 @@
        <item>
         <widget class="QPushButton" name="records">
          <property name="text">
-          <string>RECORDS</string>
+          <string>Records</string>
          </property>
         </widget>
        </item>
@@ -164,7 +164,7 @@
        <item>
         <widget class="QPushButton" name="send">
          <property name="text">
-          <string>SEND</string>
+          <string>Send</string>
          </property>
         </widget>
        </item>

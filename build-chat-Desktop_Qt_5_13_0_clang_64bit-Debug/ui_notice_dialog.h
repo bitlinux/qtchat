@@ -48,25 +48,28 @@ public:
         textBrowser->setGeometry(QRect(50, 140, 301, 101));
         label = new QLabel(notice_dialog);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(50, 80, 121, 20));
+        label->setGeometry(QRect(10, 80, 121, 20));
+        label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         label_2 = new QLabel(notice_dialog);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(50, 20, 121, 20));
+        label_2->setGeometry(QRect(10, 20, 121, 20));
+        label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         notice_time = new QLabel(notice_dialog);
         notice_time->setObjectName(QString::fromUtf8("notice_time"));
-        notice_time->setGeometry(QRect(50, 50, 101, 20));
+        notice_time->setGeometry(QRect(10, 50, 121, 20));
+        notice_time->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         label_3 = new QLabel(notice_dialog);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(50, 110, 121, 20));
+        label_3->setGeometry(QRect(50, 120, 121, 20));
         ID = new QLabel(notice_dialog);
         ID->setObjectName(QString::fromUtf8("ID"));
-        ID->setGeometry(QRect(180, 20, 151, 16));
+        ID->setGeometry(QRect(140, 20, 151, 16));
         name = new QLabel(notice_dialog);
         name->setObjectName(QString::fromUtf8("name"));
-        name->setGeometry(QRect(180, 50, 191, 16));
+        name->setGeometry(QRect(140, 50, 191, 16));
         time = new QLabel(notice_dialog);
         time->setObjectName(QString::fromUtf8("time"));
-        time->setGeometry(QRect(180, 80, 201, 16));
+        time->setGeometry(QRect(140, 80, 201, 16));
 
         retranslateUi(notice_dialog);
 
@@ -77,9 +80,9 @@ public:
     {
         ok_button->setText(QCoreApplication::translate("notice_dialog", "OK", nullptr));
         ignore_button->setText(QCoreApplication::translate("notice_dialog", "Ignore", nullptr));
-        label->setText(QCoreApplication::translate("notice_dialog", "Request Time", nullptr));
-        label_2->setText(QCoreApplication::translate("notice_dialog", "Request ID", nullptr));
-        notice_time->setText(QCoreApplication::translate("notice_dialog", "Request Name", nullptr));
+        label->setText(QCoreApplication::translate("notice_dialog", "Request Time:", nullptr));
+        label_2->setText(QCoreApplication::translate("notice_dialog", "Request ID:", nullptr));
+        notice_time->setText(QCoreApplication::translate("notice_dialog", "Request Name:", nullptr));
         label_3->setText(QCoreApplication::translate("notice_dialog", "Message", nullptr));
         ID->setText(QString());
         name->setText(QString());

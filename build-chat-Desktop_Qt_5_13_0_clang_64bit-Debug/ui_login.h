@@ -88,18 +88,20 @@ public:
         label_3 = new QLabel(login);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setMinimumSize(QSize(80, 0));
-        label_3->setAlignment(Qt::AlignCenter);
+        label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_3->addWidget(label_3);
 
         ID = new QLineEdit(login);
         ID->setObjectName(QString::fromUtf8("ID"));
+        ID->setMinimumSize(QSize(40, 20));
 
         horizontalLayout_3->addWidget(ID);
 
         register_2 = new QPushButton(login);
         register_2->setObjectName(QString::fromUtf8("register_2"));
-        register_2->setMaximumSize(QSize(95, 16777215));
+        register_2->setMinimumSize(QSize(100, 0));
+        register_2->setMaximumSize(QSize(100, 16777215));
 
         horizontalLayout_3->addWidget(register_2);
 
@@ -111,19 +113,21 @@ public:
         label_4 = new QLabel(login);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setMinimumSize(QSize(80, 0));
-        label_4->setAlignment(Qt::AlignCenter);
+        label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_4->addWidget(label_4);
 
         password = new QLineEdit(login);
         password->setObjectName(QString::fromUtf8("password"));
+        password->setMinimumSize(QSize(0, 20));
         password->setEchoMode(QLineEdit::Password);
 
         horizontalLayout_4->addWidget(password);
 
         forget = new QPushButton(login);
         forget->setObjectName(QString::fromUtf8("forget"));
-        forget->setMinimumSize(QSize(95, 0));
+        forget->setMinimumSize(QSize(100, 0));
+        forget->setMaximumSize(QSize(100, 16777215));
 
         horizontalLayout_4->addWidget(forget);
 
@@ -194,13 +198,13 @@ public:
         login->setWindowTitle(QCoreApplication::translate("login", "Login", nullptr));
         talkphoto->setText(QString());
         photo->setText(QString());
-        label_3->setText(QCoreApplication::translate("login", "ID", nullptr));
-        register_2->setText(QCoreApplication::translate("login", "REGISTER", nullptr));
-        label_4->setText(QCoreApplication::translate("login", "PASSWORD", nullptr));
-        forget->setText(QCoreApplication::translate("login", "FORGET", nullptr));
+        label_3->setText(QCoreApplication::translate("login", "Your ID:", nullptr));
+        register_2->setText(QCoreApplication::translate("login", "Register", nullptr));
+        label_4->setText(QCoreApplication::translate("login", "Password:", nullptr));
+        forget->setText(QCoreApplication::translate("login", "Forget Psw", nullptr));
         label_2->setText(QString());
-        remember->setText(QCoreApplication::translate("login", "REMEMBER ME", nullptr));
-        login_2->setText(QCoreApplication::translate("login", "LOGIN", nullptr));
+        remember->setText(QCoreApplication::translate("login", "Remember Me", nullptr));
+        login_2->setText(QCoreApplication::translate("login", "Login", nullptr));
     } // retranslateUi
 
 };

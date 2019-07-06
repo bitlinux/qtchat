@@ -91,10 +91,10 @@
               </size>
              </property>
              <property name="text">
-              <string>ID</string>
+              <string>ID:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -133,10 +133,10 @@
               </size>
              </property>
              <property name="text">
-              <string>PASSWORD</string>
+              <string>Password:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -178,10 +178,10 @@
               </size>
              </property>
              <property name="text">
-              <string>AGAIN</string>
+              <string>Again:</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -264,7 +264,7 @@
        <item>
         <widget class="QPushButton" name="reset">
          <property name="text">
-          <string>RESET</string>
+          <string>Reset</string>
          </property>
         </widget>
        </item>

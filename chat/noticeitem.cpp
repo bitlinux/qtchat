@@ -19,6 +19,7 @@ noticeitem::noticeitem(QWidget *parent, tcpsocket *m, QString header_path, QStri
     this->ui->id_label->setText(id);
     this->ui->name_label->setText(name);
     this->ui->time_label->setText(time);
+    ui->time_label->setStyleSheet("color:gray;");
 
 }
 

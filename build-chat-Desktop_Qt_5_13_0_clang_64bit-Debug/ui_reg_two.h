@@ -92,7 +92,7 @@ public:
         label_5 = new QLabel(reg_two);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setMinimumSize(QSize(80, 0));
-        label_5->setAlignment(Qt::AlignCenter);
+        label_5->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_6->addWidget(label_5);
 
@@ -109,7 +109,7 @@ public:
         label_4 = new QLabel(reg_two);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setMinimumSize(QSize(80, 0));
-        label_4->setAlignment(Qt::AlignCenter);
+        label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_5->addWidget(label_4);
 
@@ -126,7 +126,7 @@ public:
         label_3 = new QLabel(reg_two);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setMinimumSize(QSize(80, 0));
-        label_3->setAlignment(Qt::AlignCenter);
+        label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_4->addWidget(label_3);
 
@@ -143,7 +143,7 @@ public:
         label_2 = new QLabel(reg_two);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setMinimumSize(QSize(80, 0));
-        label_2->setAlignment(Qt::AlignCenter);
+        label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_3->addWidget(label_2);
 
@@ -201,12 +201,12 @@ public:
     {
         reg_two->setWindowTitle(QCoreApplication::translate("reg_two", "Register", nullptr));
         talkphoto->setText(QString());
-        label_5->setText(QCoreApplication::translate("reg_two", "PROBLEM1", nullptr));
-        label_4->setText(QCoreApplication::translate("reg_two", "ANSWER1", nullptr));
-        label_3->setText(QCoreApplication::translate("reg_two", "PROBLEM2", nullptr));
-        label_2->setText(QCoreApplication::translate("reg_two", "ANSWER2", nullptr));
-        back->setText(QCoreApplication::translate("reg_two", "BACK", nullptr));
-        register_2->setText(QCoreApplication::translate("reg_two", "REGISTER", nullptr));
+        label_5->setText(QCoreApplication::translate("reg_two", "Problem1:", nullptr));
+        label_4->setText(QCoreApplication::translate("reg_two", "Answer1:", nullptr));
+        label_3->setText(QCoreApplication::translate("reg_two", "Problem2:", nullptr));
+        label_2->setText(QCoreApplication::translate("reg_two", "Answer2:", nullptr));
+        back->setText(QCoreApplication::translate("reg_two", "Back", nullptr));
+        register_2->setText(QCoreApplication::translate("reg_two", "Register", nullptr));
     } // retranslateUi
 
 };
