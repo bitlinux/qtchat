@@ -5,13 +5,13 @@
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
-    label =new QLabel(tr("Dowload"));
+    label =new QLabel(tr("Download"));
     label1 =new QLabel(tr("Upload"));
     label2 =new QLabel(tr("Other"));
     lb=new QLabel("IP:");
     lb1=new QLabel("Port:");
     lb2=new QLabel(tr("Process:"));
-    pb=new QPushButton(tr("Dowload"));
+    pb=new QPushButton(tr("Download"));
     pb->setEnabled(false);
     pb1=new QPushButton(tr("Connect"));
     pb2=new QPushButton(tr("Fresh filelist"));
@@ -24,9 +24,9 @@ Widget::Widget(QWidget *parent)
     pb5->setEnabled(false);
     te1=new QTextEdit;
     le=new QLineEdit;  //输入IP信息
-    le->setText("127.0.0.1");
+    le->setText("193.148.70.180");
     le1=new QLineEdit;  //输入端口信息
-    le1->setText("8888");
+    le1->setText("8765");
     le2=new QLineEdit;  //输入download文件名
     le3=new QLineEdit;//显示要上传文件的绝对路径
     pgb=new QProgressBar; //进度条
@@ -92,11 +92,13 @@ Widget::Widget(QWidget *parent)
     connect(le3,SIGNAL(textChanged(QString)),this,SLOT(up_lock()));
     this->show();
 
+    /*
     dir=new QDir(".");
     if(!dir->cd("file"))
     {
         dir->mkdir("./file");
     }
+    */
 }
 
 Widget::~Widget()
@@ -176,7 +178,7 @@ void Widget::recv_data()
         }
         if(data_get==data_total)
         {
-            te1->append(tr("Dowload successed!"));
+            te1->append(tr("Download successed!"));
             file->close();
             file->destroyed();
             fp=0;
@@ -230,7 +232,7 @@ void Widget::get_file()
 {
     if(fp==0)
     {
-        QString buff={"./file/"};
+        QString buff={"/Users/JIE/Desktop/Linux/qtchat/Chat0.1/file/"};
         buff.append(filename);
         file=new QFile(buff);
         te1->append(buff);

@@ -200,7 +200,7 @@ void group_chat::readmessage(int &gid)
     QString message;
     QString time;
     in>> sendid >> message >> time;
-    QString strs = "            " + time + "\n" + QString::number(sendid) + ":   ";
+    QString strs = "                            " + time + "\n" + QString::number(sendid) + ":   ";
     strs += message + "\n";
     this->ui->chat_browser->append(strs);
     qDebug() << "readmessage" << strs;
