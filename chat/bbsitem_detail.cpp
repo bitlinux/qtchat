@@ -96,7 +96,7 @@ void bbsitem_detail::get_reply_history(){
     //m_tcpsocket->write(block);
     for(int i = 0; i < reply_num; i++){
         QString line1;
-        line1 = historys[i].time + historys[i].name + '\n' + historys[i].content + '\n';
+        line1 = historys[i].time +" " + historys[i].name + '\n' + historys[i].content + '\n';
         this->ui->comment->append(line1);
     }
 }

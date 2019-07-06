@@ -28,6 +28,14 @@ frienditem::frienditem(QWidget *parent, tcpsocket *m, QString header_path, QStri
     this->othername = name;
     this->header_path = header_path;
     pchat = new private_chat(nullptr, m_tcpsocket);
+
+    // add 1px line
+
+    QPixmap pix("/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/1px.png");
+    //ui->px1->resize(400,300);
+    //QPixmap px1 =pix.scaled(ui->px1->size(),Qt::KeepAspectRatio);
+    ui->px1->setPixmap(pix);
+
     connect(parent,SIGNAL(send_ID(QString &)),pchat,SLOT(readID(QString &)));
     connect(parent,SIGNAL(receive_ID(int &)),pchat,SLOT(readmessage(int &)));
     connect(parent,SIGNAL(send_record_ID(QString &)),pchat,SLOT(read_record_message(QString &)));

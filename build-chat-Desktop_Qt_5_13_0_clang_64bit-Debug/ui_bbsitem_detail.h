@@ -72,7 +72,7 @@ public:
         Delete->setCursor(QCursor(Qt::PointingHandCursor));
         time_label = new QLabel(bbsitem_detail);
         time_label->setObjectName(QString::fromUtf8("time_label"));
-        time_label->setGeometry(QRect(10, 50, 321, 16));
+        time_label->setGeometry(QRect(10, 50, 421, 16));
         time_label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         retranslateUi(bbsitem_detail);

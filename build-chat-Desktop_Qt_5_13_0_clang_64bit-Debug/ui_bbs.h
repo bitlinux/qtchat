@@ -34,7 +34,7 @@ public:
     {
         if (bbs->objectName().isEmpty())
             bbs->setObjectName(QString::fromUtf8("bbs"));
-        bbs->resize(597, 472);
+        bbs->resize(693, 472);
         horizontalLayout_2 = new QHBoxLayout(bbs);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout = new QHBoxLayout();

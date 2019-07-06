@@ -35,7 +35,7 @@ void bbs::adbbsitem(QString title, QString content, QString name, QString bbs_id
    connect(this,SIGNAL(to_bbs_item()),item1,SLOT(pass_signal()));
    // qDebug()<<"bbstiem construstor"<<bbs_id<<poster_id;
    QListWidgetItem *listItem1 = new QListWidgetItem();
-   listItem1->setSizeHint(QSize(0, 90));
+   listItem1->setSizeHint(QSize(200, 100));
    this->ui->bbs_list->addItem(listItem1);
    this->ui->bbs_list->setItemWidget(listItem1, item1);
 

@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QToolButton>
@@ -22,26 +23,27 @@ QT_BEGIN_NAMESPACE
 class Ui_frienditem
 {
 public:
-    QHBoxLayout *horizontalLayout_2;
+    QGridLayout *gridLayout;
     QToolButton *header_button;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QLabel *id_label;
     QLabel *name_label;
     QLabel *online_label;
+    QLabel *px1;
 
     void setupUi(QWidget *frienditem)
     {
         if (frienditem->objectName().isEmpty())
             frienditem->setObjectName(QString::fromUtf8("frienditem"));
-        frienditem->resize(395, 160);
-        horizontalLayout_2 = new QHBoxLayout(frienditem);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        frienditem->resize(424, 206);
+        gridLayout = new QGridLayout(frienditem);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         header_button = new QToolButton(frienditem);
         header_button->setObjectName(QString::fromUtf8("header_button"));
         header_button->setCursor(QCursor(Qt::PointingHandCursor));
 
-        horizontalLayout_2->addWidget(header_button);
+        gridLayout->addWidget(header_button, 0, 0, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -63,12 +65,19 @@ public:
 
         online_label = new QLabel(frienditem);
         online_label->setObjectName(QString::fromUtf8("online_label"));
-        online_label->setAlignment(Qt::AlignCenter);
+        online_label->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         horizontalLayout->addWidget(online_label);
 
 
-        horizontalLayout_2->addLayout(horizontalLayout);
+        gridLayout->addLayout(horizontalLayout, 0, 1, 1, 1);
+
+        px1 = new QLabel(frienditem);
+        px1->setObjectName(QString::fromUtf8("px1"));
+        px1->setMaximumSize(QSize(350, 1));
+        px1->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(px1, 1, 0, 1, 2);
 
 
         retranslateUi(frienditem);
@@ -83,6 +92,7 @@ public:
         id_label->setText(QCoreApplication::translate("frienditem", "0000000", nullptr));
         name_label->setText(QCoreApplication::translate("frienditem", "Linux", nullptr));
         online_label->setText(QCoreApplication::translate("frienditem", "offline", nullptr));
+        px1->setText(QCoreApplication::translate("frienditem", "TextLabel", nullptr));
     } // retranslateUi
 
 };

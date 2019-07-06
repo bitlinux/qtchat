@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
@@ -22,26 +23,29 @@ QT_BEGIN_NAMESPACE
 class Ui_bbsitem
 {
 public:
-    QVBoxLayout *verticalLayout_2;
+    QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout;
     QPushButton *post_title;
     QHBoxLayout *horizontalLayout;
     QLabel *content_label;
     QLabel *poster_name;
+    QLabel *px1;
 
     void setupUi(QWidget *bbsitem)
     {
         if (bbsitem->objectName().isEmpty())
             bbsitem->setObjectName(QString::fromUtf8("bbsitem"));
-        bbsitem->resize(482, 97);
-        verticalLayout_2 = new QVBoxLayout(bbsitem);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        bbsitem->resize(415, 104);
+        gridLayout = new QGridLayout(bbsitem);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         post_title = new QPushButton(bbsitem);
         post_title->setObjectName(QString::fromUtf8("post_title"));
         QFont font;
         font.setPointSize(16);
+        font.setBold(true);
+        font.setWeight(75);
         post_title->setFont(font);
         post_title->setCursor(QCursor(Qt::PointingHandCursor));
         post_title->setFlat(true);
@@ -67,7 +71,13 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
 
-        verticalLayout_2->addLayout(verticalLayout);
+        gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
+
+        px1 = new QLabel(bbsitem);
+        px1->setObjectName(QString::fromUtf8("px1"));
+        px1->setMaximumSize(QSize(16777215, 1));
+
+        gridLayout->addWidget(px1, 1, 0, 1, 1);
 
 
         retranslateUi(bbsitem);
@@ -81,6 +91,7 @@ public:
         post_title->setText(QCoreApplication::translate("bbsitem", "Post Title ", nullptr));
         content_label->setText(QCoreApplication::translate("bbsitem", "content", nullptr));
         poster_name->setText(QCoreApplication::translate("bbsitem", "poster_name", nullptr));
+        px1->setText(QCoreApplication::translate("bbsitem", "TextLabel", nullptr));
     } // retranslateUi
 
 };

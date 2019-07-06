@@ -5,22 +5,22 @@
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
-    label =new QLabel(tr("dowload"));
-    label1 =new QLabel(tr("upload"));
-    label2 =new QLabel(tr("other"));
+    label =new QLabel(tr("Dowload"));
+    label1 =new QLabel(tr("Upload"));
+    label2 =new QLabel(tr("Other"));
     lb=new QLabel("IP:");
-    lb1=new QLabel("PORT:");
+    lb1=new QLabel("Port:");
     lb2=new QLabel(tr("Process:"));
-    pb=new QPushButton(tr("dowload"));
+    pb=new QPushButton(tr("Dowload"));
     pb->setEnabled(false);
-    pb1=new QPushButton(tr("connect"));
-    pb2=new QPushButton(tr("fresh filelist"));
+    pb1=new QPushButton(tr("Connect"));
+    pb2=new QPushButton(tr("Fresh filelist"));
     pb2->setEnabled(false);
-    pb3=new QPushButton(tr("clear"));
+    pb3=new QPushButton(tr("Clear"));
     pb3->setEnabled(false);
-    pb4=new QPushButton(tr("open file"));
+    pb4=new QPushButton(tr("Open file"));
     pb4->setEnabled(false);
-    pb5=new QPushButton(tr("upload"));
+    pb5=new QPushButton(tr("Upload"));
     pb5->setEnabled(false);
     te1=new QTextEdit;
     le=new QLineEdit;  //输入IP信息
@@ -90,6 +90,7 @@ Widget::Widget(QWidget *parent)
     connect(pb4,SIGNAL(clicked(bool)),this,SLOT(open_file()));//open file
     connect(pb5,SIGNAL(clicked(bool)),this,SLOT(up_file()));//upload
     connect(le3,SIGNAL(textChanged(QString)),this,SLOT(up_lock()));
+    this->show();
 
     dir=new QDir(".");
     if(!dir->cd("file"))
@@ -115,7 +116,7 @@ void Widget::connect_ser()
 void Widget::show_connected()
 {
 
-    te1->setText(tr("connected!"));
+    te1->setText(tr("Connected!"));
     pb->setEnabled(true);
     pb2->setEnabled(true);
     pb3->setEnabled(true);
@@ -141,8 +142,8 @@ void Widget::recv_data()
             te1->append(filename);
             if(!file->open(QIODevice::ReadWrite))
             {
-                tcp->write("up false!");
-                te1->append("upload failed!");
+                tcp->write("Up false!");
+                te1->append("Upload failed!");
                 return ;
             }
             data_total=file->size()+sizeof(qint64);
@@ -175,7 +176,7 @@ void Widget::recv_data()
         }
         if(data_get==data_total)
         {
-            te1->append(tr("dowload successed!"));
+            te1->append(tr("Dowload successed!"));
             file->close();
             file->destroyed();
             fp=0;
@@ -235,7 +236,7 @@ void Widget::get_file()
         te1->append(buff);
         if(!file->open(QIODevice::ReadWrite|QIODevice::Truncate))
         {
-            te1->append(tr("dowload failed!"));
+            te1->append(tr("Dowload failed!"));
             return ;
         }
         fp=1;
@@ -283,7 +284,7 @@ void Widget::gosend()
             file->close();
             file->destroyed();
             flag=0;
-            te1->append(tr("upload successed!"));
+            te1->append(tr("Upload successed!"));
         }
     }
 }
@@ -312,6 +313,6 @@ void Widget::fresh()
 {
     manager = new QNetworkAccessManager(this);
     connect(manager,SIGNAL(finished(QNetworkReply*)),this,SLOT(replyFinished(QNetworkReply*)));
-    manager->get(QNetworkRequest(QUrl("http://149.248.60.148/tcp_server/file/")));//文件服务器地址
+    manager->get(QNetworkRequest(QUrl("http://193.148.70.180:2333")));//文件服务器地址
     //manager->deleteLater();
 }
