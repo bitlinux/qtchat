@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
 
     qDebug()<< "test3";
     //header path
-    QString header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/";
+    QString header_path = "../resources/";
     //draw header
     QPixmap header_img = QPixmap(header_path + info.myID + ".png").scaled(60,60,Qt::IgnoreAspectRatio);
     this->ui->edit_header->setIcon(header_img);
@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
         bool isonline = false;
         if(info.friends[i].isonline == true)
             isonline = true;
-        adfrienditem(header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/" + info.friends[i].ID + ".png", info.friends[i].ID, info.friends[i].name, isonline);
+        adfrienditem(header_path = "../resources/" + info.friends[i].ID + ".png", info.friends[i].ID, info.friends[i].name, isonline);
     }
 
     for(int i=0; i<info.groups.size(); i++)
@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent, tcpsocket *m , MainWindowInfo info) :
 
     for(int i=0; i<info.notifications.size(); i++)
     {
-        adnoticeitem(header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/" + info.notifications[i].ID + ".png", info.notifications[i].ID, info.notifications[i].name, info.notifications[i].time, info.notifications[i].message);
+        adnoticeitem(header_path = "../resources/" + info.notifications[i].ID + ".png", info.notifications[i].ID, info.notifications[i].name, info.notifications[i].time, info.notifications[i].message);
     }
 
 }
@@ -120,7 +120,7 @@ void MainWindow::get_new_noti(int &apply_id){
     in.setVersion(QDataStream::Qt_4_8);
     QString msg,time,name,header_path;
     in >> msg >> time >> name;
-    header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/" + QString::number(apply_id) + ".png";
+    header_path = "../resources/" + QString::number(apply_id) + ".png";
     adnoticeitem(header_path, QString::number(apply_id), name, time, msg);
 }
 
@@ -129,7 +129,7 @@ void MainWindow::get_new_friend(int &newfriend_id){
     QDataStream in(m_tcpsocket);
     in.setVersion(QDataStream::Qt_4_8);
     QString header_path,name;
-    header_path = "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/" + QString::number(newfriend_id) + ".png";
+    header_path = "../resources/" + QString::number(newfriend_id) + ".png";
     int is_online;
     bool isonline;
     in >> name >>is_online;

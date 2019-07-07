@@ -24,7 +24,7 @@ class group_chat : public QWidget
 public:
     explicit group_chat(QWidget *parent = nullptr);
     ~group_chat();
-    void set_information(tcpsocket *m, QString mID, QString gID, QString gName, QVector<FlockMember>,QString gPhoto="/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/group.png");
+    void set_information(tcpsocket *m, QString mID, QString gID, QString gName, QVector<FlockMember>,QString gPhoto="../resources/group.png");
 
 private slots:
     void on_records_clicked();

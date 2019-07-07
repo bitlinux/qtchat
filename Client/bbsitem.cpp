@@ -25,7 +25,7 @@ bbsitem::bbsitem(QWidget *parent, tcpsocket *m, QString bbs_id, QString poster_i
     this->ui->poster_name->setText(this->otherName);
     //name align right
     this->ui->poster_name->setStyleSheet("text-align:right;color:gray;");
-    QPixmap pix("/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/1px.png");
+    QPixmap pix("../resources/1px.png");
     //ui->px1->resize(400,300);
     //QPixmap px1 =pix.scaled(ui->px1->size(),Qt::KeepAspectRatio);
     ui->px1->setPixmap(pix);

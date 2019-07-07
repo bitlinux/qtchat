@@ -2,7 +2,7 @@
 #include<QtNetwork>
 #include<QtWidgets/QMessageBox>
 #include<QHostAddress>
-QHostAddress tcpsocket::s_hostAddress=QHostAddress("192.168.43.104");
+QHostAddress tcpsocket::s_hostAddress=QHostAddress("127.0.0.1");
 int tcpsocket::s_hostPort=1234;
 
 
@@ -112,3 +112,5 @@ void tcpsocket::linkSignalWithSlot()
             this, SLOT(dispalyError(QAbstractSocket::SocketError)));
     connect(this,SIGNAL(readyRead()),this,SLOT(readtype()));
 }
+///Qt5.12.3/5.12.3/Src/qtbase/src/plugins/sqldrivers/mysql/mysql
+/// sudo ./qmake  "INCLUDEPATH+=/usr/include/mysql" "LIBS+=-L/usr/lib/x86_64-linux-gnu/ -lmysqlclient"  ../../Src/qtbase/src/plugins/sqldrivers/mysql/mysql.pro

@@ -15,7 +15,7 @@ class groupitem : public QWidget
     Q_OBJECT
 
 public:
-    explicit groupitem(QWidget *parent = nullptr, tcpsocket *m = nullptr, QString myid = "", QString gID = "", QString gname = "", QVector<FlockMember> fm = {}, QString gphoto="/Users/JIE/Desktop/Linux/qtchat/Chat0.1/resources/group.png");
+    explicit groupitem(QWidget *parent = nullptr, tcpsocket *m = nullptr, QString myid = "", QString gID = "", QString gname = "", QVector<FlockMember> fm = {}, QString gphoto="../resources/group.png");
     ~groupitem();
 
     QString header_path;

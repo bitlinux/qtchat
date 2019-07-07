@@ -92,13 +92,12 @@ Widget::Widget(QWidget *parent)
     connect(le3,SIGNAL(textChanged(QString)),this,SLOT(up_lock()));
     this->show();
 
-    /*
     dir=new QDir(".");
     if(!dir->cd("file"))
     {
         dir->mkdir("./file");
     }
-    */
+
 }
 
 Widget::~Widget()
@@ -232,7 +231,7 @@ void Widget::get_file()
 {
     if(fp==0)
     {
-        QString buff={"/Users/JIE/Desktop/Linux/qtchat/Chat0.1/file/"};
+        QString buff={"../file/"};
         buff.append(filename);
         file=new QFile(buff);
         te1->append(buff);

@@ -138,7 +138,7 @@ void private_chat::receive_file(int &send_ID){
     //QTextCodec *codec=QTextCodec::codecForName("UTF-8");
     QStringList filename_list = filename.split("/");
 
-    QString file_path =  "/Users/JIE/Desktop/Linux/qtchat/Chat0.1/" + myID + "/" + filename_list[filename_list.count()-1];
+    QString file_path =  "../" + myID + "/" + filename_list[filename_list.count()-1];
 
     qDebug()<<filename_list[filename_list.count()-1];
     QString strs = "                " + time + "\n" + otherID + ":   ";

@@ -25,7 +25,8 @@ bbsitem_detail::bbsitem_detail(QWidget *parent, tcpsocket *m, QString ibbs_id, Q
         this->ui->Delete->setText("");
     }
     this->ui->time_label->setText(" Post by " + poster_name + " at " + postTime);
-    this->ui->time_label->setStyleSheet("text-align:right;color:gray;");
+    qDebug()<<postTime;
+    this->ui->time_label->setStyleSheet("color:gray;");
     this->ui->title_label->setText(title);
     //set title style
     QFont ft;
@@ -54,7 +55,7 @@ void bbsitem_detail::on_buttonBox_accepted()
 
     out<<int(REPLY_BBS)<<this->myID.toInt()<<this->bbs_id.toInt()<<getContent();
     qDebug()<<REPLY_BBS<<this->myID.toInt()<<this->bbs_id.toInt()<<getContent();
-    //qDebug()<<"request delete bbs";
+    qDebug()<<"request reply bbs";
 
     m_tcpsocket->write(block);
     this->close();
@@ -69,7 +70,7 @@ void bbsitem_detail::on_Delete_clicked()
     out.setVersion(QDataStream::Qt_4_8);
     out<<int(DELETE_BBS)<<this->bbs_id.toInt();
     qDebug()<<DELETE_BBS<<this->bbs_id.toInt();
-    //qDebug()<<"request delete bbs";
+    qDebug()<<"request delete bbs";
     m_tcpsocket->write(block);
     this->close();
 }
