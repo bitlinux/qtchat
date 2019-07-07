@@ -1,12 +1,22 @@
 # qtchat
 Linux chat software based on QT5 
 
-Name | Value | Version
-:-: | :-: | :-: 
-Architechture | x86_64 | - |
-Language | C++ | - |
-GUI | QT | 5.13.0 | 
-DataBase | MySQL | 5.7.24 |
+<html>
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>
+                <img src=https://github.com/bitlinux/qtchat/blob/master/resources/list.png  alt="list" />
+            </td>
+            <td>
+                <img src=https://github.com/bitlinux/qtchat/blob/master/resources/logo2.png  alt="logo" />
+            </td>
+        </tr>
+    </table>
+</html>
+
+
+
+
 ***
 
 ### 吴杰
