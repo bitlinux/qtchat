@@ -1,7 +1,7 @@
 #include<QApplication>
 #include <QtCore/QTextCodec>
 #include"server_message.h"
-#inlucde"fileserver.h"
+#include"fileserver.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
