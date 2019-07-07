@@ -6,7 +6,7 @@ Name | Value | Version
 Architechture | x86_64 | - |
 Language | C++ | - |
 GUI | QT | 5.13.0 | 
-DataBase | MySQL | - |
+DataBase | MySQL | 5.7.24 |
 ***
 
 ### 吴杰
